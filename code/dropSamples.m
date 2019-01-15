@@ -18,7 +18,3 @@ for i = 1:length(X)
    % XZ{i}(1,ind) = 0*X{i}(1,ind);
     XR{i}(:,ind) = [];
 end
-%X = XZ;
-%save(outfileZ,'X');
-%X = XR;
-%save(outfileR,'X');
