@@ -1,4 +1,4 @@
-function [result,AIC_bias,BIC_bias,for_metrics] = iLasso(Series, lambda, krnl,L,dDt,SIG,params)
+function [result,AIC_bias,BIC_bias,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG,params)
 % Learning teporal dependency among irregular time series ussing Lasso (or its variants)
 %
 % INPUTS:
@@ -21,10 +21,6 @@ addDC = 0;
 BIC = 0;
 BIC_bias = 0;
 AIC_bias = 0;
-if addDC
-    Series{length(Series)+1} = Series{end};
-    Series{end}(1,:) = ones(size(Series{end}(1,:)));
-end
 % Parameters
 L = L/dDt;     % Length of studied lag
 L0 = L;
