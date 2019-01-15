@@ -1,4 +1,4 @@
-function [result,AIC_bias,BIC_bias,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG,params)
+function [result,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG,params)
 % Learning teporal dependency among irregular time series ussing Lasso (or its variants)
 %
 % INPUTS:
@@ -37,7 +37,7 @@ bm = (zeros(N1-B, 1));
 % Building the design matrix
 for j = 1:P
     for i = (B+1):N1
-          bm(i-B) = Series{1}(1, i);
+        bm(i-B) = Series{1}(1, i);
         ti = (Series{1}(2, i) - (L)*Dt):Dt:(Series{1}(2, i)-Dt);
         ti = repmat(ti, length(Series{j}(2, :)), 1);
         tSelect = repmat(Series{j}(2, :)', 1, L0);
@@ -51,7 +51,7 @@ for j = 1:P
                 Kp = exp(-((ti-tSelect).^2)/SIG);        % The Gaussian Kernel
         end
         Am(i-B, ((j-1)*L0+1):(j*L0) ) = sum(ySelect.*Kp)./sum(Kp);
-      end
+    end
 end
 % Solving Lasso using a solver; here the 'GLMnet' package
 opt = glmnetSet;
@@ -67,23 +67,9 @@ opt.penalty_factor(((j-1)*L+1):(j*L)) = 0;
 fit = glmnet(Am, bm, params.family, opt);
 w = fit.beta;
 
-% Computing the BIC and AIC metrics
-if 0
-BIC = norm(Am*w-bm)^2-log(N1-B)*sum(w==0)/2;
-AIC = norm(Am*w-bm)^2-2*sum(w==0)/2;
-
-BIC_bias= norm(Am*w+fit.a0-bm)^2-log(N1-B)*(sum(w==0)+1)/2;
-AIC_bias = norm(Am*w+fit.a0-bm)^2-2*(sum(w==0)+1)/2;
-end
 % Reformatting the output
 result = zeros(P, L0);
 count = 0; genes = []; areas = [];
-
-% All Genes prediction first
-%SmSer{count}(1,:) = Am*w+fit.a0;
-%SmSer{count}(2,:) = Series{count}(2,end-length(SmSer{count}(1,:))+1:end);
-%chosen = [];chosen_areas=[]; chosen_metrics = [];
-%w1 = zeros(size(w));
 
 for_metrics.Am = Am;
 for_metrics.bm = bm;

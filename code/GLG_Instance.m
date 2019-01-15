@@ -3,10 +3,8 @@ function GLG_Instance(Data,varargin)
 % prob_zero_removal, date)
 % Runs Generalized Lasso Granger for one hyperparameter set with optional
 % subsampling and zero-handling.
-% 
+%
 tic
-fprintf('Number of arguments: %d\n',nargin)
-celldisp(varargin)
 %%% InputParser
 p = inputParser;
 def_lambda = 0.01;
@@ -19,7 +17,7 @@ def_L = 15;
 def_ID = 0;
 def_outdir = 'Output';
 def_prob_remove_samples = 0.2;
-% 
+%
 expected_family = {'gaussian','poisson'};
 validScalar = @(x) isnumeric(x) && isscalar(x) && (x >= 0);
 validFile = @(x) isfile([x '.mat']);
@@ -44,56 +42,8 @@ params.p1 = p.Results.dT*p.Results.num_lags;
 params.DateNumber = datenum(date);
 mkdir(params.outdir)
 %%% End InputParser
-if 0
-if nargin==0
-    params.lambda = 0.01;
-    params.dT = 1;
-    params.p1 = 21;
-    params.resampling = 1;
-    a = datestr(date,23);
-    a(find(a=='/'))=[];
-    outpath = ['results/' a];
-    data_file = 'X_Monocle.mat';
-    params.penalty = 1;
-else
-%    mode = str2num(varargin{6});
-    data_file = varargin{1}
-    if nargin>1
-        params.family = (varargin{2});
-    else
-        params.family = 'gaussian';
-    end
-    params.lambda = str2num(varargin{2});
-    params.dT = str2num(varargin{3});
-    params.p1 = str2num(varargin{4});
-    params.kernel_width = str2num(varargin{5});
-   
-    if nargin>5
-        params.bootstrap = str2num(varargin{6});
-    else
-        params.bootstrap = 0;
-    end
-    
-   
-    
-    if nargin>7
-        params.dropZeros = str2num(varargin{8});
-    else
-        params.dropZeros = 0;
-    end
-    
-    if nargin>8
-        params.date = str2num(varargin{9});
-    else
-        params.date = 0;
-    end
-end
-end
-% a = datestr(date,23);
-%    a(find(a=='/'))=[];
-%    outpath = ['results/' a];
 tic;
-%print_version
+
 set(0,'DefaultFigureVisible','off');
 resampling_method = {'holes';'burst'};
 %outpath
@@ -103,12 +53,6 @@ filename = ['AdjMatrix_' params.Data];
 filename = [filename '_ID_' num2str(params.ID)];
 filename(filename=='.') = 'p';
 filename(filename=='/') = '_';
-%filename = [outpath '/testALasso_' num2str(mode) '.mat']
-%addpath(genpath('mvgc_v1.0'));
-%addpath(genpath('glmnet_matlab'));
-%mvgc_demo;
-%X = X(1:400);
-%mkdir('.',filename);
 Xpath = ['xdata' ];
 if ~exist(Xpath)
     save(Xpath,'X', 'params');
@@ -123,11 +67,11 @@ if params.replicate>0
     X = dropSamples(params.prob_remove_samples,X);
 end
 
-ALTboot = sparse(zeros(length(X)));    
+Adj_Matrix = sparse(zeros(length(X)));
 
 for irow = 1:1:length(X)
-    [ALasso,bic, for_metric] = run_iLasso_row(X,params,irow);
-    ALTboot = ALTboot + sparse(sum(ALasso,3));
+    [ALasso, for_metric] = run_iLasso_row(X,params,irow);
+    Adj_Matrix = Adj_Matrix + sparse(sum(ALasso,3));
     runtime = toc;
     progress = (irow)/length(X)*100;
     s = sprintf(['%2.5g %% Progress in %5.5g seconds'],progress,runtime);
@@ -135,15 +79,11 @@ for irow = 1:1:length(X)
 end
 
 runtime = toc
-Adj_Matrix = ALTboot;
-%save([filename '_row_' num2str(rownum)],'ALTboot', 'ALTneutral','ALTdown','ALasso','varargin','Smoothed','genes','rownum','metrics','bic','for_metric');
 if params.replicate>0
     save(fullfile(params.outdir,[filename '_replicate_' num2str(params.replicate)]),'Adj_Matrix','varargin','params');
 else
-    save(fullfile(params.outdir,[filename '_replicate_' num2str(params.replicate)]), 'Adj_Matrix','varargin','params');
+    save(fullfile(params.outdir,[filename]), 'Adj_Matrix','varargin','params');
 end
-%save ALassotest ALasso;
-%Atemp = ALasso(:,:);
 fprintf('file saved')
 if isdeployed
     quit;

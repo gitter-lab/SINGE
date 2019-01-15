@@ -1,5 +1,4 @@
-function [ALasso,  bic, metric] = run_iLasso_row(X,params,rownum)
-%load(Xpath)
+function [ALasso, metric] = run_iLasso_row(X,params,rownum)
 dT=params.dT;
 lambda=params.lambda;
 p1=params.p1;
@@ -44,12 +43,8 @@ for p = rownum
     [pi,indf] = sort(pa);
     I = eye(numrows);
     P = I(pa,:);
-%    [a,Smoothed,top_genes,areas,b,c] = iLasso_with_trend(xcell(pa), lambda,'Gaussian',p1,dT,std_dev);
-    %[a,Smoothed,top_genes,areas,b,c] = iLasso_with_trend_iterative(xcell(pa), lambda,'Gaussian',p1,dT,std_dev);
-    [a,b,c, metric] = iLasso_for_SCINGE(xcell(pa), lambda,'Gaussian',p1,dT,std_dev,params);
+    [a, metric] = iLasso_for_SCINGE(xcell(pa), lambda,'Gaussian',p1,dT,std_dev,params);
     metric.order = pa;
-    bic = c;
- 
     a = P'*a;
     a = fliplr(a);
     for j = 1:size(a,2)
