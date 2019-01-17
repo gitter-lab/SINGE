@@ -15,7 +15,7 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 
 **GLG Hyperparameters:**
 - *param.ID* - Identifier for GLG hyperparameter set
-- *param.lambda* - Sparsity parameter (lambda = 0 results in non-sparse solution)
+- *param.lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
 - *param.dT* - Time resolution for GLG Test
 - *param.num_lags* - Number of lags for GLG Test
 - *param.kernel_width* - Gaussian kernel width for GLG Test
@@ -26,6 +26,12 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *ranked_edges* - Edge lists ranked according to their SCINGE scores
 influential_genes - Genes ranked according to their SCINGE influence.
 
-## Example script
+## Example
 `SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
 It runs SCINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
+
+## Licenses
+SCINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
+
+The file `iLasso_for_SCINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
+The original third-party code is available under the [MIT License](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/LICENSE), Copyright © 2014 USC-Melady.

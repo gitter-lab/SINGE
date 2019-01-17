@@ -17,6 +17,9 @@ function [result,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG
 % Dependency: This code requires the GLMnet package to perform Lasso.
 % For details of the algorithm please refer to:
 % M. T. Bahadori and Yan Liu, "Granger Causality Analysis in Irregular Time Series", (SDM 2012)
+%
+% MIT License
+% Copyright (c) 2014 USC-Melady
 addDC = 0;
 BIC = 0;
 BIC_bias = 0;
