@@ -4,6 +4,7 @@ Standalone MATLAB implementation of the SCINGE algorithm.
 
 ## Dependency
 This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html).
+Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
 
 ## Inputs
 - *Data* - Path to ordered single-cell expression data (e.g., `data1/X_SCODE_data`)
