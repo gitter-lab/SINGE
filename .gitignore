@@ -1,0 +1,7 @@
+# Glmnet files
+glmnet_matlab.zip
+glmnet_matlab/
+__MACOSX
+
+# Default output directory
+Output/

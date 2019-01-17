@@ -1,5 +1,5 @@
 function [result,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG,params)
-% Learning teporal dependency among irregular time series ussing Lasso (or its variants)
+% Learning temporal dependency among irregular time series using Lasso (or its variants)
 %
 % INPUTS:
 %       Series: an Nx1 cell array; one cell for each time series. Each cell
@@ -15,8 +15,11 @@ function [result,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG
 %       BIC:    The BIC score
 %
 % Dependency: This code requires the GLMnet package to perform Lasso.
-% For Details of the algorithm please refer to:
+% For details of the algorithm please refer to:
 % M. T. Bahadori and Yan Liu, "Granger Causality Analysis in Irregular Time Series", (SDM 2012)
+%
+% MIT License
+% Copyright (c) 2014 USC-Melady
 addDC = 0;
 BIC = 0;
 BIC_bias = 0;
