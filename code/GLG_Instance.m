@@ -92,7 +92,7 @@ end
 end
 
 function y = isfilecomp(x)
-if verLessThan('matlab','R2017a')
+if verLessThan('matlab','9.3')
     if (exist([x '.mat'], 'file') == 2)||(exist(x, 'file') == 2)
         y = 1;
     else
