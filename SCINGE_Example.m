@@ -15,10 +15,10 @@ param_list{2}.prob_zero_removal = 0;
 param_list{2}.family = 'gaussian';
 param_list{2}.ID = 542;
 
-Data = 'data1/X_SCODE_data';
+Data = 'data1/X_SCODE_data.mat';
 outdir = 'Output';
 num_replicates = 2;
 load('data1/tf.mat');
 gene_list = tf;
 
-ranked_edges = SCINGE(Data,outdir,num_replicates,gene_list,param_list);
+ranked_edges = SCINGE(gene_list,Data,outdir,num_replicates,param_list);
