@@ -20,7 +20,7 @@ def_prob_remove_samples = 0.2;
 %
 expected_family = {'gaussian','poisson'};
 validScalar = @(x) isnumeric(x) && isscalar(x) && (x >= 0);
-validFile = @(x) (verLessThan('matlab','R2017a'))&&((exist([x '.mat'], 'file') == 2)||(exist(x, 'file') == 2)) || (~verLessThan('matlab','R2017a'))*(isfile([x '.mat'])||isfile(x));
+validFile = @(x) isfilecomp(x);
 validString = @(x) ischar(x) && isempty(regexp(x,'[\/?*''."<>|]','once'));
 validInteger = @(x) (x - floor(x)==0) && (x >= 0);
 validLags = @(x) (x - floor(x)==0) && (p.Results.dT*x)<100;
@@ -88,4 +88,21 @@ end
 fprintf('file saved')
 if isdeployed
     quit;
+end
+end
+
+function y = isfilecomp(x)
+if verLessThan('matlab','R2017a')
+    if (exist([x '.mat'], 'file') == 2)||(exist(x, 'file') == 2)
+        y = 1;
+    else
+        y = 0;
+    end
+else
+    if (isfile([x '.mat'])||isfile(x))
+        y = 1;
+    else
+        y = 0;
+    end
+end
 end
