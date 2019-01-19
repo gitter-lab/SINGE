@@ -20,7 +20,7 @@ def_prob_remove_samples = 0.2;
 %
 expected_family = {'gaussian','poisson'};
 validScalar = @(x) isnumeric(x) && isscalar(x) && (x >= 0);
-validFile = @(x) isfile([x '.mat']);
+validFile = @(x) isfilecomp(x);
 validString = @(x) ischar(x) && isempty(regexp(x,'[\/?*''."<>|]','once'));
 validInteger = @(x) (x - floor(x)==0) && (x >= 0);
 validLags = @(x) (x - floor(x)==0) && (p.Results.dT*x)<100;
@@ -43,8 +43,9 @@ params.DateNumber = datenum(date);
 mkdir(params.outdir)
 %%% End InputParser
 tic;
-
-set(0,'DefaultFigureVisible','off');
+if isdeployed
+    set(0,'DefaultFigureVisible','off');
+end
 resampling_method = {'holes';'burst'};
 %outpath
 load(params.Data);
@@ -87,4 +88,21 @@ end
 fprintf('file saved')
 if isdeployed
     quit;
+end
+end
+
+function y = isfilecomp(x)
+if verLessThan('matlab','9.3')
+    if (exist([x '.mat'], 'file') == 2)||(exist(x, 'file') == 2)
+        y = 1;
+    else
+        y = 0;
+    end
+else
+    if (isfile([x '.mat'])||isfile(x))
+        y = 1;
+    else
+        y = 0;
+    end
+end
 end

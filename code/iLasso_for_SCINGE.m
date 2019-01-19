@@ -15,7 +15,7 @@ function [result,for_metrics] = iLasso_for_SCINGE(Series, lambda, krnl,L,dDt,SIG
 %       BIC:    The BIC score
 %
 % Dependency: This code requires the GLMnet package to perform Lasso.
-% For details of the algorithm please refer to:
+% For details of the original iLasso algorithm please refer to:
 % M. T. Bahadori and Yan Liu, "Granger Causality Analysis in Irregular Time Series", (SDM 2012)
 %
 % MIT License
