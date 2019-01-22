@@ -1,5 +1,8 @@
 # ESC to Endoderm Differentiation Dataset
-This directory contains gene lists and a pre-processed version of the ESC to Endoderm dataset
+This directory contains the following files related to the ESC to Endoderm Differentiation dataset.
+
+- **tf.mat:** list of genes in the dataset.
+- **X_SCODE_data.mat:** Pre-processed version of pseudotime-ordered expression data corresponding to the genes in tf.mat.
 
 The sources to cite for this dataset are:
 - [Matsumoto et al. 2017](https://academic.oup.com/bioinformatics/article/33/15/2314/3100331), [dataset](https://github.com/hmatsu1226/SCODE/tree/master/data)
