@@ -85,7 +85,7 @@ if params.replicate>0
 else
     save(fullfile(params.outdir,[filename]), 'Adj_Matrix','varargin','params');
 end
-fprintf('file saved')
+fprintf('intermediate file saved')
 if isdeployed
     quit;
 end
