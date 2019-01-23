@@ -54,10 +54,7 @@ filename = ['AdjMatrix_' params.Data];
 filename = [filename '_ID_' num2str(params.ID)];
 filename(filename=='.') = 'p';
 filename(filename=='/') = '_';
-Xpath = ['xdata' ];
-if ~exist(Xpath)
-    save(Xpath,'X', 'params');
-end
+
 randomizer = floor(params.DateNumber+params.lambda*1000+params.dT+params.p1+params.kernel_width*10+params.replicate)
 %rng('default');
 rand('seed',randomizer);
@@ -85,7 +82,7 @@ if params.replicate>0
 else
     save(fullfile(params.outdir,[filename]), 'Adj_Matrix','varargin','params');
 end
-fprintf('intermediate file saved')
+fprintf('Intermediate file saved.\n')
 if isdeployed
     quit;
 end

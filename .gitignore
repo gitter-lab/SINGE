@@ -5,3 +5,6 @@ __MACOSX
 
 # Default output directory
 Output/
+
+# Temporary m files
+*.m~

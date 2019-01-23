@@ -79,6 +79,10 @@ for_metrics.bm = bm;
 for_metrics.w = w;
 for_metrics.a0 = fit.a0;
 for_metrics.bic = BIC;
-for i = 1:P
-    result(i, :) = w((i-1)*L0+1:i*L0);
+if isempty(w)
+    result = zeros(P);
+else
+    for i = 1:P
+        result(i, :) = w((i-1)*L0+1:i*L0);
+    end
 end
