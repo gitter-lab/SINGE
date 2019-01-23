@@ -21,6 +21,7 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *param.kernel_width* - Gaussian kernel width for GLG Test
 - *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
 - *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
+- *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
 
 ## Outputs
 - *ranked_edges* - Edge lists ranked according to their SCINGE scores
