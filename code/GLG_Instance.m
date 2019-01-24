@@ -26,7 +26,7 @@ validString = @(x) ischar(x) && isempty(regexp(x,'[\/?*''."<>|]','once'));
 validInteger = @(x) (x - floor(x)==0) && (x >= 0);
 validLags = @(x) (x - floor(x)==0) && (p.Results.dT*x)<100;
 validProb = @(x) isnumeric(x) && isscalar(x) && (x >= 0) &&(x<1);
-validDate = @(x) any(ismember({datestr(datenum(x) ,['mm/dd/yyyy']) datestr(datenum(x) ,['dd-mm-yyyy']) datestr(datenum(x))},x));
+validDate = @(x) any(ismember({datestr(datenum(x) ,['mm/dd/yyyy']) datestr(datenum(x,'dd-mm-yyyy') ,['dd-mm-yyyy']) datestr(datenum(x))},x));
 addRequired(p,'Data',validFile);
 addParameter(p,'family',def_family,@(x) any(validatestring(x,expected_family)));
 addParameter(p,'outdir',def_outdir,validString);

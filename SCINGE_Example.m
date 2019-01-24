@@ -13,7 +13,7 @@ param_list{1}.kernel_width = 2;
 param_list{1}.prob_zero_removal = 0;
 param_list{1}.prob_remove_samples = 0.2;
 param_list{1}.family = 'gaussian';
-param_list{1}.date = '31-Jan-2019';
+param_list{1}.date = '31-01-2019';
 
 param_list{2}.ID = 542;
 param_list{2}.lambda = 0.01;
