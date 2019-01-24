@@ -1,5 +1,7 @@
-%% Simlpe example that runs SCINGE for two replicates of two hyperparameter settings
-
+%% Simple example that runs SCINGE for two replicates of two hyperparameter settings
+clear all;
+close all;
+clc;
 addpath(genpath('.'));
 
 %% Generate list of parameter combinations
