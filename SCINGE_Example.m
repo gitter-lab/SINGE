@@ -13,6 +13,7 @@ param_list{1}.kernel_width = 2;
 param_list{1}.prob_zero_removal = 0;
 param_list{1}.prob_remove_samples = 0.2;
 param_list{1}.family = 'gaussian';
+param_list{1}.date = '31-Jan-2019';
 
 param_list{2}.ID = 542;
 param_list{2}.lambda = 0.01;
@@ -22,6 +23,7 @@ param_list{2}.kernel_width = 4;
 param_list{2}.prob_zero_removal = 0.2;
 param_list{2}.prob_remove_samples = 0.1;
 param_list{2}.family = 'gaussian';
+param_list{2}.date = '24-Jan-2019';
 
 %% Specify Path to Input data and path to Output folder, gene_list and number of subsampled replicates
 Data = 'data1/X_SCODE_data.mat';
