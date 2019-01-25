@@ -1,5 +1,5 @@
 function [XR] = dropZeroSamples(varargin)
-probZero = (varargin{1});
+probRemove = (varargin{1});
 if ~iscell(varargin{2})
 infile = varargin{2};
 if nargin>2
@@ -14,7 +14,7 @@ else
 end
 XR = X;
 for i = 1:length(X)
-    ind = find((rand(size(X{i}(1,:)))<probZero)&(X{i}(1,:)==0));
+    ind = find((rand(size(X{i}(1,:)))<probRemove)&(X{i}(1,:)==0));
    % XZ{i}(1,ind) = 0*X{i}(1,ind);
     XR{i}(:,ind) = [];
 end

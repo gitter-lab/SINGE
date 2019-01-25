@@ -21,10 +21,15 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *param.kernel_width* - Gaussian kernel width for GLG Test
 - *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
 - *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
+- *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
+- *param.date* - Valid date in the 'dd-mmm-yyyy' or 'mm/dd/yyyy' format. 
 
 ## Outputs
 - *ranked_edges* - Edge lists ranked according to their SCINGE scores
 - *influential_genes* - Genes ranked according to their SCINGE influence.
+
+## Note on Reproducibility of Results
+Because the subsampling and zero-removal stages involve pseudo-random sample removals, we generate a random seed using input hyperparameters, including the *date* input. The results can be reproduced by providing the same inputs and date from a previous experiment.
 
 ## Example
 `SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
