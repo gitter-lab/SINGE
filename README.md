@@ -1,4 +1,7 @@
 # Single-Cell Inference of Networks using Granger Ensembles (SCINGE)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
+
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
 Standalone MATLAB implementation of the SCINGE algorithm.
 This code has been tested on MATLAB R2014b and R2018a on Linux operating systems.
@@ -23,7 +26,7 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
 - *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
 - *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
-- *param.date* - Valid date in the 'dd-mmm-yyyy' or 'mm/dd/yyyy' format. 
+- *param.date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
 
 ## Outputs
 - *ranked_edges* - Edge lists ranked according to their SCINGE scores
