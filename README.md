@@ -22,7 +22,7 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
 - *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
 - *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
-- *param.date* - Valid date in the 'dd-mmm-yyyy', 'dd-mm-yyyy' or 'mm/dd/yyyy' format. 
+- *param.date* - Valid date in the 'dd-mmm-yyyy' or 'mm/dd/yyyy' format. 
 
 ## Outputs
 - *ranked_edges* - Edge lists ranked according to their SCINGE scores
