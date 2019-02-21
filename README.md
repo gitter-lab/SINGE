@@ -6,6 +6,14 @@ Gene regulatory network reconstruction from pseudotemporal single-cell gene expr
 Standalone MATLAB implementation of the SCINGE algorithm.
 This code has been tested on MATLAB R2014b and R2018a on Linux operating systems.
 
+## Citation
+
+If you use the SCINGE software please cite:
+
+Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
+[Network inference with Granger causality ensembles on single-cell transcriptomic data](https://doi.org/10.1101/534834).
+*bioRxiv* 2019. doi:10.1101/534834
+
 ## Dependency
 This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html).
 Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
