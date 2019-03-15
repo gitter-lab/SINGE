@@ -7,4 +7,4 @@ before_install:
   - docker pull openmicroscopy/octave
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint bash openmicroscopy/octave -c "run_example.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint bash openmicroscopy/octave -c "octave SCINGE_Example.m"
