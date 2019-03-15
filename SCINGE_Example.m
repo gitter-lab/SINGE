@@ -1,3 +1,6 @@
+%% Test error codes
+asldfkjdlfjkdjl
+
 %% Simple example that runs SCINGE for two replicates of two hyperparameter settings
 clear all;
 close all;
