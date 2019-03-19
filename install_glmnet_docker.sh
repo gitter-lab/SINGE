@@ -11,4 +11,5 @@ cd glmnet_matlab
 ls
 wget https://raw.githubusercontent.com/SheffieldML/GPmat/master/kern/mex/fintrf.h
 mkoctfile --mex glmnetMex.F GLMnet.f
+ls
 cd ..
