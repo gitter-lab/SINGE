@@ -3,7 +3,8 @@
 # http://web.stanford.edu/~hastie/glmnet_matlab/index.html
 # and compiling for Octave
 echo "Test install script"
-sudo apt-get install wget
+apt-get update
+apt-get -y install wget
 wget http://web.stanford.edu/~hastie/glmnet_matlab/glmnet_matlab.zip
 unzip glmnet_matlab.zip
 cd glmnet_matlab
