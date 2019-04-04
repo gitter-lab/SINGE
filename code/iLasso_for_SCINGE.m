@@ -42,9 +42,11 @@ for j = 1:P
     for i = (B+1):N1
         bm(i-B) = Series{1}(1, i);
         ti = (Series{1}(2, i) - (L)*Dt):Dt:(Series{1}(2, i)-Dt);
-        ti = repmat(ti, length(Series{j}(2, :)), 1);
-        tSelect = repmat(Series{j}(2, :)', 1, L0);
-        ySelect = repmat(Series{j}(1, :)', 1, L0);
+   %     ti = repmat(ti, length(Series{j}(2, :)), 1);
+ %       tSelect = repmat(Series{j}(2, :)', 1, L0);
+        tSelect = Series{j}(2, :)';
+        %ySelect = repmat(Series{j}(1, :)', 1, L0);
+        ySelect = Series{j}(1, :)';
         switch krnl
             case 'Sinc'     % The sinc Kernel
                 Kp = sinc((ti-tSelect)/SIG);
@@ -53,7 +55,7 @@ for j = 1:P
             otherwise
                 Kp = exp(-((ti-tSelect).^2)/SIG);        % The Gaussian Kernel
         end
-        Am(i-B, ((j-1)*L0+1):(j*L0) ) = sum(ySelect.*Kp)./sum(Kp);
+        Am(i-B, ((j-1)*L0+1):(j*L0)) = (ySelect'*Kp)./sum(Kp);
     end
 end
 % Solving Lasso using a solver; here the 'GLMnet' package

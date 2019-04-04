@@ -1,4 +1,4 @@
-function [XR] = dropZeroSamples(varargin)
+function [XR] = dropSamples(varargin)
 probRemove = (varargin{1});
 if ~iscell(varargin{2})
 infile = varargin{2};
