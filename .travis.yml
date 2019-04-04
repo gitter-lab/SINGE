@@ -2,3 +2,12 @@ sudo: required
 
 services:
   - docker
+
+env:
+  - OCTAVE_VERSION=5.1.0
+
+before_install:
+  - docker pull mtmiller/octave:${OCTAVE_VERSION}
+
+script:
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" mtmiller/octave:${OCTAVE_VERSION} -c "./install_glmnet_docker.sh; octave -v; octave SCINGE_Example.m"
