@@ -19,6 +19,11 @@ def_outdir = 'Output';
 def_prob_remove_samples = 0.2;
 def_date = date;
 %
+for ii = 1:length(varargin)
+    if ischar(varargin{ii})&&~isempty(str2num(varargin{ii}))&&isempty(regexp(varargin{ii},'[\/-]','once'))
+        varargin{ii} = str2num(varargin{ii});
+    end
+end
 expected_family = {'gaussian','poisson'};
 validScalar = @(x) isnumeric(x) && isscalar(x) && (x >= 0);
 validFile = @(x) isfilecomp(x);
