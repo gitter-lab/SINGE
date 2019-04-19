@@ -7,4 +7,4 @@ before_install:
   - docker pull fbenz/docker-java-matlab
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" fbenz/docker-java-matlab -c "ls; ls /opt/mcr; ./install_run_SCINGE.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" fbenz/docker-java-matlab -c "ls -l; ls -l /opt/mcr/v90; ./install_run_SCINGE.sh"
