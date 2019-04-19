@@ -7,4 +7,4 @@ before_install:
   - docker pull amarburg/matlab-runtime
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" amarburg/matlab-runtime -c "ls -l; ls -l /usr/local/MATLAB/MATLAB_Runtime/v94; ./install_run_SCINGE.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" amarburg/matlab-runtime -c "./install_run_SCINGE.sh; ls -l"
