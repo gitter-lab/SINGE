@@ -2,7 +2,7 @@
 clear all;
 close all;
 clc;
-addpath(genpath('.'));
+%% addpath(genpath('.'));
 
 %% Generate list of parameter combinations
 param_list{1}.ID = 541;
