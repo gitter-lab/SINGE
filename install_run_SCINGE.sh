@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install the compiled SCINGE_Example executable from a temporary location
-wget https://www.biostat.wisc.edu/~gitter/tmp/86e65385d9e50e21be23bd8185e02e3b/SCINGE_Example
+wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/86e65385d9e50e21be23bd8185e02e3b/SCINGE_Example
 chmod u+x SCINGE_Example
 
 apt-get update
