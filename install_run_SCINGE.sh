@@ -4,7 +4,7 @@ wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/369b3eb57db4fb1fce29c5ae28
 chmod u+x SCINGE_Example
 
 apt-get update
-apt-get -y install libxt6 python3.6
+apt-get -y install libxt6 python3-pip
 
 python3 --version
 pip install csvdiff
