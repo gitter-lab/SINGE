@@ -4,7 +4,10 @@ wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/369b3eb57db4fb1fce29c5ae28
 chmod u+x SCINGE_Example
 
 apt-get update
-apt-get -y install libxt6
+apt-get -y install libxt6 python3.6
+
+python3 --version
+pip install csvdiff
 
 # Run the MATLAB-generated wrapper script
 ./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
