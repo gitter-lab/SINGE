@@ -4,7 +4,7 @@ wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/369b3eb57db4fb1fce29c5ae28
 chmod u+x SCINGE_Example
 
 apt-get update
-apt-get -y install libxt6
+apt-get -y install libxt6 bzip2
 
 # Install Miniconda3 following https://hub.docker.com/r/continuumio/miniconda3/dockerfile
 wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O ~/miniconda.sh
