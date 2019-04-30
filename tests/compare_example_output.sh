@@ -34,6 +34,6 @@ do
   for rep in 1 2
   do
     filename=AdjMatrix_data1_X_SCODE_datapmat_ID_$id_replicate_$rep.mat
-    python compare_adj_matrices.py $outdir/$filename $refdir/$filename
+    python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename
   done
 done
