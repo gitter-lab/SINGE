@@ -20,4 +20,4 @@ echo "conda activate base" >> ~/.bashrc
 conda env create -f tests/environment.yml
 
 # Run the MATLAB-generated wrapper script
-./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
+# ./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
