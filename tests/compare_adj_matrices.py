@@ -19,15 +19,21 @@ def main(args):
 
     # Inspired by PyPardisoProject
     # https://github.com/haasad/PyPardisoProject/blob/f666ea4718b32fa1359e5ca94bedac710b09a428/pypardiso/pardiso_wrapper.py#L173
-    if (np.array_equal(matrix1.indptr, matrix2.indptr) and
-            np.array_equal(matrix1.indices, matrix2.indices) and
-            np.allclose(matrix1.data, matrix2.data)):
-        print('Spare matrices in {} and {} are equal'.format(args.mat_file[0],
-              args.mat_file[1]))
-    else:
-        print('Spare matrices in {} and {} are not equal'.format(args.mat_file[0],
+    if not (np.array_equal(matrix1.indptr, matrix2.indptr) and 
+            np.array_equal(matrix1.indices, matrix2.indices)):
+        print('Spare matrices in {} and {} have different nonzero elements'.format(args.mat_file[0],
               args.mat_file[1]))
         sys.exit(1)
+
+    if not np.allclose(matrix1.data, matrix2.data):
+        print('Spare matrices in {} and {} have different values'.format(args.mat_file[0],
+              args.mat_file[1]))
+        max_diff = max(np.abs(matrix1.data - matrix2.data))
+        print('Maximum absolute difference: {}'.format(max_diff))
+        sys.exit(1)
+
+    print('Spare matrices in {} and {} are equal'.format(args.mat_file[0],
+          args.mat_file[1]))
 
 
 if __name__ == '__main__':
