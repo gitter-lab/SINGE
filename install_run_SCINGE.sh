@@ -16,9 +16,8 @@ ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
 echo "conda activate base" >> ~/.bashrc
 
-# Install csvdiff
-python --version
-pip install csvdiff
+# Install conda test environment
+conda env create -f tests/environment.yml
 
 # Run the MATLAB-generated wrapper script
 ./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
