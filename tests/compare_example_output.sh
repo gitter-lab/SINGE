@@ -21,6 +21,9 @@ if [[ "$comparison" != 'files are identical' ]] ; then
   exit_status=1
 fi
 
+# Test that Travis CI fails
+sed -i 's/FOXD3/FOXD1/g' $refdir/SCINGE_Ranked_Edge_List.txt
+
 # csvdiff requires a unique key in each row
 # Provide the Regulator and Target columns together as the index
 echo Comparing SCINGE_Ranked_Edge_List.txt
@@ -31,9 +34,6 @@ rm csvdiff.out
 if [[ "$comparison" != 'files are identical' ]] ; then
   exit_status=1
 fi
-
-# Test that Travis CI fails
-cp tests/reference/AdjMatrix_data1_X_SCODE_datapmat_ID_541_replicate_1.mat tests/reference/AdjMatrix_data1_X_SCODE_datapmat_ID_541_replicate_2.mat
 
 echo Comparing sparse adjacency matrices
 for id in 541 542
