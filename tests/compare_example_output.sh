@@ -8,13 +8,17 @@
 outdir=Output
 refdir=tests/reference
 
+# Return 0 unless any individual test fails
+# Continue running all tests even if one fails
+exit_status=0
+
 echo Comparing SCINGE_Gene_Influence.txt
 csvdiff --style=summary --sep='	' --significance=5 --output=csvdiff.out Gene_Name $outdir/SCINGE_Gene_Influence.txt $refdir/SCINGE_Gene_Influence.txt
 cat csvdiff.out
 comparison=$(cat csvdiff.out)
 rm csvdiff.out
 if [[ "$comparison" != 'files are identical' ]] ; then
-  exit 1
+  exit_status=1
 fi
 
 # csvdiff requires a unique key in each row
@@ -25,7 +29,7 @@ cat csvdiff.out
 comparison=$(cat csvdiff.out)
 rm csvdiff.out
 if [[ "$comparison" != 'files are identical' ]] ; then
-  exit 1
+  exit_status=1
 fi
 
 # Test that Travis CI fails
@@ -38,5 +42,11 @@ do
   do
     filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_replicate_${rep}.mat
     python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename
+    return_code=$?
+    if [[ $return_code -ne 0 ]] ; then
+      exit_status=1
+    fi
   done
 done
+
+exit $exit_status
