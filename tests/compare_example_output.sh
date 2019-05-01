@@ -21,9 +21,6 @@ if [[ "$comparison" != 'files are identical' ]] ; then
   exit_status=1
 fi
 
-# Test that Travis CI fails
-sed -i 's/FOXD3/FOXD1/g' $refdir/SCINGE_Ranked_Edge_List.txt
-
 # csvdiff requires a unique key in each row
 # Provide the Regulator and Target columns together as the index
 echo Comparing SCINGE_Ranked_Edge_List.txt
