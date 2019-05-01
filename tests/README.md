@@ -8,7 +8,7 @@ It uses Python to compare the output files SCINGE generates to reference files t
 - `compare_example_output.sh`: A script to compare the generated and reference output files
 - `compare_adj_matrices.py`: A Python script to compare the sparse adjacency matrices in two `.mat` files
 
-## `compare_adj_matrices.py` usage
+#### `compare_adj_matrices.py` usage
 
 ```
 usage: compare_adj_matrices.py [-h] mat_file mat_file

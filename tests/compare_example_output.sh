@@ -28,6 +28,9 @@ if [[ "$comparison" != 'files are identical' ]] ; then
   exit 1
 fi
 
+# Test that Travis CI fails
+cp tests/reference/AdjMatrix_data1_X_SCODE_datapmat_ID_541_replicate_1.mat tests/reference/AdjMatrix_data1_X_SCODE_datapmat_ID_541_replicate_2.mat
+
 echo Comparing sparse adjacency matrices
 for id in 541 542
 do
