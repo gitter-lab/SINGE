@@ -5,11 +5,8 @@
 # Must run inside the conda environment specified by environment.yml or have
 # those Python packages available
 
-#outdir=Output
-#refdir=tests/reference
-
-outdir=tests/reference
-refdir=tests/bad_reference
+outdir=Output
+refdir=tests/reference
 
 # Return 0 unless any individual test fails
 # Continue running all tests even if one fails
