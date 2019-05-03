@@ -50,7 +50,7 @@ else
     save(fullfile(params.outdir,[filename]), 'Adj_Matrix','varargin','params');
 end
 fprintf('Intermediate file saved.\n')
-if isdeployed
-    quit;
-end
+%if isdeployed
+%    quit;
+%end
 end
