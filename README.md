@@ -48,6 +48,9 @@ The results can be reproduced by providing the same inputs and date from a previ
 `SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
 It runs SCINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
 
+## Testing
+The `tests` directory contains test scripts and reference output files to test SCINGE.
+
 ## Licenses
 SCINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
 

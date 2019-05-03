@@ -8,3 +8,9 @@ Output/
 
 # Temporary m files
 *.m~
+
+# MATLAB compiler output files
+SCINGE_Example
+mccExcludedFiles.log
+requiredMCRProducts.txt
+
