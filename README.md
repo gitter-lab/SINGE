@@ -1,4 +1,4 @@
-# Single-Cell Inference of Networks using Granger Ensembles (SINGE)
+# Single-cell Inference of Networks using Granger Ensembles (SINGE)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
