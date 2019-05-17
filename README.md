@@ -1,14 +1,14 @@
-# Single-Cell Inference of Networks using Granger Ensembles (SCINGE)
+# Single-Cell Inference of Networks using Granger Ensembles (SINGE)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
-Standalone MATLAB implementation of the SCINGE algorithm.
+Standalone MATLAB implementation of the SINGE algorithm.
 This code has been tested on MATLAB R2014b and R2018a on Linux operating systems.
 
 ## Citation
 
-If you use the SCINGE software please cite:
+If you use the SINGE software please cite:
 
 Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 [Network inference with Granger causality ensembles on single-cell transcriptomic data](https://doi.org/10.1101/534834).
@@ -37,8 +37,8 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *param.date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
 
 ## Outputs
-- *ranked_edges* - Edge lists ranked according to their SCINGE scores
-- *influential_genes* - Genes ranked according to their SCINGE influence.
+- *ranked_edges* - Edge lists ranked according to their SINGE scores
+- *influential_genes* - Genes ranked according to their SINGE influence.
 
 ## Note on Reproducibility of Results
 Because the subsampling and zero-removal stages involve pseudo-random sample removals, we generate a random seed using input hyperparameters, including the *date* input.
@@ -46,13 +46,13 @@ The results can be reproduced by providing the same inputs and date from a previ
 
 ## Example
 `SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
-It runs SCINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
+It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
 
 ## Testing
-The `tests` directory contains test scripts and reference output files to test SCINGE.
+The `tests` directory contains test scripts and reference output files to test SINGE.
 
 ## Licenses
-SCINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
+SINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
 
 The file `iLasso_for_SCINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
 The original third-party code is available under the [MIT License](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/LICENSE), Copyright © 2014 USC-Melady.
