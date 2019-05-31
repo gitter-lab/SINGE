@@ -20,6 +20,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86
 COPY tests/environment.yml .
 RUN conda env create -f environment.yml
 
+WORKDIR /SCINGE
+
 # Install the compiled SCINGE_Example executable from a temporary location
 RUN wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/369b3eb57db4fb1fce29c5ae28db3ee7/SCINGE_Example && \
     chmod u+x SCINGE_Example
