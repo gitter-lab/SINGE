@@ -7,4 +7,4 @@ before_install:
   - docker pull agitter/singe:tmp
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94; ls Output/ -l; source ~/.bashrc; conda activate scinge-test; conda list; tests/compare_example_output.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "pwd; ls -al; ls -al /;./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94; ls Output/ -l; source ~/.bashrc; conda activate scinge-test; conda list; tests/compare_example_output.sh"
