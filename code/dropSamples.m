@@ -14,7 +14,7 @@ else
 end
 XR = X;
 for i = 1:length(X)
-    ind = find((rand(size(X{i}(1,:)))<probRemove)&(X{i}(1,:)==0));
+    ind = find((rand(size(X{i}(1,:)))<probRemove));
    % XZ{i}(1,ind) = 0*X{i}(1,ind);
     XR{i}(:,ind) = [];
 end
