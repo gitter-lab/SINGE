@@ -1,7 +1,7 @@
-# SCINGE tests
+# SINGE tests
 
-This directory contains scripts and reference files used to test SCINGE.
-It uses Python to compare the output files SCINGE generates to reference files that represent the expected output.
+This directory contains scripts and reference files used to test SINGE.
+It uses Python to compare the output files SINGE generates to reference files that represent the expected output.
 
 - `reference`: A directory containing the expected outputs from `SCINGE_Example.m`
 - `environment.yml`: A conda environment with the Python packages required for the test scripts

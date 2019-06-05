@@ -1,4 +1,4 @@
-# singe-base Docker container
+# SINGE Docker container
 
 This `Dockerfile builds an image with MATLAB R2018a and other dependencies needed to run SINGE.
 It also contains the conda environment needed to test SINGE.
