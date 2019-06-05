@@ -4,7 +4,9 @@
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
 Standalone MATLAB implementation of the SINGE algorithm.
-This code has been tested on MATLAB R2014b and R2018a on Linux operating systems.
+This code has been tested on MATLAB R2018a on the Linux operating system.
+
+The software was formerly called SCINGE and has been renamed as **SINGE**.
 
 ## Citation
 
@@ -40,8 +42,11 @@ Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Ex
 - *ranked_edges* - Edge lists ranked according to their SINGE scores
 - *influential_genes* - Genes ranked according to their SINGE influence.
 
-## Note on Reproducibility of Results
-Because the subsampling and zero-removal stages involve pseudo-random sample removals, we generate a random seed using input hyperparameters, including the *date* input.
+## Note on reproducibility
+The master branch of this repository may be unstable as new features are implemented.
+Use a versioned [release](https://github.com/gitter-lab/SINGE/releases) for stable data analysis.
+
+Because the subsampling and zero-removal stages involve pseudo-random sample removals, SINGE generates a random seed using input hyperparameters, including the *date* input.
 The results can be reproduced by providing the same inputs and date from a previous experiment.
 
 ## Example
@@ -56,3 +61,5 @@ SINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anth
 
 The file `iLasso_for_SCINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
 The original third-party code is available under the [MIT License](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/LICENSE), Copyright © 2014 USC-Melady.
+
+The compiled version of SINGE includes the [glmnet_matlab](http://web.stanford.edu/~hastie/glmnet_matlab/index.html) package, which is available under the GPL-2 license.
