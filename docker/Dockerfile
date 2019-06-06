@@ -22,6 +22,7 @@ RUN conda env create -f environment.yml
 
 WORKDIR /download
 
-# Install the compiled SCINGE_Example executable from a temporary location
-RUN wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/36ce8be1ffd26e1ab49c0ceda08f26e3/SCINGE_Example && \
+# Install the compiled SCINGE_Example executable from the stable release
+# md5sum of v0.2.0 SCINGE_Example is f6530f824b093a0fcd3204347c4e1659
+RUN wget --quiet https://github.com/gitter-lab/SINGE/releases/download/v0.2.0/SCINGE_Example && \
     chmod u+x SCINGE_Example
