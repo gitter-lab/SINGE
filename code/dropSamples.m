@@ -1,20 +1,21 @@
 function [XR] = dropSamples(varargin)
-probRemove = (varargin{1});
-if ~iscell(varargin{2})
+probRemove = varargin{1};
 infile = varargin{2};
-if nargin>2
-    outfileR = varargin{3};
-end
-if nargin>3
-    outfileR = varargin{4};
-end
-load(infile);
+% Import X from matfile
+X = infile.X;
+% Get size of X;
+[LX,WX ] = size(infile,'X');
+if ismember('X1',who(infile))
+    % Make sure to remove samples *after* removing zeros (optionally)
+    % Get matrix of logical values corresponding to already removed
+    % samples.
+    XR = infile.X1;
+    for i = 1:LX
+        ind = find(~XR(i,:));
+        ind = ind(rand(1,length(ind))<probRemove);
+        XR(i,ind) = true; 
+    end
+    %XR = (rand(WX,LX)<probRemove)'|infile.X1; 
 else
-    X = varargin{2};
-end
-XR = X;
-for i = 1:length(X)
-    ind = find((rand(size(X{i}(1,:)))<probRemove));
-   % XZ{i}(1,ind) = 0*X{i}(1,ind);
-    XR{i}(:,ind) = [];
+    XR = (rand(WX,LX)<probZero)'; 
 end
