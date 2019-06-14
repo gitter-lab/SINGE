@@ -150,9 +150,7 @@ for ii = 1:size(w,2)
     result = P'*result;
     result = sum(result,2);
     ALasso = zeros(numregs,LX);
-    for i = 1:numregs
-        ALasso(i,p,j) = result(i,j);
-    end
+    ALasso(:,p) = result(:,1);
     outs{ii}.Adj_Matrix = outs{ii}.Adj_Matrix + sparse(ALasso);
     clear ALasso;
 end
