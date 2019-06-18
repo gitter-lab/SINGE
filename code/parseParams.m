@@ -19,8 +19,8 @@ validPos = @(x) all(isnumeric(x) & (x >= 0))||all(isnumeric(str2num(x)) & (str2n
 validFile = @(x) isfilecomp(x);
 validString = @(x) ischar(x) && isempty(regexp(x,'[\/?*''."<>|]','once'));
 validInteger = @(x) (~ischar(x)&&((x - floor(x)==0) && (x >= 0)))||((str2num(x) - floor(str2num(x))==0) && (str2num(x) >= 0));
-validLags = @(x) ((x - floor(x)==0) && (p.Results.dT*x)<100)||((str2num(x) - floor(str2num(x))==0) && (str2num(p.Results.dT)*str2num(x))<100);
-validProb = @(x) (isnumeric(x) && isscalar(x) && (x >= 0) &&(x<1))||((isnumeric(str2num(x)) && isscalar(str2num(x)) && (str2num(x) >= 0) &&(str2num(x)<1)));
+validLags = @(x) (~ischar(x)&&((x - floor(x)==0) && (p.Results.dT*x)<100))||((str2num(x) - floor(str2num(x))==0) && (str2num(p.Results.dT)*str2num(x))<100);
+validProb = @(x) (~ischar(x)&&(isnumeric(x) && isscalar(x) && (x >= 0) &&(x<1)))||((isnumeric(str2num(x)) && isscalar(str2num(x)) && (str2num(x) >= 0) &&(str2num(x)<1)));
 validDate = @(x) any(ismember({datestr(datenum(x) ,['mm/dd/yyyy']) datestr(datenum(x))},x));
 addRequired(p,'Data',validFile);
 addParameter(p,'family',def_family,@(x) any(validatestring(x,expected_family)));
