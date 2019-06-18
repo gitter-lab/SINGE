@@ -37,7 +37,7 @@ for id in 541 542
 do
   for rep in 1 2
   do
-    filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_replicate_${rep}.mat
+    filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
     python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename
     return_code=$?
     if [[ $return_code -ne 0 ]] ; then
