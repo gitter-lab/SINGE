@@ -1,8 +1,7 @@
 import argparse
 import numpy as np
-import scipy.io as io
 import sys
-
+from hdf5storage import loadmat
 
 def main(args):
     '''
@@ -11,10 +10,13 @@ def main(args):
     Uses numpy.allclose to compare the data values using the default tolerance.
     Return with exit code 1 if the spare matrices are not equal.
     '''
-    mat_contents1 = io.loadmat(args.mat_file[0])
+    # This version of loadmat supports HDF5-formatted MAT files from
+    # MATLAB version 7.3 and falls back on the scipy.io.loadmat to read
+    # earlier versions of MAT files.
+    mat_contents1 = loadmat(args.mat_file[0])
     matrix1 = mat_contents1['Adj_Matrix']
 
-    mat_contents2 = io.loadmat(args.mat_file[1])
+    mat_contents2 = loadmat(args.mat_file[1])
     matrix2 = mat_contents2['Adj_Matrix']
 
     # Inspired by PyPardisoProject
