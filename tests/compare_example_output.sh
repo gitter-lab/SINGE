@@ -32,9 +32,6 @@ if [[ "$comparison" != 'files are identical' ]] ; then
   exit_status=1
 fi
 
-# Temporarily use the old reference sparse adjacency matrices that have not been converted to v7.3 format
-refdir=tests/reference_old
-
 echo Comparing sparse adjacency matrices
 for id in 541 542
 do
