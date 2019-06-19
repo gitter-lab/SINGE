@@ -51,8 +51,12 @@ params.DateNumber = datenum(params.date);
 end
 
 function y = isfilecomp(x)
-    if (exist([x '.mat'], 'file') == 2)||(exist(x, 'file') == 2)
+    if (exist([x '.mat'], 'file') == 2)
         y = 1;
+        copyfile([x '.mat'],'TempMat.mat');
+    elseif (exist(x, 'file') == 2)
+        y = 1;
+        copyfile(x,'TempMat.mat');
     else
         y = 0;
     end

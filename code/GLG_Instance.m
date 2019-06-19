@@ -15,7 +15,7 @@ if isdeployed
 end
 resampling_method = {'holes';'burst'};
 %outpath
-m = matfile(Data,'Writable',true);
+m = matfile('TempMat','Writable',true);
 ptime = m.ptime;
 m.computeKp = 1;
 if ptime(end)~=100
@@ -63,4 +63,5 @@ end
 runtime = toc
 % File saving moved to iLasso_for_SINGE using matfile feature
 fprintf('Intermediate files saved.\n')
+delete TempMat.mat
 end
