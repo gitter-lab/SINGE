@@ -34,7 +34,7 @@ if ismember('regix',who(m))
 else
     numregs = LX;
 end
-% Define funtion for Gaussian kernel
+% Define function for Gaussian kernel
 gkern = @(x,y) gausskernel(x,y,SIG);
 % Load expression matrix and pseudotime
 X = m.X;
@@ -48,6 +48,8 @@ if m.computeKp
     Kp2.Kp = (zeros(length(ptime)));
     refT = (ptime);
     for k = 1:L
+        % Generate the full Kernel using sequence {ptime-(L-k-1)*dT} and
+        % ptime for each value of 1<= k<=L
         Kp = (refT-(L)*Dt+(k-1)*Dt);
         Kp = bsxfun(gkern,Kp',refT);
         Kp2(k).Kp = (Kp);
@@ -57,8 +59,8 @@ if m.computeKp
     clear Kp Kp2;
 end
 
-X1 = m.X1;
-tind = find(X1(pa(1),:));
+Xdrop = m.Xdrop;
+tind = find(Xdrop(pa(1),:));
 tval = X(pa(1),:);
 %target{1}(:,tind) = [];
 ttime = ptime;
@@ -73,8 +75,7 @@ Am = (zeros(N1-B, numregs*L));
 for k = 1:L
     Kp2 = m.fullKp(1,k);
     for j = 1:numregs
-        %tSelect = repmat(Series{j}(2, :)',1,L0);
-        rind = find(X1(pa(j),:));
+        rind = find(Xdrop(pa(j),:));
         ySelect = (full(X(pa(j),:)'));
         refL = length(ySelect);
         tSelect = ptime;
@@ -85,27 +86,14 @@ for k = 1:L
         remind = union(1:remind(B+1)-1,tind);
         rind = refind(~(ismember(refind,rind)));
         remind = refind(~(ismember(refind,remind)));
-        %Kp = Kp2(1).Kp;
-        %    for i = (B+1):N1
-        %bm(i-B) = Series{1}(1, i);
-        % ti = ones(length(Series{j}(2, :)), 1)*((Series{1}(2, i) - (L)*Dt):Dt:(Series{1}(2, i)-Dt+Dt*params.AllowZeroLag));
-        %ti = repmat((Series{1}(2, i) - (L)*Dt):Dt:(Series{1}(2, i)-Dt+Dt*params.AllowZeroLag),length(tSelect),1);
-        %     Kp = (ttime(1, B+1:end)' - (L)*Dt)+(k-1)*Dt;
-        switch krnl
+           switch krnl
             case 'Sinc'     % The sinc Kernel
                 Kp = sinc((ti-tSelect)/SIG);
             case 'Dist'     % The Dist Kernel
                 Kp = SIG./((ti-tSelect).^2);
             otherwise
-                % tic;
-                % Kp1 = bsxfun(gkern,Kp,tSelect);        % The Gaussian Kernel
-                % toc
-                %               Kp(:,rind) = [];
-                %              Kp(remind,:) = [];
         end
-        %    Am(:, ((j-1)*L+k)) = (Kp2(k).Kp(keepind,rind1)*ySelect)./sum(Kp2(k).Kp(keepind,rind1),2);
         Am(:, ((j-1)*L+k)) = (Kp2.Kp(remind,rind)*ySelect)./sum(Kp2.Kp(remind,rind),2);
-        %            temp = (Kp*ySelect)./sum(Kp,2);
     end
     clear Kp2;
 end

@@ -45,6 +45,8 @@ params.prob_remove_samples = stringcheck(params.prob_remove_samples);
 params.kernel_width = stringcheck(params.kernel_width);
 params.ID = stringcheck(params.ID);
 
+% Sort lambdas in descending order to optimize glmnet's progression through
+% the lambdas using warm starts 
 params.lambda = sort(params.lambda,'descend');
 params.p1 = params.dT*params.num_lags;
 params.DateNumber = datenum(params.date);

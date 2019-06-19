@@ -23,12 +23,17 @@ if ptime(end)~=100
     m.ptime = ptime;
 end
 [LX,WX] = size(m,'X');
+% Check if an index of regulators is specified in the input file. If yes,
+% then the Adj_Matrix is of dimensions LR x LX.
 if ismember('regix',who(m))
     LR = length(m,'regix');
 else
     LR = LX;
 end
 Adj_Matrix = sparse(zeros(LR,LX));
+% To improve efficiency, we perform GLG tests for all lambda values at once
+% (uses glmnet's warm start functionality). The following lines create
+% multiple filenames for storing each GLG output.
 for ii = 1:length(params.lambda)
     filename{ii} = ['AdjMatrix_' params.Data];
     filename{ii} = [filename{ii} '_ID_' num2str(params.ID) '_lambda_' num2str(params.lambda(ii)) '_replicate_' num2str(params.replicate)];
@@ -42,22 +47,24 @@ randomizer = floor(params.DateNumber+sum(params.lambda)*1000+params.dT+params.p1
 %rng('default');
 rand('seed',randomizer);
 if params.prob_zero_removal~=0
-   m.X1 = dropZeroSamples(params.prob_zero_removal, m);
+   m.Xdrop = dropZeroSamples(params.prob_zero_removal, m);
 else
-    m.X1 = false(size(m.X));
+    m.Xdrop = false(size(m.X));
 end
 if params.replicate>0
-   m.X1 = dropSamples(params.prob_remove_samples,m);
+   m.Xdrop = dropSamples(params.prob_remove_samples,m);
 end
 
-
+lastprogress = 0;
 for irow = 1:1:LX
     [for_metric] = run_iLasso_row(m,outs,params,irow);
-    %Adj_Matrix = Adj_Matrix + sparse(sum(ALasso,3));
     runtime = toc;
     progress = (irow)/LX*100;
-    s = sprintf(['%2.5g %% Progress in %5.5g seconds'],progress,runtime);
-    disp(s);
+    if (progress-lastprogress)>=10
+        s = sprintf(['%2.5g %% Progress in %5.5g seconds'],progress,runtime);
+        disp(s);
+        lastprogress = progress;
+	end
 end
 
 runtime = toc
