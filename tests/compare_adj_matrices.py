@@ -13,6 +13,8 @@ def main(args):
     # This version of loadmat supports HDF5-formatted MAT files from
     # MATLAB version 7.3 and falls back on the scipy.io.loadmat to read
     # earlier versions of MAT files.
+    # However, the version 7.3 and older MAT file format use different data
+    # structures to store sparse matrices.
     mat_contents1 = loadmat(args.mat_file[0])
     matrix1 = mat_contents1['Adj_Matrix']
 
@@ -21,13 +23,13 @@ def main(args):
 
     # Inspired by PyPardisoProject
     # https://github.com/haasad/PyPardisoProject/blob/f666ea4718b32fa1359e5ca94bedac710b09a428/pypardiso/pardiso_wrapper.py#L173
-    if not (np.array_equal(matrix1.indptr, matrix2.indptr) and 
-            np.array_equal(matrix1.indices, matrix2.indices)):
+    if not (np.array_equal(matrix1['jc'], matrix2['jc']) and 
+            np.array_equal(matrix1['ir'], matrix2['ir'])):
         print('Spare matrices in {} and {} have different nonzero elements'.format(args.mat_file[0],
               args.mat_file[1]))
         sys.exit(1)
 
-    if not np.allclose(matrix1.data, matrix2.data):
+    if not np.allclose(matrix1['data'], matrix2['data']):
         print('Spare matrices in {} and {} have different values'.format(args.mat_file[0],
               args.mat_file[1]))
         max_diff = max(np.abs(matrix1.data - matrix2.data))
