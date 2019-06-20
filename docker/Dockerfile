@@ -28,5 +28,5 @@ WORKDIR /download
 #    chmod u+x SCINGE_Example
 
 # Install an intermediate version of the compiled SCINGE_Example executable for testing
-RUN wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/c7893f75298b14ffa10e12d4fb9786ed/SCINGE_Example && \
+RUN wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/f04828dba4de0064978a7b662a89790b/SCINGE_Example && \
     chmod u+x SCINGE_Example
