@@ -1,8 +1,7 @@
 import argparse
 import numpy as np
-import scipy.io as io
 import sys
-
+from hdf5storage import loadmat
 
 def main(args):
     '''
@@ -11,21 +10,26 @@ def main(args):
     Uses numpy.allclose to compare the data values using the default tolerance.
     Return with exit code 1 if the spare matrices are not equal.
     '''
-    mat_contents1 = io.loadmat(args.mat_file[0])
+    # This version of loadmat supports HDF5-formatted MAT files from
+    # MATLAB version 7.3 and falls back on the scipy.io.loadmat to read
+    # earlier versions of MAT files.
+    # However, the version 7.3 and older MAT file format use different data
+    # structures to store sparse matrices.
+    mat_contents1 = loadmat(args.mat_file[0])
     matrix1 = mat_contents1['Adj_Matrix']
 
-    mat_contents2 = io.loadmat(args.mat_file[1])
+    mat_contents2 = loadmat(args.mat_file[1])
     matrix2 = mat_contents2['Adj_Matrix']
 
     # Inspired by PyPardisoProject
     # https://github.com/haasad/PyPardisoProject/blob/f666ea4718b32fa1359e5ca94bedac710b09a428/pypardiso/pardiso_wrapper.py#L173
-    if not (np.array_equal(matrix1.indptr, matrix2.indptr) and 
-            np.array_equal(matrix1.indices, matrix2.indices)):
+    if not (np.array_equal(matrix1['jc'], matrix2['jc']) and 
+            np.array_equal(matrix1['ir'], matrix2['ir'])):
         print('Spare matrices in {} and {} have different nonzero elements'.format(args.mat_file[0],
               args.mat_file[1]))
         sys.exit(1)
 
-    if not np.allclose(matrix1.data, matrix2.data):
+    if not np.allclose(matrix1['data'], matrix2['data']):
         print('Spare matrices in {} and {} have different values'.format(args.mat_file[0],
               args.mat_file[1]))
         max_diff = max(np.abs(matrix1.data - matrix2.data))

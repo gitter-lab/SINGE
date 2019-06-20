@@ -5,3 +5,4 @@ dependencies:
   - scipy=1.2.1
   - pip:
     - csvdiff==0.3.3
+    - hdf5storage==0.1.15
