@@ -23,14 +23,11 @@ if ptime(end)~=100
     m.ptime = ptime;
 end
 [LX,WX] = size(m,'X');
+params.LX = LX;
+params.WX = WX;
 % Check if an index of regulators is specified in the input file. If yes,
 % then the Adj_Matrix is of dimensions LR x LX.
-if ismember('regix',who(m))
-    LR = length(m,'regix');
-else
-    LR = LX;
-end
-Adj_Matrix = sparse(zeros(LR,LX));
+Adj_Matrix = sparse(zeros(LX));
 % To improve efficiency, we perform GLG tests for all lambda values at once
 % (uses glmnet's warm start functionality). The following lines create
 % multiple filenames for storing each GLG output.
