@@ -25,6 +25,5 @@ for p = rownum
     params.pa = pa;
     [metric] = iLasso_for_SCINGE(m, outs, lambda,'Gaussian',p1,dT,std_dev,params);
 end
-toc
 %Moved this code to iLasso_for_SINGE to enable saving multiple outputs
 %from glmnet
