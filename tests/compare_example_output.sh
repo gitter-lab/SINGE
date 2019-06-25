@@ -6,7 +6,7 @@
 # those Python packages available
 
 outdir=Output
-refdir=tests/reference
+refdir=tests/reference/original
 
 # Return 0 unless any individual test fails
 # Continue running all tests even if one fails
