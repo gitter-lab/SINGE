@@ -1,4 +1,4 @@
-function [for_metrics] = iLasso_for_SCINGE(m, outs, lambda, krnl,L,dDt,SIG,params)
+function [for_metrics] = iLasso_for_SCINGE(m, outs, lambda,L,dDt,SIG,params)
 % Learning temporal dependency among irregular time series using Lasso (or its variants)
 %
 % INPUTS:
@@ -7,8 +7,6 @@ function [for_metrics] = iLasso_for_SCINGE(m, outs, lambda, krnl,L,dDt,SIG,param
 %               second row contains SORTED time stamps. The first time
 %               series is the target time series which is predicted.
 %       lambda: The regularization parameter in Lasso
-%       krnl:   Selects the kernel. Default is Gaussian. Available options
-%               are Sinc (krnl = Sinc) and Inverse distance (krnl = Dist).
 % OUTPUTS:
 %       result: The NxL coefficient matrix.
 %       AIC:    The AIC score
@@ -54,6 +52,7 @@ if m.computeKp
         Kp = bsxfun(gkern,Kp',refT);
         Kp2.sumKp = single(Kp*rind');
         Kp2.Kp = single(Kp);
+	% saving variables as single helps read them faster
         m.fullKp(1,k) = Kp2;
     end
     m.computeKp = 0;

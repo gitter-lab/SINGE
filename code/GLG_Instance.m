@@ -25,8 +25,7 @@ end
 [LX,WX] = size(m,'X');
 params.LX = LX;
 params.WX = WX;
-% Check if an index of regulators is specified in the input file. If yes,
-% then the Adj_Matrix is of dimensions LR x LX.
+% Check if an index of regulators is specified in the input file. 
 Adj_Matrix = sparse(zeros(LX));
 % To improve efficiency, we perform GLG tests for all lambda values at once
 % (uses glmnet's warm start functionality). The following lines create

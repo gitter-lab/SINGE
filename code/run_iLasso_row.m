@@ -4,6 +4,7 @@ lambda=params.lambda;
 p1=params.p1;
 std_dev=params.kernel_width;
 [LX,WX] = size(m,'X');
+% Check if regix exists in the matfile. If not, treat all genes as potential regulators.
 if ismember('regix',who(m))
     regix = m.regix;
     if iscolumn(regix)
@@ -23,7 +24,5 @@ for p = rownum
     m.pa = pa;
     [pi,indf] = sort(pa);
     params.pa = pa;
-    [metric] = iLasso_for_SCINGE(m, outs, lambda,'Gaussian',p1,dT,std_dev,params);
+    [metric] = iLasso_for_SCINGE(m, outs, lambda,p1,dT,std_dev,params);
 end
-%Moved this code to iLasso_for_SINGE to enable saving multiple outputs
-%from glmnet
