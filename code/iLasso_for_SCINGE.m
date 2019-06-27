@@ -26,8 +26,7 @@ AIC_bias = 0;
 L = L/dDt;     % Length of studied lag
 L0 = L;
 Dt = dDt;
-% \Delta t
-%[LX,WX] = size(m,'X');
+
 LX = params.LX;
 WX = params.WX;
 numregs = length(pa);
