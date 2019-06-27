@@ -4,24 +4,25 @@ lambda=params.lambda;
 p1=params.p1;
 std_dev=params.kernel_width;
 [LX,WX] = size(m,'X');
-numrows = LX;
+% Check if regix exists in the matfile. If not, treat all genes as potential regulators.
 if ismember('regix',who(m))
-    numregs = length(m,'regix');
+    regix = m.regix;
+    if iscolumn(regix)
+        regix = regix';
+    elseif ~isrow(regix)
+        display('Error: Regulator indices must be a vector');
+    end
+    numregs = length(regix);
 else
+    regix = 1:LX;
     numregs = LX;
 end
 
-ALasso = zeros(numregs,numrows,floor(p1/dT));
-starting = dT;
-
 for p = rownum
     params.p = rownum;
-    pa = [p setdiff([1:numrows],p)];
+    pa = [p setdiff([regix],p)];
     m.pa = pa;
     [pi,indf] = sort(pa);
-    I = eye(numrows);
-    P = I(pa,:);
-    [metric] = iLasso_for_SCINGE(m, outs, lambda,'Gaussian',p1,dT,std_dev,params);
+    params.pa = pa;
+    [metric] = iLasso_for_SCINGE(m, outs, lambda,p1,dT,std_dev,params);
 end
-%Moved this code to iLasso_for_SINGE to enable saving multiple outputs
-%fromg glmnet

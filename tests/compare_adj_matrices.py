@@ -32,7 +32,7 @@ def main(args):
     if not np.allclose(matrix1['data'], matrix2['data']):
         print('Spare matrices in {} and {} have different values'.format(args.mat_file[0],
               args.mat_file[1]))
-        max_diff = max(np.abs(matrix1.data - matrix2.data))
+        max_diff = max(max(np.abs(matrix1['data'] - matrix2['data'])))
         print('Maximum absolute difference: {}'.format(max_diff))
         sys.exit(1)
 

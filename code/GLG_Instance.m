@@ -15,6 +15,7 @@ if isdeployed
 end
 resampling_method = {'holes';'burst'};
 %outpath
+% Use a temporary matfile to track intermediate state
 m = matfile('TempMat','Writable',true);
 ptime = m.ptime;
 m.computeKp = 1;
@@ -23,14 +24,11 @@ if ptime(end)~=100
     m.ptime = ptime;
 end
 [LX,WX] = size(m,'X');
-% Check if an index of regulators is specified in the input file. If yes,
-% then the Adj_Matrix is of dimensions LR x LX.
-if ismember('regix',who(m))
-    LR = length(m,'regix');
-else
-    LR = LX;
-end
-Adj_Matrix = sparse(zeros(LR,LX));
+params.LX = LX;
+params.WX = WX;
+% Even if an index of regulators is specified in the input file
+% we create a square adjacency matrix
+Adj_Matrix = sparse(zeros(LX));
 % To improve efficiency, we perform GLG tests for all lambda values at once
 % (uses glmnet's warm start functionality). The following lines create
 % multiple filenames for storing each GLG output.
