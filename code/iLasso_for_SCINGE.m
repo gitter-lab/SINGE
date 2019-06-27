@@ -1,5 +1,6 @@
 function [for_metrics] = iLasso_for_SCINGE(m, outs, lambda,L,dDt,SIG,params)
 % Learning temporal dependency among irregular time series using Lasso (or its variants)
+% Only supports the Gaussian kernel
 %
 % INPUTS:
 %       Series: an Nx1 cell array; one cell for each time series. Each cell
@@ -68,6 +69,7 @@ ttime(tind) = [];
 tval(tind) = [];
 B = sum(ttime<=(L*Dt));
 N1 = size(ttime, 2);
+% remind is the remaining data indices
 remind = find(~Xdrop(pa(1),:)&ptime>L*Dt);
 % Build the matrix elements
 Am = (zeros(N1-B, numregs*L));

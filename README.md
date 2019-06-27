@@ -21,7 +21,7 @@ This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/gl
 Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
 
 ## Inputs
-- *Data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
+- *Data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
 - *num_replicates* - Number of subsampled replicates obtained for each GLG Test
 - *gene_list* - Path to list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
