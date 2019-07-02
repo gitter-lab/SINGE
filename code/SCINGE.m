@@ -12,7 +12,7 @@ function [ranked_edges, gene_influence] = SCINGE(gene_list,Data,outdir,num_repli
 % Outputs:
 % ranked_edges = ranked list of gene interactions with corresponding SCINGE scores
 % gene_influence = ranked lists of regulators (genes) with corresponding SCINGE influence
-SCINGE_version = '0.2.0';
+SCINGE_version = '0.3.0';
 display(SCINGE_version);
 for rep = 1:num_replicates
     for ii = 1:length(param_list)
