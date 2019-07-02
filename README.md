@@ -4,7 +4,7 @@
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
 Standalone MATLAB implementation of the SINGE algorithm.
-This code has been tested on MATLAB R2018a on the Linux operating system.
+This code has been tested on MATLAB R2014b and R2018a on the Linux operating system.
 
 The software was formerly called SCINGE and has been renamed **SINGE**.
 
