@@ -11,6 +11,8 @@ def_ID = 0;
 def_outdir = 'Output';
 def_prob_remove_samples = 0.2;
 def_date = date;
+def_target1 = 1;
+def_targetincr = 1;
 %
 expected_family = {'gaussian','poisson'};
 % Changed the conditions to accommodate command line calls to GLG_Instance.
@@ -34,11 +36,15 @@ addParameter(p,'prob_remove_samples',def_prob_remove_samples,validProb);
 addParameter(p,'replicate',def_rep,validInteger);
 addParameter(p,'ID',def_ID,validInteger);
 addParameter(p,'date',def_date,validDate);
+addParameter(p,'firsttarget',def_target1,validInteger);
+addParameter(p,'targetincr',def_targetincr,validInteger);
 parse(p,Data,varargin{:});
 params = p.Results;
 params.lambda = stringcheck(params.lambda);
 params.dT = stringcheck(params.dT);
 params.num_lags = stringcheck(params.num_lags);
+params.firsttarget = stringcheck(params.firsttarget);
+params.targetincr = stringcheck(params.targetincr);
 params.replicate = stringcheck(params.replicate);
 params.prob_zero_removal = stringcheck(params.prob_zero_removal);
 params.prob_remove_samples = stringcheck(params.prob_remove_samples);

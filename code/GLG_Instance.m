@@ -34,7 +34,7 @@ Adj_Matrix = sparse(zeros(LX));
 % multiple filenames for storing each GLG output.
 for ii = 1:length(params.lambda)
     filename{ii} = ['AdjMatrix_' params.Data];
-    filename{ii} = [filename{ii} '_ID_' num2str(params.ID) '_lambda_' num2str(params.lambda(ii)) '_replicate_' num2str(params.replicate)];
+    filename{ii} = [filename{ii} '_Date_' datestr(params.DateNumber) '_ID_' num2str(params.ID) '_lambda_' num2str(params.lambda(ii)) '_replicate_' num2str(params.replicate) '_firsttarget_' num2str(params.firsttarget) '_targetincr_' num2str(params.targetincr)];
     filename{ii}(filename{ii}=='.') = 'p';
     filename{ii}(filename{ii}=='/') = '_';
     filename{ii} = fullfile(params.outdir,filename{ii});
@@ -54,7 +54,7 @@ if params.replicate>0
 end
 
 lastprogress = 0;
-for irow = 1:1:LX
+for irow = params.firsttarget:params.targetincr:LX
     [for_metric] = run_iLasso_row(m,outs,params,irow);
     runtime = toc;
     progress = (irow)/LX*100;

@@ -73,6 +73,7 @@ remind = find(~Xdrop(pa(1),:)&ptime>L*Dt);
 % Build the matrix elements
 Am = (zeros(N1-B, numregs*L));
 X = X(pa,:).*rind(pa,:);
+clear rind Xdrop
 % Building the design matrix
 for k = 1:L
     Kp2 = m.fullKp(1,k);
@@ -81,6 +82,7 @@ for k = 1:L
 	Am(:, (([1:numregs]-1)*L+k)) = (Kp2.Kp*X')./Kp2.sumKp;
     clear Kp2;
 end
+clear X
 bm = (tval(1,B+1:N1)');
 
 % Solving Lasso using a solver; here the 'GLMnet' package
@@ -88,7 +90,7 @@ opt = glmnetSet;
 opt.lambda = lambda;
 opt.maxit = 10000;
 opt.thresh = 1e-7;
-opt.nlambda = length(lambda);
+%opt.nlambda = length(lambda);
 opt.alpha = 1;
 [nObs,nVars] = size(Am);
 opt.penalty_factor = ones(nVars,1);
