@@ -8,4 +8,7 @@ before_install:
   - docker build -t agitter/singe:tmp -f docker/Dockerfile .
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "docker_test.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "./docker_test.sh"
+
+after_script:
+  - docker images
