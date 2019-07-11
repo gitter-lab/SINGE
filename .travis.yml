@@ -8,7 +8,7 @@ before_script:
   - docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
 
 script:
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "conda init bash; source ~/.bashrc; ./docker_test.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; ./docker_test.sh"
 
 after_script:
   - docker images

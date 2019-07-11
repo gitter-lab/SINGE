@@ -1,8 +1,4 @@
 #!/bin/sh
-# Set up the conda test environment
-conda activate scinge-test
-conda list
-
 # Run SINGE and tests inside the Docker image
 # Move the binary and check the version
 mv /download/SCINGE_Example .
@@ -12,8 +8,7 @@ md5sum SCINGE_Example
 ./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
 ls Output/ -l
 
-# Set up the conda test environment
-conda activate scinge-test
+# Confirm the contents of the conda environment
 conda list
 
 # Run the tests
