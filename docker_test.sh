@@ -1,4 +1,8 @@
 #!/bin/sh
+# Set up the conda test environment
+conda activate scinge-test
+conda list
+
 # Run SINGE and tests inside the Docker image
 # Move the binary and check the version
 mv /download/SCINGE_Example .
