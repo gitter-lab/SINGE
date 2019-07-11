@@ -9,7 +9,6 @@ md5sum SCINGE_Example
 ls Output/ -l
 
 # Set up the conda test environment
-source ~/.bashrc
 conda activate scinge-test
 conda list
 
