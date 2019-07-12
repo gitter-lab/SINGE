@@ -4,10 +4,22 @@ services:
   - docker
 
 before_script:
+  # Set DOCKER_USERNAME and DOCKER_PASSWORD as encrypted variables at Travis CI settings page
+  # https://travis-ci.com/gitter-lab/SINGE/settings
+  # Note security risk with encrypted variables if the GitHub repository is transferred
+  # https://andrewwegner.com/travisci-insecure-environment-variables.html
+  # Use --password-stdin to keep passwords out of log files
+  # https://docs.docker.com/engine/reference/commandline/login/
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  # Use the DockerHub image as a cache
+  # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
   - docker pull agitter/singe:tmp
   - docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
 
 script:
+  # The conda environment should be activated before running the bash script
+  # See https://github.com/conda/conda/issues/7980
   - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; ./docker_test.sh"
 
 after_script:
