@@ -4,6 +4,22 @@ services:
   - docker
 
 before_script:
+  # Use the DockerHub image as a cache
+  # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
+  - docker pull agitter/singe:tmp
+  - docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
+
+script:
+  # Run SINGE tests in the built Docker image
+  # The conda environment should be activated before running the bash script
+  # See https://github.com/conda/conda/issues/7980
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; ./docker_test.sh"
+
+after_script:
+  # Inspect the built image
+  - docker images
+
+before_deploy:
   # Set DOCKER_USERNAME and DOCKER_PASSWORD as environment variables at Travis CI settings page
   # Allow DOCKER_USERNAME to be shown in the build log
   # https://travis-ci.com/gitter-lab/SINGE/settings
@@ -13,15 +29,11 @@ before_script:
   # https://docs.docker.com/engine/reference/commandline/login/
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-  # Use the DockerHub image as a cache
+deploy:
+  # If commit is on the master branch, push the temporary Docker image to DockerHub
+  # See https://docs.travis-ci.com/user/docker/#pushing-a-docker-image-to-a-registry and
   # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
-  - docker pull agitter/singe:tmp
-  - docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
-
-script:
-  # The conda environment should be activated before running the bash script
-  # See https://github.com/conda/conda/issues/7980
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; ./docker_test.sh"
-
-after_script:
-  - docker images
+  provider: script
+  script: docker push agitter/singe:tmp
+  on:
+    branch: master
