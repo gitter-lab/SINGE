@@ -29,8 +29,8 @@ param_list{2}.date = '31-Jan-2019'; % An alternative supported date format
 
 %% Specify Path to Input data and path to Output folder, gene_list and number of subsampled replicates
 Data = 'data1/X_SCODE_data.mat';
-outdir = 'Output';
 num_replicates = 2;
+outdir = 'Output';
 load('data1/tf.mat');
 gene_list = tf;
 
