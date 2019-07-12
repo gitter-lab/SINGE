@@ -35,5 +35,6 @@ deploy:
   # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
   provider: script
   script: docker push agitter/singe:tmp
+  skip_cleanup: true
   on:
     branch: master
