@@ -4,7 +4,8 @@ services:
   - docker
 
 before_script:
-  # Set DOCKER_USERNAME and DOCKER_PASSWORD as encrypted variables at Travis CI settings page
+  # Set DOCKER_USERNAME and DOCKER_PASSWORD as environment variables at Travis CI settings page
+  # Allow DOCKER_USERNAME to be shown in the build log
   # https://travis-ci.com/gitter-lab/SINGE/settings
   # Note security risk with encrypted variables if the GitHub repository is transferred
   # https://andrewwegner.com/travisci-insecure-environment-variables.html
