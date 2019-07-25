@@ -1,8 +1,13 @@
 #!/bin/sh
 # Run SINGE and tests inside the Docker image
-# Move the binary and check the version
+set -o errexit
+
+# Move the binary and check the source and binary versions (md5sums)
 mv /download/SCINGE_Example .
+mv /download/code.md5 .
 md5sum SCINGE_Example
+md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') SCINGE_Example > current_code.md5
+cmp code.md5 current_code.md5
 
 # Run SINGE on the example data and inspect the output
 ./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94

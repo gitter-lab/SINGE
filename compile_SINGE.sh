@@ -10,7 +10,7 @@ mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./
 # Store the md5sums of all .m files tracked in the git repository and the binary
 # See https://stackoverflow.com/questions/15606955/how-can-i-make-git-show-a-list-of-the-files-that-are-being-tracked/15606998
 # and https://stackoverflow.com/questions/13335837/how-to-grep-for-a-file-extension
-md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') > code.md5
+md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') SCINGE_Example > code.md5
 cat code.md5
 
 # Copy the binary and md5sum file
