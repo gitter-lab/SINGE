@@ -30,7 +30,7 @@ WORKDIR /download
 
 # Download an intermediate version of the compiled SCINGE_Example executable for testing
 # Download the md5sums of the source .m files and binary
-RUN md5=8ee103074411100b4cbcfa0a61d37749 && \
+RUN md5=5e7feff37af910a276a39763af12e7de && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SCINGE_Example && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
     chmod u+x SCINGE_Example
