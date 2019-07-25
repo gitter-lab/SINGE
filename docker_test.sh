@@ -5,8 +5,8 @@ set -o errexit
 # Move the binary and check the source and binary versions (md5sums)
 mv /download/SCINGE_Example .
 mv /download/code.md5 .
-md5sum SCINGE_Example
-md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') SCINGE_Example > current_code.md5
+# Append the binary md5sum to the md5sums of the tracked source code files
+md5sum SCINGE_Example >> current_code.md5
 cat current_code.md5
 cmp code.md5 current_code.md5
 

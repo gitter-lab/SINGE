@@ -10,6 +10,9 @@ before_script:
   - docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
 
 script:
+  # Store the md5sums of the tracked source files before running tests in the Docker image
+  # The Docker image does not have git installed
+  - md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') > current_code.md5
   # Run SINGE tests in the built Docker image
   # The conda environment should be activated before running the bash script
   # See https://github.com/conda/conda/issues/7980
