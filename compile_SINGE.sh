@@ -22,7 +22,7 @@ if [ $# -gt 0 ]; then
   binary_md5=($(md5sum SCINGE_Example))
   outdir=$basedir/$binary_md5
 
-  printf "Copying SCINGE_Example and code.md5 to %s" $outdir
+  printf "Copying SCINGE_Example and code.md5 to %s\n" $outdir
   mkdir -p $outdir
   cp SCINGE_Example $outdir
   cp code.md5 $outdir
