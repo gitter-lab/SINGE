@@ -40,3 +40,4 @@ gene_influencew = gene_influence;
 gene_influencew.influence = floor(gene_influencew.influence*10^5)/10^5;
 writetable(ranked_edgesw,fullfile(outdir,'SCINGE_Ranked_Edge_List.txt'),'WriteVariableNames',true,'WriteRowNames',false,'Delimiter','\t');
 writetable(gene_influencew,fullfile(outdir,'SCINGE_Gene_Influence.txt'),'WriteVariableNames',true,'WriteRowNames',false,'Delimiter','\t');
+% Test modification of source file
