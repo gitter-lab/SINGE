@@ -1,4 +1,10 @@
 function params = parseParams(Data,varargin)
+for ii = 1:length(varargin)
+    temp = varargin{ii};
+    if ischar(temp)&&strcmpi(temp(1:2),'--')
+       varargin{ii} = temp(3:end);
+    end
+end
 p = inputParser;
 def_lambda = 0.01;
 def_dT = 1;
