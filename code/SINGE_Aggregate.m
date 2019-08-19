@@ -1,5 +1,20 @@
-function Aggregate(genefile,Data,outdir)
+function [ranked_edges,gene_influence] = SINGE_Aggregate(genefile,Data,outdir)
+% [ranked_edges,gene_influence] = SINGE_Aggregate(genefile,Data,outdir)
+% Function to aggregate individual results 
+% Inputs:
+% genefile = file path of N x 1 cell array with list of relevant genes in the data set
+% Data = string representing the path of mat file containing the expression
+% data corresponding to above gene_list in the form of cell array X.
+% outdir = directory path with individual GLG test results for Borda
+% aggregation
+% Outputs:
+% ranked_edges = ranked list of gene interactions with corresponding SINGE scores
+% gene_influence = ranked lists of regulators (genes) with corresponding SINGE influence
 load(genefile);
+
+if ~exist('gene_list','var')
+    gene_list = tf;
+end
 
 Str = Data;
 Str(Str=='.') = 'p';

@@ -1,4 +1,4 @@
---ID 541 --lambda 0.01 --dT 10 --num_lags 5 --kernel_width 2 --replicate 1 --family gaussian --date 01/31/2019 --prob_zero_removal 0 --prob_remove_samples 0.2
---ID 541 --lambda 0.01 --dT 10 --num_lags 5 --kernel_width 2 --replicate 2 --family gaussian --date 01/31/2019 --prob_zero_removal 0 --prob_remove_samples 0.2
---ID 542 --lambda 0.01 --dT 5 --num_lags 9 --kernel_width 4 --replicate 1 --family gaussian --date 31-Jan-2019 --prob_zero_removal 0.2 --prob_remove_samples 0.1
---ID 542 --lambda 0.01 --dT 5 --num_lags 9 --kernel_width 4 --replicate 2 --family gaussian --date 31-Jan-2019 --prob_zero_removal 0.2 --prob_remove_samples 0.1
+-ID 541 -lambda 0.01 -dT 10 -num_lags 5 -kernel_width 2 -replicate 1 -family gaussian -date 01/31/2019 -prob_zero_removal 0 -prob_remove_samples 0.2
+-ID 541 -lambda 0.01 -dT 10 -num_lags 5 -kernel_width 2 -replicate 2 -family gaussian -date 01/31/2019 -prob_zero_removal 0 -prob_remove_samples 0.2
+-ID 542 -lambda 0.01 -dT 5 -num_lags 9 -kernel_width 4 -replicate 1 -family gaussian -date 31-Jan-2019 -prob_zero_removal 0.2 -prob_remove_samples 0.1
+-ID 542 -lambda 0.01 -dT 5 -num_lags 9 -kernel_width 4 -replicate 2 -family gaussian -date 31-Jan-2019 -prob_zero_removal 0.2 -prob_remove_samples 0.1

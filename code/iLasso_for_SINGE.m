@@ -1,4 +1,4 @@
-function [for_metrics] = iLasso_for_SCINGE(m, outs, lambda, krnl,L,dDt,SIG,params)
+function [for_metrics] = iLasso_for_SINGE(m, outs, lambda, krnl,L,dDt,SIG,params)
 % Learning temporal dependency among irregular time series using Lasso (or its variants)
 %
 % INPUTS:
@@ -108,7 +108,7 @@ opt.alpha = 1;
 opt.penalty_factor = ones(nVars,1);
 j= 1;
 
-%   No sparsity constraint on autoregressive interactions for SCINGE
+%   No sparsity constraint on autoregressive interactions for SINGE
 opt.penalty_factor(((j-1)*L+1):(j*L)) = 0;
 
 fit = glmnet(Am, bm, params.family, opt);

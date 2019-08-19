@@ -21,7 +21,7 @@ for p = rownum
     [pi,indf] = sort(pa);
     I = eye(numrows);
     P = I(pa,:);
-    [metric] = iLasso_for_SCINGE(m, outs, lambda,'Gaussian',p1,dT,std_dev,params);
+    [metric] = iLasso_for_SINGE(m, outs, lambda,'Gaussian',p1,dT,std_dev,params);
 end
 %Moved this code to iLasso_for_SINGE to enable saving multiple outputs
 %fromg glmnet

@@ -2,8 +2,8 @@ function params = parseParams(Data,varargin)
 for ii = 1:length(varargin)
     temp = varargin{ii};
     if numel(temp)>2
-        if strcmpi(temp(1:2),'--')
-            varargin{ii} = temp(3:end);
+        if temp(1)=='-'
+            varargin{ii} = temp(2:end);
         end
     end
 end
