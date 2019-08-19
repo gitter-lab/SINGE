@@ -14,7 +14,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86
     /opt/conda/bin/conda clean --all && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
+    echo "conda activate base" >> ~/.bashrc && \
+    conda init bash
 
 # Install conda test environment
 COPY tests/environment.yml .
@@ -22,11 +23,14 @@ RUN conda env create -f environment.yml
 
 WORKDIR /download
 
-# Install the compiled SCINGE_Example executable from the stable release
-# md5sum of v0.2.0 SCINGE_Example is f6530f824b093a0fcd3204347c4e1659
-#RUN wget --quiet https://github.com/gitter-lab/SINGE/releases/download/v0.2.0/SCINGE_Example && \
+# Download the compiled SCINGE_Example executable from the stable release
+# md5sum of v0.3.0 SCINGE_Example is a4a990b7585125ca41ded5f5045af9ba
+#RUN wget --quiet https://github.com/gitter-lab/SINGE/releases/download/v0.3.0/SCINGE_Example && \
 #    chmod u+x SCINGE_Example
 
-# Install an intermediate version of the compiled SCINGE_Example executable for testing
-RUN wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/f04828dba4de0064978a7b662a89790b/SCINGE_Example && \
+# Download an intermediate version of the compiled SCINGE_Example executable for testing
+# Download the md5sums of the source .m files and binary
+RUN md5=5e7feff37af910a276a39763af12e7de && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SCINGE_Example && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
     chmod u+x SCINGE_Example
