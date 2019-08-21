@@ -5,8 +5,7 @@ set -o errexit
 # Move the binaries and check the versions of the source and binaries (md5sums)
 mv /download/* .
 # Append the binary md5sum to the md5sums of the tracked source code files
-md5sum SINGE_GLG_Test >> current_code.md5
-md5sum SINGE_Aggregate >> current_code.md5
+md5sum SINGE_GLG_Test SINGE_Aggregate >> current_code.md5
 cat current_code.md5
 # An error similar to:
 # 'code.md5 current_code.md5 differ: char 174, line 4'
