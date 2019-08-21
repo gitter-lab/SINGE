@@ -5,7 +5,7 @@ It also contains the conda environment needed to test SINGE.
 
 Travis CI builds the Docker image using the [DockerHub image](https://hub.docker.com/r/agitter/singe) as a cache.
 The image is deployed to DockerHub with the `tmp` tag when it is built using the `master` branch.
-The build process downloads a compiled SINGE executable from an external location because compiling requires a MATLAB license.
+The build process downloads the compiled SINGE executables from an external location because compiling requires a MATLAB license.
 
 Building images for SINGE releases is performed manually because the compiled MATLAB code attached to the GitHub release is used for the Docker image.
 Released images are built using the command `docker build -t singe -f docker/Dockerfile .` from the root directory of the repository.

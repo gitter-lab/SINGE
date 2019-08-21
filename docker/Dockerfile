@@ -28,9 +28,12 @@ WORKDIR /download
 #RUN wget --quiet https://github.com/gitter-lab/SINGE/releases/download/v0.3.0/SCINGE_Example && \
 #    chmod u+x SCINGE_Example
 
-# Download an intermediate version of the compiled SCINGE_Example executable for testing
-# Download the md5sums of the source .m files and binary
+# Download an intermediate version of the compiled SINGE_GLG_Test and
+# SINGE_Aggregate executables for testing
+# Download the md5sums of the source .m files and binaries
 RUN md5=5e7feff37af910a276a39763af12e7de && \
-    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SCINGE_Example && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
-    chmod u+x SCINGE_Example
+    chmod u+x SINGE_GLG_Test && \
+    chmod u+x SINGE_Aggregate
