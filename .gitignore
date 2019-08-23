@@ -11,6 +11,9 @@ Output/
 
 # MATLAB compiler output files
 SCINGE_Example
+SINGE_Example
+SINGE_GLG_Test
+SINGE_Aggregate
 mccExcludedFiles.log
 requiredMCRProducts.txt
 code.md5
