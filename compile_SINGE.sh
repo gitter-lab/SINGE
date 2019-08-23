@@ -7,7 +7,7 @@
 # Compile SINGE creating the binaries SINGE_Example.m, SINGE_GLG_Test.m, and SINGE_Aggregate.m
 # SINGE_Example.m is only compiled so that it can be tested to ensure the MATLAB version of SINGE works
 mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./code/ SINGE_Example.m
-mv readme.txt readme_SINGE_SINGE_Example.txt
+mv readme.txt readme_SINGE_Example.txt
 
 mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./code/ SINGE_GLG_Test.m
 mv readme.txt readme_SINGE_GLG_Test.txt
