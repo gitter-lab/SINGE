@@ -17,6 +17,7 @@ cmp code.md5 current_code.md5
 conda list
 
 # Run SINGE on the example data using the bash script and inspect the output
+echo Testing SINGE with standalone_SINGE.sh
 ./standalone_SINGE.sh data1/X_SCODE_data.mat data1/tf.mat script_output tests/example_hyperparameters.txt /usr/local/MATLAB/MATLAB_Runtime/v94
 ls script_output/ -l
 
@@ -24,7 +25,8 @@ ls script_output/ -l
 tests/compare_example_output.sh script_output
 
 # Run SINGE on the example data using the compiled SINGE_Example
-./run_SCINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
+echo Testing SINGE with compiled SINGE_Example
+./run_SINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
 ls Output/ -l
 
 # Run the tests to compare the SINGE outputs from the compiled SINGE_Example
