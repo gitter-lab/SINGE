@@ -1,11 +1,25 @@
 #!/bin/bash
 # Compare the SCINGE_Example.m output with the reference output
-# This script must be called from the directory that contains SCINGE_Example.m
-# Must have already run SCINGE_Example.m using the default output directory
+# This script must be called from the base directory of the repository
+# Must have already run SINGE on the example data
+# The SINGE output directory is provided as an argument
 # Must run inside the conda environment specified by environment.yml or have
 # those Python packages available
 
-outdir=Output
+usage="Usage: $(basename $0) output-directory"
+
+if [ $# -gt 0 ]; then
+  # First arugment is the SINGE output directory
+  if [ $1 == "-h" ]; then
+    echo $usage
+    exit 0
+  fi
+  outdir=$1
+else
+  echo $usage
+  exit 1
+fi
+
 refdir=tests/reference/latest
 
 # Return 0 unless any individual test fails
