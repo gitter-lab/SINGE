@@ -2,11 +2,11 @@ function params = parseParams(Data,varargin)
 for ii = 1:length(varargin)
     temp = varargin{ii};
     if numel(temp)>2
-        if temp(1)=='-'
-            temp = temp(3:end);
-            temp(find(temp=='-')) = '_';
-            varargin{ii} = temp;
+        while temp(1)=='-'
+            temp = temp(2:end);
         end
+        temp(find(temp=='-')) = '_';
+        varargin{ii} = temp;
     end
 end
 p = inputParser;
