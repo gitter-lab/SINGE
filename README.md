@@ -21,27 +21,43 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html).
 Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
 
+
+## Modes of Execution
+SINGE can be executed in the following ways:
+
+**MATLAB environment**
+```
+SINGE(Data,gene_list,outdir,hyperparameter_file)
+```
+**Compiled MATLAB code with R2018a runtime**
+```
+sh standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+```
+
 ## Inputs
 - *Data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
+- *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
 - *num_replicates* - Number of subsampled replicates obtained for each GLG Test
-- *gene_list* - Path to list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
-- *param_list* - A list of GLG hyperparameter combinations for the hyperparameters described below
+- *hyperparameter_file* - Path to file containing a list of GLG hyperparameter combinations for the hyperparameters described below
+
+**Additional input for compiled MATLAB code with R2018a runtime**
+- *runtime_dir* - Path to MATLAB R2018a runtime library
 
 **GLG Hyperparameters:**
-- *param.ID* - Identifier for GLG hyperparameter set
-- *param.lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
-- *param.dT* - Time resolution for GLG Test
-- *param.num_lags* - Number of lags for GLG Test
-- *param.kernel_width* - Gaussian kernel width for GLG Test
-- *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
-- *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
-- *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
-- *param.date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
+- *--ID* - Identifier for GLG hyperparameter set
+- *--lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
+- *--dT* - Time resolution for GLG Test
+- *--num_lags* - Number of lags for GLG Test
+- *--kernel_width* - Gaussian kernel width for GLG Test
+- *--family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
+- *--prob_zero_removal* - For Zero-Handling Strategy (default = 0)
+- *--prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
+- *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
 
 ## Outputs
-- *ranked_edges* - Edge lists ranked according to their SINGE scores
-- *influential_genes* - Genes ranked according to their SINGE influence.
+- *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
+- *SINGE_Gene_Influence.txt* - File with list of genes ranked according to their SINGE influence.
 
 ## Note on reproducibility
 The master branch of this repository may be unstable as new features are implemented.
@@ -51,7 +67,7 @@ Because the subsampling and zero-removal stages involve pseudo-random sample rem
 The results can be reproduced by providing the same inputs and date from a previous experiment.
 
 ## Example
-`SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
+`SINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
 It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
 
 ## Testing
