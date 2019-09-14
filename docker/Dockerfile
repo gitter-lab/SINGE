@@ -30,7 +30,7 @@ WORKDIR /download
 
 # Download an intermediate version of the compiled SINGE executables for testing
 # Download the md5sums of the source .m files and binaries
-RUN md5=e4de8b3d1284f6dea8eee5bdb54e4d3c && \
+RUN md5=d5436cc0374045e468a0a207312bcf80 && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Test && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
