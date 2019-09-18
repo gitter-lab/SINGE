@@ -29,11 +29,19 @@ SINGE can be executed in the following ways:
 ```
 SINGE(Data,gene_list,outdir,hyperparameter_file)
 ```
+#### Example
+`SINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
+It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
 
 ### Compiled MATLAB code with R2018a runtime
 ```
-sh standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+bash standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
 ```
+#### Example
+```
+bash standalone_SINGE.sh data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt PATH_TO_RUNTIME
+```
+Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
 
 ### Docker
 Docker support is still being improved.
@@ -72,10 +80,6 @@ Use a versioned [release](https://github.com/gitter-lab/SINGE/releases) for stab
 Because the subsampling and zero-removal stages involve pseudo-random sample removals, SINGE generates a random seed using input hyperparameters, including the *date* input.
 The results can be reproduced by providing the same inputs and date from a previous experiment.
 
-## Example
-`SINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
-It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
-
 ## Testing
 The `tests` directory contains test scripts and reference output files to test SINGE.
 
@@ -91,7 +95,7 @@ mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./code/ SINGE_Aggregat
 ## Licenses
 SINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
 
-The file `iLasso_for_SCINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
+The file `iLasso_for_SINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
 The original third-party code is available under the [MIT License](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/LICENSE), Copyright © 2014 USC-Melady.
 
 The compiled version of SINGE includes the [glmnet_matlab](http://web.stanford.edu/~hastie/glmnet_matlab/index.html) package, which is available under the GPL-2 license.
