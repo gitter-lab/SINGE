@@ -16,7 +16,7 @@ arg = fgetl(fid);
 %% Run SINGE GLG Tests
 while arg~=-1
     args = strsplit(arg);
-	SINGE_GLG_Test(Data,args{:})
+	SINGE_GLG_Test(Data,'--outdir',outdir,args{:})
     arg = fgetl(fid);
 end
 %% Aggregate GLG Test Results
