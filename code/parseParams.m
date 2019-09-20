@@ -3,7 +3,9 @@ for ii = 1:length(varargin)
     temp = varargin{ii};
     if numel(temp)>2
         if temp(1)=='-'
-            temp = temp(3:end);
+            while temp(1)=='-'
+                temp = temp(2:end);
+            end
             temp(find(temp=='-')) = '_';
             varargin{ii} = temp;
         end

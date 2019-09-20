@@ -3,9 +3,10 @@
 set -o errexit
 
 # Move the binaries and check the versions of the source and binaries (md5sums)
+mv /download/SINGE_Test tests/SINGE_Test
 mv /download/* .
 # Append the binary md5sum to the md5sums of the tracked source code files
-md5sum SINGE_Example SINGE_GLG_Test SINGE_Aggregate >> current_code.md5
+md5sum tests/SINGE_Test SINGE_GLG_Test SINGE_Aggregate >> current_code.md5
 cat current_code.md5
 # An error similar to:
 # 'code.md5 current_code.md5 differ: char 174, line 4'
@@ -24,11 +25,11 @@ ls script_output/ -l
 # Run the tests to compare the SINGE outputs from the standalone script
 tests/compare_example_output.sh script_output
 
-# Run SINGE on the example data using the compiled SINGE_Example
-echo Testing SINGE with compiled SINGE_Example
-./run_SINGE_Example.sh /usr/local/MATLAB/MATLAB_Runtime/v94
-ls Output/ -l
+# Run SINGE on the example data using the compiled SINGE_Test
+echo Testing SINGE with compiled SINGE_Test
+tests/run_SINGE_Test.sh /usr/local/MATLAB/MATLAB_Runtime/v94
+ls compiled_output/ -l
 
-# Run the tests to compare the SINGE outputs from the compiled SINGE_Example
-# The output directory is hard-coded to Output
-tests/compare_example_output.sh Output
+# Run the tests to compare the SINGE outputs from the compiled SINGE_Test
+# The output directory is hard-coded to compiled_output
+tests/compare_example_output.sh compiled_output

@@ -21,27 +21,57 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html).
 Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
 
+
+## Modes of execution
+SINGE can be executed in the following ways:
+
+### MATLAB environment
+```
+SINGE(Data,gene_list,outdir,hyperparameter_file)
+```
+#### Example
+`SINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
+It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
+
+### Compiled MATLAB code with R2018a runtime
+```
+bash standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+```
+#### Example
+```
+bash standalone_SINGE.sh data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt PATH_TO_RUNTIME
+```
+Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
+
+### Docker
+Docker support is still being improved.
+Initially, Docker can be used to run `standalone_SINGE.sh` in an environment that has the correct MATLAB runtime and other dependencies.
+See `tests/docker_test.sh` for an example of how to run `standalone_SINGE.sh` inside Docker and how to provide the path to the MATLAB runtime.
+
 ## Inputs
-- *Data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
+- *data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
+- *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
 - *num_replicates* - Number of subsampled replicates obtained for each GLG Test
-- *gene_list* - Path to list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
-- *param_list* - A list of GLG hyperparameter combinations for the hyperparameters described below
+- *hyperparameter_file* - Path to file containing a list of GLG hyperparameter combinations for the hyperparameters described below
 
-**GLG Hyperparameters:**
-- *param.ID* - Identifier for GLG hyperparameter set
-- *param.lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
-- *param.dT* - Time resolution for GLG Test
-- *param.num_lags* - Number of lags for GLG Test
-- *param.kernel_width* - Gaussian kernel width for GLG Test
-- *param.family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
-- *param.prob_zero_removal* - For Zero-Handling Strategy (default = 0)
-- *param.prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
-- *param.date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
+**Additional input for compiled MATLAB code with R2018a runtime**
+- *runtime_dir* - Path to MATLAB R2018a runtime library
+
+**GLG hyperparameters:**
+- *--ID* - Identifier for GLG hyperparameter set
+- *--lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
+- *--dT* - Time resolution for GLG Test
+- *--num_lags* - Number of lags for GLG Test
+- *--kernel_width* - Gaussian kernel width for GLG Test
+- *--family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
+- *--prob_zero_removal* - For Zero-Handling Strategy (default = 0)
+- *--prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
+- *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
 
 ## Outputs
-- *ranked_edges* - Edge lists ranked according to their SINGE scores
-- *influential_genes* - Genes ranked according to their SINGE influence.
+- *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
+- *SINGE_Gene_Influence.txt* - File with list of genes ranked according to their SINGE influence.
 
 ## Note on reproducibility
 The master branch of this repository may be unstable as new features are implemented.
@@ -50,25 +80,22 @@ Use a versioned [release](https://github.com/gitter-lab/SINGE/releases) for stab
 Because the subsampling and zero-removal stages involve pseudo-random sample removals, SINGE generates a random seed using input hyperparameters, including the *date* input.
 The results can be reproduced by providing the same inputs and date from a previous experiment.
 
-## Example
-`SCINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
-It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
-
 ## Testing
 The `tests` directory contains test scripts and reference output files to test SINGE.
 
 ## Compiling
 The compiled version of SINGE is generated by compiling the MATLAB code in MATLAB R2018a on Linux:
 ```
-mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./code/ SCINGE_Example.m
+mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./code/ SINGE_GLG_Test.m
+mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./code/ SINGE_Aggregate.m
 ```
 
-`compile_SINGE.sh` is used for testing to compile SINGE and confirm the source `.m` files match the versions used to create the binary.
+`compile_SINGE.sh` is used for testing to compile SINGE and confirm the source `.m` files match the versions used to create the binaries.
 
 ## Licenses
 SINGE is available under the MIT License, Copyright © 2019 Atul Deshpande, Anthony Gitter.
 
-The file `iLasso_for_SCINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
+The file `iLasso_for_SINGE.m` has been modified from [`iLasso.m`](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/iLasso.m).
 The original third-party code is available under the [MIT License](https://github.com/USC-Melady/Granger-causality/blob/a6c76003f9534a99bb66163510d6d84a00189afa/LICENSE), Copyright © 2014 USC-Melady.
 
 The compiled version of SINGE includes the [glmnet_matlab](http://web.stanford.edu/~hastie/glmnet_matlab/index.html) package, which is available under the GPL-2 license.

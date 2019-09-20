@@ -27,7 +27,7 @@ else
       args="${args} \"${token}\"" 
       shift
   done
-  eval "\"${exe_dir}/SINGE_Example\"" $args
+  eval "\"${exe_dir}/SINGE_Test\"" $args
 fi
 exit
 
