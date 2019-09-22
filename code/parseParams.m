@@ -1,4 +1,16 @@
 function params = parseParams(Data,varargin)
+for ii = 1:length(varargin)
+    temp = varargin{ii};
+    if numel(temp)>2
+        if temp(1)=='-'
+            while temp(1)=='-'
+                temp = temp(2:end);
+            end
+            temp(find(temp=='-')) = '_';
+            varargin{ii} = temp;
+        end
+    end
+end
 p = inputParser;
 def_lambda = 0.01;
 def_dT = 1;

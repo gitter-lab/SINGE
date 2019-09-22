@@ -24,5 +24,5 @@ for p = rownum
     m.pa = pa;
     [pi,indf] = sort(pa);
     params.pa = pa;
-    [metric] = iLasso_for_SCINGE(m, outs, lambda,p1,dT,std_dev,params);
+    [metric] = iLasso_for_SINGE(m, outs, lambda,p1,dT,std_dev,params);
 end

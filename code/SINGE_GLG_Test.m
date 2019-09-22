@@ -1,4 +1,4 @@
-function GLG_Instance(Data,varargin)
+function SINGE_GLG_Test(Data,varargin)
 % GLG_Instance(ordered_expr_data, family, lambda, dt, window_length, kernel_width, replicate, ,
 % prob_zero_removal, date)
 % Runs Generalized Lasso Granger for one hyperparameter set with optional

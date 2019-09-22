@@ -4,9 +4,12 @@ This directory contains scripts and reference files used to test SINGE.
 It uses Python to compare the output files SINGE generates to reference files that represent the expected output.
 Multiple versions of the reference outputs are provided in order to track how the SINGE behavior has changed as new software versions are released.
 
-- `reference/original`: A directory containing the expected outputs from v0.1.0 of `SCINGE_Example.m` after updating them to MAT file format v7.3
-- `reference/latest`: A directory containing the expected outputs from the latest version of `SCINGE_Example.m`
+- `reference/original`: A directory containing the expected outputs from v0.1.0 of SINGE run on the example data after updating them to MAT file format v7.3
+- `reference/latest`: A directory containing the expected outputs from the latest version of SINGE
 - `environment.yml`: A conda environment with the Python packages required for the test scripts
+- `example_hyperparameters.txt`: The hyperparameter combinations used to test SINGE
+- `docker_test.sh`: A script that confirms the downloaded compiled code matches the source code, runs SINGE on example data, and compares the output with the reference files
+- `SINGE_Test.m`: A MATLAB script derived from `SINGE_Example.m` that tests running SINGE through `SINGE.m` instead of the standalone script
 - `compare_example_output.sh`: A script to compare the generated and reference output files
 - `compare_adj_matrices.py`: A Python script to compare the sparse adjacency matrices in two `.mat` files
 

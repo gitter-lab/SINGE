@@ -16,7 +16,7 @@ script:
   # Run SINGE tests in the built Docker image
   # The conda environment should be activated before running the bash script
   # See https://github.com/conda/conda/issues/7980
-  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; ./docker_test.sh"
+  - docker run -v $(pwd):/SCINGE -w /SCINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate scinge-test; tests/docker_test.sh"
 
 after_script:
   # Inspect the built image
