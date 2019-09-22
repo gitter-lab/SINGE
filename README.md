@@ -30,7 +30,7 @@ SINGE can be executed in the following ways:
 SINGE(Data,gene_list,outdir,hyperparameter_file)
 ```
 #### Example
-`SINGE_Example.m` demonstrates a simple example with two hyperparameter sets and two replicates.
+`SINGE_Example.m` demonstrates a simple example with the hyperparameters specified in `default_hyperparameters.txt`.
 It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
 
 ### Compiled MATLAB code with R2018a runtime
@@ -52,7 +52,6 @@ See `tests/docker_test.sh` for an example of how to run `standalone_SINGE.sh` in
 - *data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
 - *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
-- *num_replicates* - Number of subsampled replicates obtained for each GLG Test
 - *hyperparameter_file* - Path to file containing a list of GLG hyperparameter combinations for the hyperparameters described below
 
 **Additional input for compiled MATLAB code with R2018a runtime**
@@ -62,12 +61,15 @@ See `tests/docker_test.sh` for an example of how to run `standalone_SINGE.sh` in
 - *--ID* - Identifier for GLG hyperparameter set
 - *--lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
 - *--dT* - Time resolution for GLG Test
-- *--num_lags* - Number of lags for GLG Test
-- *--kernel_width* - Gaussian kernel width for GLG Test
+- *--num-lags* - Number of lags for GLG Test
+- *--kernel-width* - Gaussian kernel width for GLG Test
+- *--replicate* - Replicate index
 - *--family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
-- *--prob_zero_removal* - For Zero-Handling Strategy (default = 0)
-- *--prob_remove_samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
-- *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format. 
+- *--prob-zero-removal* - For Zero-handling Strategy (default = 0)
+- *--prob-remove-samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
+- *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format.
+
+See `default_hyperparameters.txt` for an example hyperparameters file.
 
 ## Outputs
 - *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
