@@ -1,4 +1,4 @@
-%% Simple example that runs SINGE for two replicates of two hyperparameter settings
+%% Simple example that runs SINGE for with default hyperparameter settings
 clear all;
 close all;
 clc;
