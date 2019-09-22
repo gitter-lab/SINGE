@@ -19,7 +19,7 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 
 ## Dependency
 This code requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html).
-Unzip `glmnet_matlab.zip` in either the root directory (that contains `SCINGE_Example.m`) or the `code` subdirectory.
+Unzip `glmnet_matlab.zip` in either the root directory (that contains `SINGE_Example.m`) or the `code` subdirectory.
 
 
 ## Modes of execution

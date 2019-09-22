@@ -1,5 +1,5 @@
 #!/bin/bash
-# Compare the SCINGE_Example.m output with the reference output
+# Compare the SINGE output with the reference output
 # This script must be called from the base directory of the repository
 # Must have already run SINGE on the example data
 # The SINGE output directory is provided as an argument
