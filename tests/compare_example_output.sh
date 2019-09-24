@@ -26,8 +26,8 @@ refdir=tests/reference/latest
 # Continue running all tests even if one fails
 exit_status=0
 
-echo Comparing SCINGE_Gene_Influence.txt
-csvdiff --style=summary --sep='	' --significance=5 --output=csvdiff.out Gene_Name $outdir/SCINGE_Gene_Influence.txt $refdir/SCINGE_Gene_Influence.txt
+echo Comparing SINGE_Gene_Influence.txt
+csvdiff --style=summary --sep='	' --significance=5 --output=csvdiff.out Gene_Name $outdir/SINGE_Gene_Influence.txt $refdir/SINGE_Gene_Influence.txt
 cat csvdiff.out
 comparison=$(cat csvdiff.out)
 rm csvdiff.out
@@ -37,8 +37,8 @@ fi
 
 # csvdiff requires a unique key in each row
 # Provide the Regulator and Target columns together as the index
-echo Comparing SCINGE_Ranked_Edge_List.txt
-csvdiff --style=summary --sep='	' --significance=5 --output=csvdiff.out Regulator,Target $outdir/SCINGE_Ranked_Edge_List.txt $refdir/SCINGE_Ranked_Edge_List.txt
+echo Comparing SINGE_Ranked_Edge_List.txt
+csvdiff --style=summary --sep='	' --significance=5 --output=csvdiff.out Regulator,Target $outdir/SINGE_Ranked_Edge_List.txt $refdir/SINGE_Ranked_Edge_List.txt
 cat csvdiff.out
 comparison=$(cat csvdiff.out)
 rm csvdiff.out

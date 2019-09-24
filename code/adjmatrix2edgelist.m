@@ -19,4 +19,4 @@ for ii = 1:length(smets)
     end
 end
 tftable = cell2table(tftable(ind,:));
-tftable.Properties.VariableNames = {'Regulator', 'Target', 'SCINGE_Score'};
+tftable.Properties.VariableNames = {'Regulator', 'Target', 'SINGE_Score'};
