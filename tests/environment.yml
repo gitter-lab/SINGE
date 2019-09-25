@@ -1,4 +1,4 @@
-name: scinge-test
+name: singe-test
 dependencies:
   - numpy=1.16.3
   - pip=19.1
