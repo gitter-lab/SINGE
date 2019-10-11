@@ -1,8 +1,9 @@
 # MATLAB R2018a in a Debian environment
-FROM amarburg/matlab-runtime
+FROM amarburg/matlab-runtime:R2018a
 
 RUN apt-get update && \
-    apt-get -y install libxt6 bzip2
+    apt-get -y install libxt6 bzip2 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Miniconda3 following https://hub.docker.com/r/continuumio/miniconda3/dockerfile
 # Python is only needed for testing SINGE and could be removed from the base
