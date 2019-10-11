@@ -1,5 +1,5 @@
 # MATLAB R2018a in a Debian environment
-FROM amarburg/matlab-runtime
+FROM amarburg/matlab-runtime:R2018a
 
 RUN apt-get update && \
     apt-get -y install libxt6 bzip2 && \
