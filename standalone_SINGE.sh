@@ -21,4 +21,4 @@ while read arg||[ -n "$arg" ]; do
     bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 done < $hypefile
 
-bash run_SINGE_Aggregate.sh $runtime $gene_list $data $outdir
+bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir

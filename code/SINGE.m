@@ -22,5 +22,5 @@ while arg~=-1
 end
 
 %% Aggregate GLG Test Results
-[ranked_edges, gene_influence] = SINGE_Aggregate(gene_list,Data,outdir);
+[ranked_edges, gene_influence] = SINGE_Aggregate(Data,gene_list,outdir);
 
