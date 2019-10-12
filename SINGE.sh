@@ -19,22 +19,25 @@ gene_list=$4
 outdir=$5
 hypefile=$6
 shopt -s nocasematch
-mode1="standalone"
-mode2="GLG"
-mode3="Aggregate"
-if [ $mode==$mode1 ]; then 
-	echo "standalone mode"
-	while read arg||[ -n "$arg" ]; do 
+mode1=standalone
+mode2=GLG
+mode3=Aggregate
+echo $mode
+if [[ $mode == $mode1 ]]; then 
+	echo $mode1
+	while read arg||[ -n $arg ]; do 
 	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done < $hypefile
-elif [ $mode==$mode2]; then 
-	echo "GLG mode"
+elif [[ $mode == $mode2 ]]; then 
+	echo $mode2
 	hypenum=$7
+	echo $hypenum
 	arg=$(sed "$hypenum q;d" $hypefile)
+	echo $arg
 	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
-if [$mode==$mode3]; then 
-	echo "aggregate mode"
+if [[ $mode == $mode3 ]]||[[ $mode == $mode1 ]]; then 
+	echo $mode3
 	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
 fi
