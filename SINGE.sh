@@ -22,22 +22,19 @@ shopt -s nocasematch
 mode1=standalone
 mode2=GLG
 mode3=Aggregate
-echo $mode
+echo "SINGE operating in " $mode "mode"
 if [[ $mode == $mode1 ]]; then 
-	echo $mode1
+	echo $mode1 "mode running GLG tests"
 	while read arg||[ -n $arg ]; do 
 	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done < $hypefile
 elif [[ $mode == $mode2 ]]; then 
-	echo $mode2
-	hypenum=$7
-	echo $hypenum
+	echo $mode2 "mode running"
 	arg=$(sed "$hypenum q;d" $hypefile)
-	echo $arg
 	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
 if [[ $mode == $mode3 ]]||[[ $mode == $mode1 ]]; then 
-	echo $mode3
+	echo $mode3 "mode running"
 	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
 fi
