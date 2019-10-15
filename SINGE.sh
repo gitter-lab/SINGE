@@ -31,7 +31,9 @@ if [[ $mode == $mode1 ]]; then
 elif [[ $mode == $mode2 ]]; then 
 	echo $mode2 "mode running"
 	hypenum=$7
+	echo hypenum: $hypenum
 	arg=$(sed "$hypenum q;d" $hypefile)
+	echo arg: $arg
 	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
