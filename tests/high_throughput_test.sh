@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Run SINGE on the example data calling the GLG and aggregate stages
 # individually using the Docker image to run SINGE
 set -o errexit
