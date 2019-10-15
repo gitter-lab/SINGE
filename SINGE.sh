@@ -25,7 +25,8 @@ mode3=Aggregate
 echo "SINGE operating in " $mode "mode"
 if [[ $mode == $mode1 ]]; then 
 	echo $mode1 "mode running GLG tests"
-	while read arg||[ -n $arg ]; do 
+	while read arg||[ -n $arg ]; do
+	    echo arg: $arg
 	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done < $hypefile
 elif [[ $mode == $mode2 ]]; then 
