@@ -35,11 +35,21 @@ It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` dir
 
 ### Compiled MATLAB code with R2018a runtime
 ```
-bash standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+bash SINGE.sh runtime_dir mode Data gene_list outdir hyperparameter_file 
 ```
-#### Example
+#### Examples
+##### Standalone Mode (Run GLG for all hyperparameters and aggregate the output)
 ```
-bash standalone_SINGE.sh data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt PATH_TO_RUNTIME
+bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt
+```
+##### GLG Mode (Run GLG for the second hyperparameter in the hyperparameter file)
+```
+bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt
+```
+##### Aggregate Mode (Run GLG for the second hyperparameter in the hyperparameter file)
+
+```
+bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data data1/tf.mat Output
 ```
 Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
 
