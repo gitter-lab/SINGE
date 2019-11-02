@@ -44,9 +44,9 @@ bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data data1/tf.mat Output 
 ```
 ##### GLG Mode (Run GLG for the second hyperparameter in the hyperparameter file)
 ```
-bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt
+bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt 2
 ```
-##### Aggregate Mode (Run GLG for the second hyperparameter in the hyperparameter file)
+##### Aggregate Mode (Run Aggregate mode separately)
 
 ```
 bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data data1/tf.mat Output
