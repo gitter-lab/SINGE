@@ -35,7 +35,7 @@ It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` dir
 
 ### Compiled MATLAB code with R2018a runtime
 ```
-bash SINGE.sh runtime_dir mode Data gene_list outdir hyperparameter_file 
+bash SINGE.sh runtime_dir mode Data gene_list outdir hyperparameter_file(for standalone and GLG mode) hyperparameter_number (for GLG mode only)
 ```
 #### Examples
 ##### Standalone Mode (Run GLG for all hyperparameters and aggregate the output)
