@@ -1,17 +1,20 @@
 #!/bin/bash
 # Bash script to run compiled MATLAB code
 # Usage:
-# bash standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+# bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]
 #
 # Inputs:
+# runtime_dir: path to MATLAB R2018a runtime library directory (download from https://www.mathworks.com/products/compiler/matlab-runtime.html)
+# mode: standalone, GLG, or Aggregate
 # Data: Path to single-cell expression data file
 # gene_list: File path to list of genes in the dataset
 # outdir: Directory path for storing temporary files and final ranked lists of gene interactions and influential genes
-# hyperparameter_file: file containing list of hyperparameter combinations for SINGE
-# runtime_dir: path to MATLAB R2018a runtime library directory (Download from https://www.mathworks.com/products/compiler/matlab-runtime.html)
+# hyperparameter_file: file containing list of hyperparameter combinations for SINGE (standalone and GLG modes)
+# hyperparameter_number: hyperparameter index to use from the hyperparameter_file (Aggregate mode only)
 # 
 # Example:
-# bash standalone_SINGE.sh data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt PATH_TO_RUNTIME
+# bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt
+
 runtime=$1
 mode=$2
 data=$3
