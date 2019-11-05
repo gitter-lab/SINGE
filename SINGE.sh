@@ -1,19 +1,32 @@
 #!/bin/bash
 # Bash script to run compiled MATLAB code
-# Usage:
-# bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]
-#
-# Inputs:
-# runtime_dir: path to MATLAB R2018a runtime library directory (download from https://www.mathworks.com/products/compiler/matlab-runtime.html)
-# mode: standalone, GLG, or Aggregate
-# Data: Path to single-cell expression data file
-# gene_list: File path to list of genes in the dataset
-# outdir: Directory path for storing temporary files and final ranked lists of gene interactions and influential genes
-# hyperparameter_file: file containing list of hyperparameter combinations for SINGE (standalone and GLG modes)
-# hyperparameter_number: hyperparameter index to use from the hyperparameter_file (Aggregate mode only)
+# Requires MATLAB R2018a runtime library which can be downloaded from
+# https://www.mathworks.com/products/compiler/matlab-runtime.html
 # 
 # Example:
 # bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt
+
+usage="Usage: $(basename $0) runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]\n
+
+runtime_dir: path to MATLAB R2018a runtime library directory\n
+mode: standalone, GLG, or Aggregate\n
+Data: Path to single-cell expression data file\n
+gene_list: File path to list of genes in the dataset\n
+outdir: Directory path for storing temporary files and final ranked lists of gene interactions and influential genes\n
+hyperparameter_file: file containing list of hyperparameter combinations for SINGE (standalone and GLG modes)\n
+hyperparameter_number: hyperparameter index to use from the hyperparameter_file (GLG mode)"
+
+if [[ $# -eq 1 && $1 == "-h" ]]; then
+	echo -e $usage
+	exit 0
+fi
+
+# At least 5 arguments required in all modes
+if [ $# -lt 5 ]; then
+	echo Missing required arguments
+	echo -e $usage
+	exit 1
+fi
 
 runtime=$1
 mode=$2
@@ -57,4 +70,5 @@ fi
 
 if [[ $validMode == 0 ]]; then 
 	echo Invalid SINGE mode. Please use one of the following modes: $mode1, $mode2, $mode3
+	echo -e $usage
 fi
