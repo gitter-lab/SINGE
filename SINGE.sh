@@ -22,8 +22,10 @@ shopt -s nocasematch
 mode1=standalone
 mode2=GLG
 mode3=Aggregate
+validMode=0
 echo "SINGE operating in" $mode "mode"
 if [[ $mode == $mode1 ]]; then 
+	validMode=1
 	echo $mode1 "mode running GLG tests"
 	#nargs=`{ cat $hypefile; echo ''; } | wc -l`
 	nargs=`grep -c "" $hypefile`
@@ -35,6 +37,7 @@ if [[ $mode == $mode1 ]]; then
 	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done
 elif [[ $mode == $mode2 ]]; then 
+	validMode=1
 	echo $mode2 "mode running"
 	hypenum=$7
 	echo hypenum: $hypenum
@@ -44,6 +47,11 @@ elif [[ $mode == $mode2 ]]; then
 fi
 
 if [[ $mode == $mode3 ]]||[[ $mode == $mode1 ]]; then 
+	validMode=1
 	echo $mode3 "mode running"
 	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
+fi
+
+if [[ $validMode == 0 ]]; then 
+	echo Invalid SINGE mode. Please use one of the following modes: $mode1, $mode2, $mode3
 fi
