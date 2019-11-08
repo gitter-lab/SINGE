@@ -31,22 +31,36 @@ SINGE(Data,gene_list,outdir,hyperparameter_file)
 ```
 #### Example
 `SINGE_Example.m` demonstrates a simple example with the hyperparameters specified in `default_hyperparameters.txt`.
-It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
+It runs SINGE on `data1/X_SCODE_data.mat` and writes the results to the `Output` directory.
 
 ### Compiled MATLAB code with R2018a runtime
 ```
-bash standalone_SINGE.sh Data gene_list outdir hyperparameter_file runtime_dir
+bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]
 ```
-#### Example
+- `hyperparameter_file` is required only for the standalone and GLG modes.
+- `hyperparameter_number` is required only for GLG mode.
+Use `bash SINGE.sh -h` to print the complete usage message.
+
+#### Examples
+##### Standalone mode (run GLG for all hyperparameters and aggregate the output)
 ```
-bash standalone_SINGE.sh data1/X_SCODE_data data1/tf.mat Output data1/default_hyperparameters.txt PATH_TO_RUNTIME
+bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt
+```
+##### GLG mode (run GLG for the second hyperparameter in the hyperparameter file)
+```
+bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt 2
+```
+##### Aggregate mode (run Aggregate mode separately)
+
+```
+bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data.mat data1/tf.mat Output
 ```
 Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
 
 ### Docker
 Docker support is still being improved.
-Initially, Docker can be used to run `standalone_SINGE.sh` in an environment that has the correct MATLAB runtime and other dependencies.
-See `tests/docker_test.sh` for an example of how to run `standalone_SINGE.sh` inside Docker and how to provide the path to the MATLAB runtime.
+Initially, Docker can be used to run `SINGE.sh` in an environment that has the correct MATLAB runtime and other dependencies.
+See `tests/docker_test.sh` for an example of how to run `SINGE.sh` inside Docker and how to provide the path to the MATLAB runtime.
 
 ## Inputs
 - *data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
