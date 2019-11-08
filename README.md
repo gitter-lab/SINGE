@@ -31,7 +31,7 @@ SINGE(Data,gene_list,outdir,hyperparameter_file)
 ```
 #### Example
 `SINGE_Example.m` demonstrates a simple example with the hyperparameters specified in `default_hyperparameters.txt`.
-It runs SINGE on `data1/X_SCODE_data` and writes the results to the `Output` directory.
+It runs SINGE on `data1/X_SCODE_data.mat` and writes the results to the `Output` directory.
 
 ### Compiled MATLAB code with R2018a runtime
 ```
@@ -39,6 +39,7 @@ bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hype
 ```
 - `hyperparameter_file` is required only for the standalone and GLG modes.
 - `hyperparameter_number` is required only for GLG mode.
+Use `bash SINGE.sh -h` to print the complete usage message.
 
 #### Examples
 ##### Standalone mode (run GLG for all hyperparameters and aggregate the output)

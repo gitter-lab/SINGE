@@ -14,7 +14,7 @@ Data: Path to single-cell expression data file\n
 gene_list: File path to list of genes in the dataset\n
 outdir: Directory path for storing temporary files and final ranked lists of gene interactions and influential genes\n
 hyperparameter_file: file containing list of hyperparameter combinations for SINGE (required for standalone and GLG modes)\n
-hyperparameter_number: hyperparameter index to use from the hyperparameter_file (required for GLG mode)"
+hyperparameter_number: 1-based hyperparameter index to use from the hyperparameter_file (required for GLG mode)"
 
 if [[ $# -eq 1 && $1 == "-h" ]]; then
 	echo -e $usage
@@ -48,9 +48,11 @@ if [[ $mode == $mode1 ]]; then
 		echo -e $usage
 		exit 1
 	fi
-	nargs=`grep -c "" $hypefile`
-	for hypenum in `seq 1 $nargs`; do
+	# Use grep instead of wc to be robust to a missing final newline
+	nargs=$(grep -c "" $hypefile)
+	for hypenum in $(seq 1 $nargs); do
 	    echo hypenum: $hypenum
+	    # Get the GLG arguments from the specified row in the hyperparameters file
 	    arg=$(sed "$hypenum q;d" $hypefile)
 	    echo arg: $arg
 	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
@@ -65,12 +67,13 @@ elif [[ $mode == $mode2 ]]; then
 		exit 1
 	fi
 	echo hypenum: $hypenum
+	# Get the GLG arguments from the specified row in the hyperparameters file
 	arg=$(sed "$hypenum q;d" $hypefile)
 	echo arg: $arg
 	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
-if [[ $mode == $mode3 ]]||[[ $mode == $mode1 ]]; then 
+if [[ $mode == $mode3 || $mode == $mode1 ]]; then 
 	validMode=1
 	echo $mode3 "mode running"
 	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
