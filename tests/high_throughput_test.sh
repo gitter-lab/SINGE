@@ -7,7 +7,7 @@ set -o errexit
 # separately and inspect the output
 echo Testing SINGE with high-throughput calls to SINGE.sh
 hyperparams=tests/example_hyperparameters.txt
-lines=$(wc -l $hyperparams | awk '{ print $1 }')
+lines=$(grep -c "" $hyperparams)
 echo lines: $lines
 output=high_throughput_output
 for ((line=1; line<=lines; line++)); do
