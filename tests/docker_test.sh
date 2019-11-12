@@ -6,7 +6,7 @@ set -o errexit
 # Append the binary md5sum to the md5sums of the tracked source code files
 md5sum $SINGE_ROOT/tests/SINGE_Test $SINGE_ROOT/SINGE_GLG_Test $SINGE_ROOT/SINGE_Aggregate >> current_code.md5
 # Account for the different file paths in the md5sum file
-sed -i sed -i "s+$SINGE_ROOT/++g" current_code.md5
+sed -i "s+$SINGE_ROOT/++g" current_code.md5
 cat current_code.md5
 # An error similar to:
 # 'code.md5 current_code.md5 differ: char 174, line 4'
