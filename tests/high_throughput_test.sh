@@ -5,7 +5,7 @@ set -o errexit
 
 # Run SINGE on the example data using the bash script to run each stage
 # separately and inspect the output
-echo Testing SINGE with high-throughput calls to SINGE.sh
+echo Testing SINGE with separate high-throughput calls to Dockerized SINGE.sh
 hyperparams=tests/example_hyperparameters.txt
 lines=$(grep -c "" $hyperparams)
 echo lines: $lines
@@ -21,7 +21,7 @@ docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
 
 ls $output -l
 
-# Run the tests to compare the SINGE outputs from the standalone script
+# Run the tests to evaluate the SINGE outputs from the standalone script
 # run in the high-throughput setting
 docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:tmp -c \
   "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh $output"
