@@ -2,9 +2,7 @@
 # Run SINGE and tests inside the Docker image
 set -o errexit
 
-# Move the binaries and check the versions of the source and binaries (md5sums)
-mv /download/SINGE_Test tests/SINGE_Test
-mv /download/* .
+# Check the versions of the source and binaries (md5sums)
 # Append the binary md5sum to the md5sums of the tracked source code files
 md5sum tests/SINGE_Test SINGE_GLG_Test SINGE_Aggregate >> current_code.md5
 cat current_code.md5
@@ -27,7 +25,7 @@ tests/compare_example_output.sh script_output
 
 # Run SINGE on the example data using the compiled SINGE_Test
 echo Testing SINGE with compiled SINGE_Test
-tests/run_SINGE_Test.sh /usr/local/MATLAB/MATLAB_Runtime/v94
+$SINGE_ROOT/tests/run_SINGE_Test.sh /usr/local/MATLAB/MATLAB_Runtime/v94
 ls compiled_output/ -l
 
 # Run the tests to compare the SINGE outputs from the compiled SINGE_Test
