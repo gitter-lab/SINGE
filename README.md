@@ -44,11 +44,11 @@ Use `bash SINGE.sh -h` to print the complete usage message.
 #### Examples
 ##### Standalone mode (run GLG for all hyperparameters and aggregate the output)
 ```
-bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt
+bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt
 ```
 ##### GLG mode (run GLG for the second hyperparameter in the hyperparameter file)
 ```
-bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt 2
+bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt 2
 ```
 ##### Aggregate mode (run Aggregate mode separately)
 

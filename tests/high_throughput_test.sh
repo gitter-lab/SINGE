@@ -12,12 +12,12 @@ echo lines: $lines
 output=high_throughput_output
 for ((line=1; line<=lines; line++)); do
   echo line: $line
-  docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:tmp -c \
-    "./SINGE.sh /usr/local/MATLAB/MATLAB_Runtime/v94 GLG data1/X_SCODE_data.mat data1/tf.mat $output $hyperparams $line"
+  docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
+    GLG data1/X_SCODE_data.mat data1/tf.mat $output $hyperparams $line
 done
 
-docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:tmp -c \
-  "./SINGE.sh /usr/local/MATLAB/MATLAB_Runtime/v94 aggregate data1/X_SCODE_data.mat data1/tf.mat $output"
+docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
+  aggregate data1/X_SCODE_data.mat data1/tf.mat $output
 
 ls $output -l
 

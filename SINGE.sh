@@ -28,6 +28,10 @@ if [[ $# -lt 5 ]]; then
 	exit 1
 fi
 
+# When SINGE is run inside Docker, the location of this script is needed
+# in order to locate the compiled MATLAB executables and wrapper scripts
+exe_dir=$(dirname "$0")
+
 runtime=$1
 mode=$2
 data=$3
@@ -55,7 +59,7 @@ if [[ $mode == $mode1 ]]; then
 	    # Get the GLG arguments from the specified row in the hyperparameters file
 	    arg=$(sed "$hypenum q;d" $hypefile)
 	    echo arg: $arg
-	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	    bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done
 elif [[ $mode == $mode2 ]]; then 
 	validMode=1
@@ -70,13 +74,13 @@ elif [[ $mode == $mode2 ]]; then
 	# Get the GLG arguments from the specified row in the hyperparameters file
 	arg=$(sed "$hypenum q;d" $hypefile)
 	echo arg: $arg
-	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
 if [[ $mode == $mode3 || $mode == $mode1 ]]; then 
 	validMode=1
 	echo $mode3 "mode running"
-	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
+	bash $exe_dir/run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
 fi
 
 if [[ $validMode == 0 ]]; then 
