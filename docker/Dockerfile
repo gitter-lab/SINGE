@@ -32,6 +32,8 @@ COPY run_SINGE_GLG_Test.sh .
 COPY run_SINGE_Aggregate.sh .
 COPY tests/run_SINGE_Test.sh tests/
 
+ENV SINGE_RUNNING_IN_DOCKER 1
+
 # Download the compiled SCINGE_Example executable from the stable release
 # md5sum of v0.3.0 SCINGE_Example is a4a990b7585125ca41ded5f5045af9ba
 #RUN wget --quiet https://github.com/gitter-lab/SINGE/releases/download/v0.3.0/SCINGE_Example && \

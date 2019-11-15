@@ -16,6 +16,11 @@ outdir: Directory path for storing temporary files and final ranked lists of gen
 hyperparameter_file: file containing list of hyperparameter combinations for SINGE (required for standalone and GLG modes)\n
 hyperparameter_number: 1-based hyperparameter index to use from the hyperparameter_file (required for GLG mode)"
 
+if [[ $SINGE_RUNNING_IN_DOCKER ]]; then
+	usage+="\n\nWhen running inside Docker with the default entry point, only the arguments after runtime_dir are required.
+	The script name and runtime_dir argument are specified automatically."
+fi
+
 if [[ $# -eq 1 && $1 == "-h" ]]; then
 	echo -e $usage
 	exit 0
