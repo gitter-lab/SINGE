@@ -17,13 +17,13 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 [Network inference with Granger causality ensembles on single-cell transcriptomic data](https://doi.org/10.1101/534834).
 *bioRxiv* 2019. doi:10.1101/534834
 
-## Dependency
+## Dependencies
 The dependencies vary based on how SINGE is run.
 Setup instructions for each mode are described below.
 
 ## Modes of execution
 The full SINGE pipeline runs multiple Generalized Lasso Granger (GLG) tests to infer different directed networks for different hyperparameters and subsamples of the data.
-These directed networks are then aggregated into a final predicted network
+These directed networks are then aggregated into a final predicted network.
 For small or medium datasets and relatively few hyperparameter combinations, SINGE can be run in a "standalone" mode where all the GLG tests and the aggregation step are run serially.
 However, for larger datasets or hyperparameter combinations, the GLG tests can be run in parallel on a single machine or multiple machines.
 After all GLG tests terminate, the results can be aggregated separately.
@@ -31,8 +31,8 @@ After all GLG tests terminate, the results can be aggregated separately.
 The standalone and parallel modes are accessible in three ways: MATLAB, compiled MATLAB executables with a wrapper Bash script, or Docker.
 
 ### MATLAB environment
-Running SINGE through MATALB requires the glmnet_matlab package (http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
-Unzip `glmnet_matlab.zip` in either the root directory (that contains `SINGE_Example.m`) or the `code` subdirectory.
+Running SINGE through MATALB requires the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
+Unzip `glmnet_matlab.zip` in either the root directory that contains `SINGE_Example.m` or the `code` subdirectory.
 Then use `SINGE.m` to run SINGE in the standalone mode or `SINGE_GLG_Test.m` and `SINGE_Aggregate.m` to run each stage separately.
 `SINGE.m` usage:
 ```
@@ -70,7 +70,7 @@ Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
 
 ### Docker
 Requires Docker.
-The most straightforward way to run SINGE through Docker is through the `SINGE.sh` wrapper script.
+The most straightforward way to run SINGE through Docker is with the `SINGE.sh` wrapper script.
 The usage is the same as the examples above except the script name and MATLAB runtime path do not need to be specified.
 Alternatively, arbitrary commands can be run inside Docker by overriding the default entry point.
 We recommend specifying the version of the Docker image.
@@ -81,7 +81,7 @@ We recommend specifying the version of the Docker image.
 docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.4.0 standalone data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt
 ```
 
-### Arbitrary commands using Bash as the entry point
+#### Arbitrary commands using Bash as the entry point
 ```
 docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.4.0 -c "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh Output
 ```
