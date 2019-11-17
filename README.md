@@ -31,7 +31,7 @@ After all GLG tests terminate, the results can be aggregated separately.
 The standalone and parallel modes are accessible in three ways: MATLAB, compiled MATLAB executables with a wrapper Bash script, or Docker.
 
 ### MATLAB environment
-Running SINGE through MATALB requires the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
+Running SINGE through MATALB requires the source code in this repository and the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
 Unzip `glmnet_matlab.zip` in either the root directory that contains `SINGE_Example.m` or the `code` subdirectory.
 Then use `SINGE.m` to run SINGE in the standalone mode or `SINGE_GLG_Test.m` and `SINGE_Aggregate.m` to run each stage separately.
 `SINGE.m` usage:
@@ -44,6 +44,9 @@ It runs SINGE on `data1/X_SCODE_data.mat` and writes the results to the `Output`
 
 ### Compiled MATLAB code with R2018a runtime
 Requires Bash and the MATLAB R2018a runtime library, which can be downloaded from https://www.mathworks.com/products/compiler/matlab-runtime.html
+In addition, the compiled SINGE executables and the wrapper scripts `SINGE.sh`, `run_SINGE_GLG_Test.sh`, and `run_SINGE_Aggregate.sh` from this repository are required.
+Starting with release 0.4.0, the compiled executables `SINGE_GLG_Test` and `SINGE_Aggregate` are available from the [GitHub releases page](https://github.com/gitter-lab/SINGE/releases).
+The executables must be in the same directory as the wrapper scripts.
 Bash wrapper script usage:
 ```
 bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]
