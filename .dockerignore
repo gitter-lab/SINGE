@@ -1,3 +1,6 @@
 *
 !/docker/*
+!SINGE.sh
+!run_SINGE*.sh
 !tests/environment.yml
+!tests/run_SINGE_Test.sh

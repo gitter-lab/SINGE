@@ -8,9 +8,10 @@ Multiple versions of the reference outputs are provided in order to track how th
 - `reference/latest`: A directory containing the expected outputs from the latest version of SINGE
 - `environment.yml`: A conda environment with the Python packages required for the test scripts
 - `example_hyperparameters.txt`: The hyperparameter combinations used to test SINGE
-- `docker_test.sh`: A script that confirms the downloaded compiled code matches the source code, runs SINGE on example data, and compares the output with the reference files
+- `docker_test.sh`: A script that confirms the downloaded compiled code matches the source code, runs SINGE on example data, and compares the output with the reference files inside the Docker container
 - `SINGE_Test.m`: A MATLAB script derived from `SINGE_Example.m` that tests running SINGE through `SINGE.m` instead of the standalone script
-- `high_throughput_test.sh`: A script that simulates running SINGE in a high-throughput computing environment, making separate calls to `SINGE.sh` for each GLG run and the aggregation step
+- `high_throughput_test.sh`: A script that simulates running SINGE in a high-throughput computing environment, using Docker to make separate calls to `SINGE.sh` for each GLG run and the aggregation step
+- `standalone_test.sh`: A script uses Docker to run `SINGE.sh` in standalone mode
 - `compare_example_output.sh`: A script to compare the generated and reference output files
 - `compare_adj_matrices.py`: A Python script to compare the sparse adjacency matrices in two `.mat` files
 

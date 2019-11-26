@@ -20,6 +20,8 @@ script:
   # Proof-of-concept of running SINGE in a high-throughput style
   # Can be moved to run in a parallel Travis CI job
   - bash tests/high_throughput_test.sh
+  # Test standalone SINGE run through Docker
+  - bash tests/standalone_test.sh
 
 after_script:
   # Inspect the built image

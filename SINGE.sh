@@ -16,6 +16,11 @@ outdir: Directory path for storing temporary files and final ranked lists of gen
 hyperparameter_file: file containing list of hyperparameter combinations for SINGE (required for standalone and GLG modes)\n
 hyperparameter_number: 1-based hyperparameter index to use from the hyperparameter_file (required for GLG mode)"
 
+if [[ $SINGE_RUNNING_IN_DOCKER ]]; then
+	usage+="\n\nWhen running inside Docker with the default entry point, only the arguments after runtime_dir are required.
+	The script name and runtime_dir argument are specified automatically."
+fi
+
 if [[ $# -eq 1 && $1 == "-h" ]]; then
 	echo -e $usage
 	exit 0
@@ -27,6 +32,10 @@ if [[ $# -lt 5 ]]; then
 	echo -e $usage
 	exit 1
 fi
+
+# When SINGE is run inside Docker, the location of this script is needed
+# in order to locate the compiled MATLAB executables and wrapper scripts
+exe_dir=$(dirname "$0")
 
 runtime=$1
 mode=$2
@@ -55,7 +64,7 @@ if [[ $mode == $mode1 ]]; then
 	    # Get the GLG arguments from the specified row in the hyperparameters file
 	    arg=$(sed "$hypenum q;d" $hypefile)
 	    echo arg: $arg
-	    bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	    bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 	done
 elif [[ $mode == $mode2 ]]; then 
 	validMode=1
@@ -70,13 +79,13 @@ elif [[ $mode == $mode2 ]]; then
 	# Get the GLG arguments from the specified row in the hyperparameters file
 	arg=$(sed "$hypenum q;d" $hypefile)
 	echo arg: $arg
-	bash run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
 fi
 
 if [[ $mode == $mode3 || $mode == $mode1 ]]; then 
 	validMode=1
 	echo $mode3 "mode running"
-	bash run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
+	bash $exe_dir/run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
 fi
 
 if [[ $validMode == 0 ]]; then 
