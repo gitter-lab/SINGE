@@ -1,11 +1,17 @@
 #!/bin/bash
 numreplicates=10
-pzr=$(head -n 1 probzeroremoval.txt)
-prs=$(head -n 1 probremovesample.txt)
+
 DATE=`date +%m/%d/%Y`
 DATEname=`date +%Y%m%d`
 echo $DATE
-export family=$1
+
+if [ $# -eq 0 ]
+ then
+	family=gaussian
+ else
+	family=$1
+fi
+
 listname="hyperparameters_$DATEname.txt"
 rm $listname
 touch $listname
@@ -16,13 +22,18 @@ do
   echo -n "$lam,"
 done < lambda.txt)
 lambda=${lambda::-1}]
-echo $lambda
+#echo $lambda
 for replicate in $(seq 1 $numreplicates)
 do
-	while read dT num_lags; do
-			while IFS='' read -r kernel; do
-				echo "--lambda $lambda --dT $dT --num-lags $num_lags --kernel-width $kernel --ID $ID --replicate $replicate --family $family --date $DATE --prob-zero-removal $pzr --prob-remove-sample $prs">>$listname
-				ID=$((ID+1))
-			done < kernel.txt
-		done < time.txt 
+	while IFS='' read -r prs; do
+		while IFS='' read -r pzr; do 
+			while read dT num_lags; do
+				while IFS='' read -r kernel; do
+					echo "--lambda $lambda --dT $dT --num-lags $num_lags --kernel-width $kernel --ID $ID --replicate $replicate --family $family --date $DATE --prob-zero-removal $pzr --prob-remove-sample $prs">>$listname
+					ID=$((ID+1))
+				done < kernel.txt
+			done < time.txt 
+		done < probzeroremoval.txt
+	done < probremovesample.txt
+		
 done
