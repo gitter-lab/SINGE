@@ -83,7 +83,7 @@ See `tests/docker_test.sh` for an example of how to run `SINGE.sh` inside Docker
 - *--prob-remove-samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
 - *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format.
 
-See `default_hyperparameters.txt` for an example hyperparameters file.
+See `default_hyperparameters.txt` for an example hyperparameters file. Users can generate their own hyperparameter file using the `bash` script [`scripts/generate_hyperparameters.sh`](scripts/generate_hyperparmeters.sh), which takes hyperparameter values from the files `scripts/lambda.txt`, `scripts/kernel.txt`, `scripts/time.txt`, `scripts/probzeroremoval.txt`, and `scripts/probremovesample.txt`.
 
 ## Outputs
 - *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
