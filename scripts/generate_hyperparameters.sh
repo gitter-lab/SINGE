@@ -1,5 +1,4 @@
 #!/bin/bash
-numreplicates=10
 
 DATE=`date +%m/%d/%Y`
 DATEname=`date +%Y%m%d`
@@ -8,12 +7,18 @@ echo $DATE
 if [ $# -eq 0 ]
  then
 	family=gaussian
- else
+	numreplicates=10
+elif [ $# -eq 1 ]
+	then
+		family=$1
+		numreplicates=10
+else
 	family=$1
+	numreplicates=$2
 fi
 
 listname="hyperparameters_$DATEname.txt"
-rm $listname
+rm -f $listname
 touch $listname
 ID=0
 lambda=[$(
