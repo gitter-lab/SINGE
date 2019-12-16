@@ -18,11 +18,21 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86
     echo "conda activate base" >> ~/.bashrc && \
     conda init bash
 
-# Install conda test environment
-COPY tests/environment.yml .
-RUN conda env create -f environment.yml
+ENV SINGE_ROOT /usr/local/SINGE
+WORKDIR /usr/local/SINGE
+ENTRYPOINT ["/usr/local/SINGE/SINGE.sh", "/usr/local/MATLAB/MATLAB_Runtime/v94"]
 
-WORKDIR /download
+# Install conda test environment
+COPY tests/environment.yml tests/
+RUN conda env create -f tests/environment.yml
+
+# Copy wrapper scripts for compiled MATLAB executables
+COPY SINGE.sh .
+COPY run_SINGE_GLG_Test.sh .
+COPY run_SINGE_Aggregate.sh .
+COPY tests/run_SINGE_Test.sh tests/
+
+ENV SINGE_RUNNING_IN_DOCKER 1
 
 # Download the compiled SCINGE_Example executable from the stable release
 # md5sum of v0.3.0 SCINGE_Example is a4a990b7585125ca41ded5f5045af9ba
@@ -36,4 +46,5 @@ RUN md5=14488adf1099666e4e64a5267ef9eed1 && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
     wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
-    chmod u+x SINGE_*
+    chmod u+x SINGE_* && \
+    mv SINGE_Test tests/SINGE_Test
