@@ -20,6 +20,9 @@ script:
   # Proof-of-concept of running SINGE in a high-throughput style
   # Can be moved to run in a parallel Travis CI job
   - bash tests/high_throughput_test.sh
+  # Confirm the hyperparameter generation script works
+  - cd scripts
+  - bash generate_hyperparameters.sh
 
 after_script:
   # Inspect the built image
