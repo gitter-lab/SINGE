@@ -5,9 +5,9 @@ DATEname=`date +%Y%m%d`
 echo $DATE
 
 if [ $# -eq 0 ]
- then
-	family=gaussian
-	numreplicates=10
+	then
+		family=gaussian
+		numreplicates=10
 elif [ $# -eq 1 ]
 	then
 		family=$1
@@ -24,7 +24,7 @@ ID=0
 lambda=[$(
 while read lam
 do
-  echo -n "$lam,"
+	echo -n "$lam,"
 done < lambda.txt)
 lambda=${lambda::-1}]
 #echo $lambda
@@ -40,5 +40,4 @@ do
 			done < time.txt 
 		done < probzeroremoval.txt
 	done < probremovesample.txt
-		
 done
