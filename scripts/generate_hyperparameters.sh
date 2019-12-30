@@ -27,7 +27,7 @@ do
 	echo -n "$lam,"
 done < lambda.txt)
 lambda=${lambda::-1}]
-#echo $lambda
+
 for replicate in $(seq 1 $numreplicates)
 do
 	while IFS='' read -r prs; do
