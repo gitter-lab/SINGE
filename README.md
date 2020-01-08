@@ -17,6 +17,8 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 [Network inference with Granger causality ensembles on single-cell transcriptomic data](https://doi.org/10.1101/534834).
 *bioRxiv* 2019. doi:10.1101/534834
 
+The [SINGE-supplemental](https://github.com/gitter-lab/SINGE-supplemental) repository contains additional scripts, analyses, and results related to this manuscript.
+
 ## Dependencies
 The dependencies vary based on how SINGE is run.
 Setup instructions for each mode are described below.
