@@ -11,10 +11,12 @@ SINGE's ensembling and modified Borda aggregation is motivated by stability sele
 Note that our main intent in choosing the hyperparameter values is to demonstrate SINGE usage, and we do not use different hyperparameter values for different datasets.
 However, the choice of hyperparameters can be tuned to prior information regarding the dataset in the form of the type of biological process (time resolution and number of lags), number of genes, number of cells, and sparsity of the dataset (`lambda`, `prob-remove-sample`, and `prob-zero-removal`), quality of pseudotime (`kernel width`), etc.
 
-## `lambda` value for large datasets
+## Usage with large datasets
+### Avoiding glmnet segmentation violation
+See [#32](https://github.com/gitter-lab/SINGE/issues/32) and describe workaround
 
-## Avoiding glmnet segmentation violation
-See [#32](https://github.com/gitter-lab/SINGE/issues/32)
+### Choice of `lambda` value
+Not meaningful or practical to have complete graph, also causes glmnet errors
 
 ## Using a regulator list
 SINGE version 0.3.0 introduced functionality where a subset of the gene list is earmarked as candidate regulators.
