@@ -17,6 +17,8 @@ Atul Deshpande, Li-Fang Chu, Ron Stewart, Anthony Gitter.
 [Network inference with Granger causality ensembles on single-cell transcriptomic data](https://doi.org/10.1101/534834).
 *bioRxiv* 2019. doi:10.1101/534834
 
+The [SINGE-supplemental](https://github.com/gitter-lab/SINGE-supplemental) repository contains additional scripts, analyses, and results related to this manuscript.
+
 ## Dependencies
 The dependencies vary based on how SINGE is run.
 Setup instructions for each mode are described below.
@@ -111,7 +113,10 @@ This example is part of the SINGE test code, which only runs when called from th
 - *--prob-remove-samples* - Sample removal rate for obtaining subsampled replicates (default = 0.2)
 - *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format.
 
-See `default_hyperparameters.txt` for an example hyperparameters file. Users can generate their own hyperparameter file using the `bash` script [`scripts/generate_hyperparameters.sh`](scripts/generate_hyperparmeters.sh), which takes hyperparameter values from the files `scripts/lambda.txt`, `scripts/kernel.txt`, `scripts/time.txt`, `scripts/probzeroremoval.txt`, and `scripts/probremovesample.txt`.
+See `default_hyperparameters.txt` for an example hyperparameters file.
+Users can generate their own hyperparameter file using the `bash` script [`scripts/generate_hyperparameters.sh`](scripts/generate_hyperparmeters.sh), which takes hyperparameter values from the files `scripts/lambda.txt`, `scripts/kernel.txt`, `scripts/time.txt`, `scripts/probzeroremoval.txt`, and `scripts/probremovesample.txt`.
+
+See [`USAGE.md`](USAGE.md) for guidelines on setting hyperparameters and running SINGE on a new dataset.
 
 ## Outputs
 - *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
