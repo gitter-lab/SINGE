@@ -12,10 +12,6 @@ function [ranked_edges,gene_influence] = SINGE_Aggregate(Data,genefile,outdir)
 % gene_influence = ranked lists of regulators (genes) with corresponding SINGE influence
 load(genefile);
 
-if ~exist('gene_list','var')
-    gene_list = tf;
-end
-
 Str = Data;
 Str(Str=='.') = 'p';
 
