@@ -9,16 +9,20 @@ SINGE's ensembling and modified Borda aggregation is motivated by stability sele
 
 ## When to change `default_hyperparameters.txt` values
 Note that our main intent in choosing the hyperparameter values is to demonstrate SINGE usage, and we do not use different hyperparameter values for different datasets.
-However, the choice of hyperparameters can be tuned to prior information regarding the dataset in the form of the type of biological process (time resolution and number of lags), number of genes, number of cells, sparsity of the dataset. and expected sparsity of the network (`lambda`, `prob-remove-sample`, and `prob-zero-removal`), quality of pseudotime (`kernel width`), etc.
+However, the choice of hyperparameters can be tuned to prior information regarding the dataset in the form of the type of biological process (time resolution and number of lags), number of genes, number of cells, sparsity of the dataset and expected sparsity of the network (`lambda`, `prob-remove-sample`, and `prob-zero-removal`), quality of pseudotime (`kernel-width`), etc.
 
 ## Usage with large datasets
 ### Avoiding glmnet segmentation violation
-For count-based data, our default recommendation is to use the hyperparameter `--family poisson`. However, for larger datasets, the glmnet_matlab package encounters memory segmentation violations with this setting (see [#32](https://github.com/gitter-lab/SINGE/issues/32)). 
-The medium-term solution for this is to either contact the glmnet_matlab maintainer and work with them on troubleshooting this issue, or to port SINGE to R (no documented complaints of glmnet R having similar problems). In the short term, we recommend log-transforming the count-based data (`X1 = log(1+X)`), allowing us to use `--family gaussian` as a hyperparameter.
+For count-based data, our default recommendation is to use the hyperparameter `--family poisson`.
+However, for larger datasets, the glmnet_matlab package encounters memory segmentation violations with this setting (see [#32](https://github.com/gitter-lab/SINGE/issues/32)). 
+Until this glmnet_matlab issue is resolved, we recommend log-transforming the count-based data (`X1 = log(1+X)`) and using the `--family gaussian` hyperparameter instead.
 
 ### Choice of `lambda` value
-A `lambda=0` option results in the GLG output being a complete graph between all genes. When the dataset has a large number of genes (>1000), it is not meaningful or practical to have a complete graph. With that in mind, we propose that for datasets with large number of genes, the hyperparameter value `lambda=0` should be avoided.
-Note: We also observed that setting `lambda=0` also results in the `glmnet_matlab` routine to run for longer durations, which is one of the key reasons for the segmentation violations described above. Thus, avoiding `lambda=0` also lowers the risk of segmentation violations.
+A `lambda=0` option results in the GLG output being a complete graph between all genes.
+When the dataset has a large number of genes (>1000), it is not meaningful or practical to have a complete graph.
+With that in mind, we propose that for datasets with large number of genes, the hyperparameter value `lambda=0` should be avoided.
+We also observed that setting `lambda=0` results in the `glmnet_matlab` routine to run for longer durations, which is one of the key reasons for the segmentation violations described above.
+Thus, avoiding `lambda=0` also lowers the risk of segmentation violations.
 
 ## Using a regulator list
 SINGE version 0.3.0 introduced functionality where a subset of the gene list is earmarked as candidate regulators.
