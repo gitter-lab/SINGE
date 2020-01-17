@@ -114,7 +114,7 @@ This example is part of the SINGE test code, which only runs when called from th
 - *--date* - Valid date in the `dd-mmm-yyyy` or `mm/dd/yyyy` format.
 
 See `default_hyperparameters.txt` for an example hyperparameters file.
-Users can generate their own hyperparameter file using the `bash` script [`scripts/generate_hyperparameters.sh`](scripts/generate_hyperparmeters.sh), which takes hyperparameter values from the files `scripts/lambda.txt`, `scripts/kernel.txt`, `scripts/time.txt`, `scripts/probzeroremoval.txt`, and `scripts/probremovesample.txt`.
+Users can generate their own hyperparameter file using the `bash` script [`scripts/generate_hyperparameters.sh`](scripts/generate_hyperparameters.sh), which takes hyperparameter values from the files `scripts/lambda.txt`, `scripts/kernel.txt`, `scripts/time.txt`, `scripts/probzeroremoval.txt`, and `scripts/probremovesample.txt`.
 
 See [`USAGE.md`](USAGE.md) for guidelines on setting hyperparameters and running SINGE on a new dataset.
 
