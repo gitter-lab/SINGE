@@ -1,4 +1,4 @@
-function tftable = adjmatrix2edgelist(metric,tf)
+function gene_table = adjmatrix2edgelist(metric,gene_list)
 absmetric = abs(metric);
 L = length(metric);
 rowind = repmat([1:L]',1,L);
@@ -10,13 +10,13 @@ rcols = reshape(colind,L*L,1);
 
 rmet = reshape(absmetric,L*L,1);
 [smets,sind] = sort(rmet,'descend');
-tftable = cell(length(smets),3);
+gene_table = cell(length(smets),3);
 ind = [];
 for ii = 1:length(smets)
-    tftable(ii,:) = {tf(rrows(sind(ii))),tf(rcols(sind(ii))),metric(sind(ii))};
-    if tftable{ii,3}>0
+    gene_table(ii,:) = {gene_list(rrows(sind(ii))),gene_list(rcols(sind(ii))),metric(sind(ii))};
+    if gene_table{ii,3}>0
         ind = [ind ii];
     end
 end
-tftable = cell2table(tftable(ind,:));
-tftable.Properties.VariableNames = {'Regulator', 'Target', 'SINGE_Score'};
+gene_table = cell2table(gene_table(ind,:));
+gene_table.Properties.VariableNames = {'Regulator', 'Target', 'SINGE_Score'};

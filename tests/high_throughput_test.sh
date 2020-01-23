@@ -13,11 +13,11 @@ output=high_throughput_output
 for ((line=1; line<=lines; line++)); do
   echo line: $line
   docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
-    GLG data1/X_SCODE_data.mat data1/tf.mat $output $hyperparams $line
+    GLG data1/X_SCODE_data.mat data1/gene_list.mat $output $hyperparams $line
 done
 
 docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
-  aggregate data1/X_SCODE_data.mat data1/tf.mat $output
+  aggregate data1/X_SCODE_data.mat data1/gene_list.mat $output
 
 ls $output -l
 

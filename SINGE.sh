@@ -4,7 +4,7 @@
 # https://www.mathworks.com/products/compiler/matlab-runtime.html
 # 
 # Example:
-# bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output data1/default_hyperparameters.txt
+# bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/gene_list.mat Output data1/default_hyperparameters.txt
 
 usage="Usage: $(basename $0) runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]\n
 

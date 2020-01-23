@@ -19,7 +19,7 @@ conda list
 
 # Run SINGE on the example data using the bash script and inspect the output
 echo Testing SINGE with standalone SINGE.sh
-$SINGE_ROOT/SINGE.sh /usr/local/MATLAB/MATLAB_Runtime/v94 standalone data1/X_SCODE_data.mat data1/tf.mat script_output tests/example_hyperparameters.txt
+$SINGE_ROOT/SINGE.sh /usr/local/MATLAB/MATLAB_Runtime/v94 standalone data1/X_SCODE_data.mat data1/gene_list.mat script_output tests/example_hyperparameters.txt
 ls script_output/ -l
 
 # Run the tests to compare the SINGE outputs from the standalone script

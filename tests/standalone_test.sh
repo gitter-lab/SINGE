@@ -8,7 +8,7 @@ hyperparams=tests/example_hyperparameters.txt
 output=standalone_output
 
 docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
-  standalone data1/X_SCODE_data.mat data1/tf.mat $output $hyperparams
+  standalone data1/X_SCODE_data.mat data1/gene_list.mat $output $hyperparams
 
 ls $output -l
 
