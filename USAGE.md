@@ -36,3 +36,6 @@ We found the `dynverse` (http://dynverse.org/) package to be extremely useful fo
 This package has access to 50+ trajectory inference algorithms, catering to various trajectory types, dataset sizes, etc.
 The `dynverse` package provides a streamlined user interface that guides the user through the steps for selecting a trajectory inference method.
 If the trajectory inference method itself does not assign pseudotimes, they can be assigned after the fact using the [`add_pseudotime`](https://rdrr.io/github/dynverse/dynwrap/man/add_pseudotime.html) function.
+
+## Handling branching trajectories
+The current SINGE version operates on non-branching, linear trajectories. In branching trajectories, two cells with very different states can have the same pseudotime. For applying SINGE on such a dataset, we recommend breaking down the complete trajectory into sub-trajectories corresponding to each cell fate and independently analyzing each trajectory using SINGE. The resulting GLG Test results can either be independently aggregated to obtain one GRN network for each cell fate, or the GLG test results from all branches can be aggregated together to obtain one global GRN network for the branching process. Further investigation needs to be done on the best strategies for automating this process (see [#49](https://github.com/gitter-lab/SINGE/issues/49)).
