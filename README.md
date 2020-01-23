@@ -58,16 +58,16 @@ Use `bash SINGE.sh -h` to print the complete usage message.
 #### Examples
 ##### Standalone mode (run GLG for all hyperparameters and aggregate the output)
 ```
-bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt
+bash SINGE.sh PATH_TO_RUNTIME standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
 ```
 ##### GLG mode (run GLG for the second hyperparameter in the hyperparameter file)
 ```
-bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt 2
+bash SINGE.sh PATH_TO_RUNTIME GLG data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt 2
 ```
 ##### Aggregate mode (run Aggregate mode separately)
 
 ```
-bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data.mat data1/tf.mat Output
+bash SINGE.sh PATH_TO_RUNTIME Aggregate data1/X_SCODE_data.mat data1/gene_list.mat Output
 ```
 Replace `PATH_TO_RUNTIME` with the path to the MATLAB R2018a runtime.
 
@@ -81,7 +81,7 @@ We recommend specifying the version of the Docker image.
 #### Examples
 ##### `SINGE.sh` wrapper script in standalone mode
 ```
-docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.4.0 standalone data1/X_SCODE_data.mat data1/tf.mat Output default_hyperparameters.txt
+docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.4.0 standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
 ```
 
 #### Arbitrary commands using Bash as the entry point
@@ -92,7 +92,7 @@ This example is part of the SINGE test code, which only runs when called from th
 
 ## Inputs
 - *data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
-- *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/tf.mat`)
+- *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/gene_list.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
 - *hyperparameter_file* - Path to file containing a list of GLG hyperparameter combinations for the hyperparameters described below
 

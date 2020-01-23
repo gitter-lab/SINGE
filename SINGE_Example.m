@@ -9,7 +9,7 @@ end
 %% Specify path to input data and path to output directory, gene list, and hyperparameter file
 data = 'data1/X_SCODE_data.mat';
 outdir = 'Output';
-gene_list = 'data1/tf.mat';
+gene_list = 'data1/gene_list.mat';
 hyperparameter_file = 'default_hyperparameters.txt';
 
 %% Run SINGE
