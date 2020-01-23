@@ -1,7 +1,7 @@
 # ESC to Endoderm Differentiation Dataset
 This directory contains the following files related to the ESC to Endoderm Differentiation dataset.
 
-- **tf.mat:** list of 100 genes in the dataset.
+- **gene_list.mat:** list of 100 genes in the dataset.
 - **X_SCODE_data.mat:** Pre-processed version of expression data corresponding to the genes in tf.mat from 356 pseudotime-ordered cells.
 
 The sources to cite for this dataset are:
