@@ -1,3 +1,18 @@
+# Version 0.4.0
+Changes in version 0.4.0 include:
+- Support three modes of execution: MATLAB, compiled MATLAB executables with MATLAB runtime, or Docker
+- The SINGE workflow has been split in GLG and Aggregate steps
+- A wrapper script supports running the GLG and Aggregate steps individually or the entire workflow
+- Increase robustness of hyperparameter parsing
+- Add script to generate hyperparameter file
+- Add usage guidelines
+- Update Docker images are built on Travis CI
+- Generalize Docker image to work outside the SINGE git repository
+- Add default entrypoint to Docker image
+- Test cases assert that the source code matches the compiled MATLAB executables
+- All remaining instances of the old name SCINGE have been changed to SINGE
+- Rename data1/tf.mat to data1/gene_list.mat and added data3 dataset
+
 # Version 0.3.0
 Version 0.3.0 contains optimizations that greatly increase SINGE's speed but can change its output:
 - Switch to single precision for the kernel matrix
