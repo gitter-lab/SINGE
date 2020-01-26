@@ -11,4 +11,4 @@ Building images for SINGE releases is performed manually because the compiled MA
 Released images are built using the command `docker build -t singe -f docker/Dockerfile .` from the root directory of the repository.
 They are then tagged with `docker tag singe agitter/singe:latest` and `docker tag singe agitter/singe:<version>` and pushed with `docker push agitter/singe:latest` and `docker push agitter/singe:<version>`, where `<version>` is the version number of the release (e.g. `0.3.0`).
 
-See the main [README][./README.md] for usage examples.
+See the main [README](../README.md) for usage examples.
