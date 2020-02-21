@@ -16,7 +16,10 @@ end
 resampling_method = {'holes';'burst'};
 %outpath
 % Use a temporary matfile to track intermediate state
-m = matfile('TempMat','Writable',true);
+% Create new file for each job ID to avoid bugs when storage is shared
+% between parallel jobs
+
+m = matfile(['TempMat' '_' num2str(params.ID)],'Writable',true);
 ptime = m.ptime;
 m.computeKp = 1;
 if ptime(end)~=100
@@ -68,5 +71,5 @@ end
 runtime = toc
 % File saving moved to iLasso_for_SINGE using matfile feature
 fprintf('Intermediate files saved.\n')
-delete TempMat.mat
+delete(['TempMat' '_' num2str(params.ID) '.mat']);
 end
