@@ -1,3 +1,10 @@
+# Version 0.4.1
+Version 0.4.1 fixes a bug that occurred when multiple GLG tests were run in parallel with a shared file system.
+The same temporary .mat file was overwritten by different GLG tests.
+Now, each GLG test includes the ID hyperparameter in the temporary .mat filename.
+
+Thank you [@PayamDiba](https://github.com/PayamDiba) for reporting this issue.
+
 # Version 0.4.0
 Changes in version 0.4.0 include:
 - Support three modes of execution: MATLAB, compiled MATLAB executables with MATLAB runtime, or Docker
