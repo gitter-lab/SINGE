@@ -102,11 +102,11 @@ This example is part of the SINGE test code, which only runs when called from th
 - *runtime_dir* - Path to MATLAB R2018a runtime library
 
 **GLG hyperparameters:**
-- *--ID* - Identifier for GLG hyperparameter set
+- *--ID* - Numeric identifier for the GLG hyperparameter set, which should be unique for each hyperparameter set and replicate index
 - *--lambda* - Sparsity parameter (lambda = 0 results in a non-sparse solution)
-- *--dT* - Time resolution for GLG Test
-- *--num-lags* - Number of lags for GLG Test
-- *--kernel-width* - Gaussian kernel width for GLG Test
+- *--dT* - Time resolution for GLG test
+- *--num-lags* - Number of lags for GLG test
+- *--kernel-width* - Gaussian kernel width for GLG test
 - *--replicate* - Replicate index
 - *--family* - Distribution Family of the gene expression values (options = `gaussian`, `poisson`, default = `gaussian`)
 - *--prob-zero-removal* - For Zero-handling Strategy (default = 0)
