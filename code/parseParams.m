@@ -63,10 +63,9 @@ params.lambda = sort(params.lambda,'descend');
 params.p1 = params.dT*params.num_lags;
 params.DateNumber = datenum(params.date);
 
-% Create new file for each job ID to avoid bugs when storage is shared
-% between parallel jobs (Separated valid file and temp file creation for
-% this purpose).
-
+% Create new file for each job ID to avoid collisions when storage is shared
+% between parallel jobs (separated valid file and temp file creation for
+% this purpose)
 if (exist([Data '.mat'], 'file') == 2)
         copyfile([Data '.mat'],['TempMat' '_' num2str(params.ID) '.mat']);
 elseif (exist(Data, 'file') == 2)
