@@ -33,10 +33,8 @@ jobs:
         echo "::set-env name=MATLAB_RUNTIME_PATH::$MATLAB_RUNTIME_PATH"
         echo "::set-env name=DYLD_LIBRARY_PATH::$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64"
         echo "::add-path::$MATLAB_RUNTIME_PATH/bin/maci64"
-    - name: Install Glmnet and SINGE
+    - name: Install SINGE
       run: |
-        wget http://web.stanford.edu/~hastie/glmnet_matlab/glmnet_matlab.zip
-        unzip -q glmnet_matlab.zip
         SINGE_URL=https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION
         wget $SINGE_URL/SINGE_GLG_Test
         chmod u+x SINGE_GLG_Test
