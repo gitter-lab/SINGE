@@ -9,3 +9,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+    - name: Install MATLAB runtime
+      run: |
+        wget https://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_files/R2018a/installers/maci64/MCR_R2018a_maci64_installer.dmg.zip
+        unzip MCR_R2018a_maci64_installer.dmg.zip
+        ./install -mode silent -agreeToLicense yes
