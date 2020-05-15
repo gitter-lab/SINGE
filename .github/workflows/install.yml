@@ -29,9 +29,10 @@ jobs:
       run: |
         unzip -d . -q installer/MCR_R2016a_maci64_installer.zip
         sudo ./install -mode silent -agreeToLicense yes
-        export MATLAB_INSTALL=/Applications/MATLAB/MATLAB_Runtime/v901
-        export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$MATLAB_INSTALL/runtime/maci64:$MATLAB_INSTALL/sys/os/maci64:$MATLAB_INSTALL/bin/maci64
-        export PATH=$PATH:$MATLAB_INSTALL/bin/maci64
+        MATLAB_RUNTIME_PATH=/Applications/MATLAB/MATLAB_Runtime/v901
+        echo "::set-env name=MATLAB_RUNTIME_PATH::$MATLAB_RUNTIME_PATH"
+        echo "::set-env name=DYLD_LIBRARY_PATH::$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64"
+        echo "::add-path::$MATLAB_RUNTIME_PATH/bin/maci64"
     - name: Install Glmnet and SINGE
       run: |
         wget http://web.stanford.edu/~hastie/glmnet_matlab/glmnet_matlab.zip
@@ -44,4 +45,4 @@ jobs:
     - name: Run SINGE
       run: |
         printenv
-        bash SINGE.sh $MATLAB_INSTALL standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
+        bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
