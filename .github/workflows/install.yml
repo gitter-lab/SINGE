@@ -21,9 +21,9 @@ jobs:
         path: installer
         key: ${{ runner.os }}-matlab-installer
     - name: Download MATLAB runtime installer
-      if: steps.cache-installer.outputs.cache-hit != 'true'
+#      if: steps.cache-installer.outputs.cache-hit != 'true'
       run: wget --directory-prefix=installer https://ssd.mathworks.com/supportfiles/downloads/R2016a/deployment_files/R2016a/installers/maci64/MCR_R2016a_maci64_installer.zip
-    - name: Install MATLAB runtime
-      run: |
-        unzip -d . -q installer/MCR_R2016a_maci64_installer.zip
-        sudo ./install -mode silent -agreeToLicense yes
+#    - name: Install MATLAB runtime
+#      run: |
+#        unzip -d . -q installer/MCR_R2016a_maci64_installer.zip
+#        sudo ./install -mode silent -agreeToLicense yes
