@@ -44,5 +44,5 @@ jobs:
         chmod u+x SINGE_Aggregate
     - name: Run SINGE
       run: |
-        printenv
         bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
+        ls Output
