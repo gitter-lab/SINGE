@@ -41,3 +41,7 @@ jobs:
         chmod u+x SINGE_GLG_Test
         wget $SINGE_URL/SINGE_Aggregate
         chmod u+x SINGE_Aggregate
+    - name: Run SINGE
+      run: |
+        printenv
+        bash SINGE.sh $MATLAB_INSTALL standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
