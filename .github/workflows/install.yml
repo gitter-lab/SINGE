@@ -21,5 +21,4 @@ jobs:
     - name: Install MATLAB runtime
       run: |
         unzip -d . installer/MCR_R2018a_maci64_installer.dmg.zip
-#        ls
-#        ./install -mode silent -agreeToLicense yes
+        sudo ./install -mode silent -agreeToLicense yes
