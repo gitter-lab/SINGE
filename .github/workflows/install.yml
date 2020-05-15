@@ -44,5 +44,7 @@ jobs:
         chmod u+x SINGE_Aggregate
     - name: Run SINGE
       run: |
+        ls -l
+        file SINGE_GLG_Test
         bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
         ls Output -l
