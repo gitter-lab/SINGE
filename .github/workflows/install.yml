@@ -11,6 +11,8 @@ jobs:
   build:
     # See available macOS software https://github.com/actions/virtual-environments/blob/master/images/macos/macos-10.15-Readme.md
     runs-on: macos-latest
+    env:
+      SINGE_VERSION: v0.4.1
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -27,3 +29,15 @@ jobs:
       run: |
         unzip -d . -q installer/MCR_R2016a_maci64_installer.zip
         sudo ./install -mode silent -agreeToLicense yes
+        export MATLAB_INSTALL=/Applications/MATLAB/MATLAB_Runtime/v901
+        export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$MATLAB_INSTALL/runtime/maci64:$MATLAB_INSTALL/sys/os/maci64:$MATLAB_INSTALL/bin/maci64
+        export PATH=$PATH:$MATLAB_INSTALL/bin/maci64
+    - name: Install Glmnet and SINGE
+      run: |
+        wget http://web.stanford.edu/~hastie/glmnet_matlab/glmnet_matlab.zip
+        unzip -q glmnet_matlab.zip
+        SINGE_URL=https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION
+        wget $SINGE_URL/SINGE_GLG_Test
+        chmod u+x SINGE_GLG_Test
+        wget $SINGE_URL/SINGE_Aggregate
+        chmod u+x SINGE_Aggregate
