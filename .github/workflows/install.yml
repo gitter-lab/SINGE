@@ -20,5 +20,7 @@ jobs:
       run: wget --directory-prefix=installer https://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_files/R2018a/installers/maci64/MCR_R2018a_maci64_installer.dmg.zip
     - name: Install MATLAB runtime
       run: |
-        unzip -d . installer/MCR_R2018a_maci64_installer.dmg.zip
+        #unzip -d . installer/MCR_R2018a_maci64_installer.dmg.zip
+        wget https://ssd.mathworks.com/supportfiles/downloads/R2016a/deployment_files/R2016a/installers/maci64/MCR_R2016a_maci64_installer.zip
+        unzip MCR_R2016a_maci64_installer.zip
         sudo ./install -mode silent -agreeToLicense yes
