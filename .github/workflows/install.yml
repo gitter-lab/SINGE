@@ -47,5 +47,5 @@ jobs:
       run: |
         ls -l
         file SINGE_GLG_Test
-        bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
-        ls -l Output
+        #bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
+        #ls -l Output
