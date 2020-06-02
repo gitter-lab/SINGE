@@ -23,7 +23,7 @@ jobs:
         path: installer
         key: ${{ runner.os }}-matlab-R2018a-installer
     - name: Download MATLAB runtime installer
-#      if: steps.cache-installer.outputs.cache-hit != 'true'
+      if: steps.cache-installer.outputs.cache-hit != 'true'
       run: wget --directory-prefix=installer https://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_files/R2018a/installers/maci64/MCR_R2018a_maci64_installer.dmg.zip
     - name: Install MATLAB runtime
       run: |
