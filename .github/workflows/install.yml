@@ -27,8 +27,10 @@ jobs:
       run: wget --directory-prefix=installer http://ssd.mathworks.com/supportfiles/downloads/R2020a/Release/2/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
     - name: Test SINGE download
       run: |
-        wget --recursive --no-parent https://www.biostat.wisc.edu/~gitter/tmp/mac/
+        wget https://www.biostat.wisc.edu/~gitter/tmp/mac/SINGE_Test.tgz
+        tar -xvf SINGE_Test.tgz
         ls -l
+        ls -l SINGE_Test.app
     - name: Install MATLAB runtime
       run: |
         unzip -d . -q installer/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
