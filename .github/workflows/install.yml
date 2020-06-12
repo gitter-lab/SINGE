@@ -33,9 +33,9 @@ jobs:
       run: |
         unzip -d . -q installer/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
         hdiutil mount MATLAB_Runtime_R2020a_Update_2_maci64.dmg
-        cp -R /Volumes/MCR_R2020a_maci64_installer .
-        hdiutil unmount /Volumes/MCR_R2020a_maci64_installer
-        sudo ./MCR_R2020a_maci64_installer/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -mode silent -agreeToLicense yes
+        cp -R /Volumes/MATLAB_Runtime_R2020a_Update_2_maci64 .
+        hdiutil unmount /Volumes/MATLAB_Runtime_R2020a_Update_2_maci64
+        sudo ./MATLAB_Runtime_R2020a_Update_2_maci64/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -mode silent -agreeToLicense yes
         MATLAB_RUNTIME_PATH=/Applications/MATLAB/MATLAB_Runtime/v98
         echo "::set-env name=MATLAB_RUNTIME_PATH::$MATLAB_RUNTIME_PATH"
         echo "::set-env name=DYLD_LIBRARY_PATH::$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64"
