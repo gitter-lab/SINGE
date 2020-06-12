@@ -25,6 +25,10 @@ jobs:
     - name: Download MATLAB runtime installer
       if: steps.cache-installer.outputs.cache-hit != 'true'
       run: wget --directory-prefix=installer https://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_files/R2018a/installers/maci64/MCR_R2018a_maci64_installer.dmg.zip
+    - name: Test SINGE download
+      run: |
+        wget --recursive --no-parent https://www.biostat.wisc.edu/~gitter/tmp/mac/
+        ls -l
     - name: Install MATLAB runtime
       run: |
         unzip -d . -q installer/MCR_R2018a_maci64_installer.dmg.zip
@@ -38,14 +42,16 @@ jobs:
         echo "::add-path::$MATLAB_RUNTIME_PATH/bin/maci64"
     - name: Install SINGE
       run: |
-        SINGE_URL=https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION
-        wget $SINGE_URL/SINGE_GLG_Test
-        chmod u+x SINGE_GLG_Test
-        wget $SINGE_URL/SINGE_Aggregate
-        chmod u+x SINGE_Aggregate
+        ls
+#        SINGE_URL=https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION
+#        wget $SINGE_URL/SINGE_GLG_Test
+#        chmod u+x SINGE_GLG_Test
+#        wget $SINGE_URL/SINGE_Aggregate
+#        chmod u+x SINGE_Aggregate
     - name: Run SINGE
       run: |
-        ls -l
-        file SINGE_GLG_Test
-        #bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
-        #ls -l Output
+         ls
+#        ls -l
+#        file SINGE_GLG_Test
+#        #bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
+#        #ls -l Output
