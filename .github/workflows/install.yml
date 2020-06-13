@@ -24,7 +24,7 @@ jobs:
         key: ${{ runner.os }}-matlab-R2020a-installer
     - name: Download MATLAB runtime installer
       if: steps.cache-installer.outputs.cache-hit != 'true'
-      run: wget --directory-prefix=installer http://ssd.mathworks.com/supportfiles/downloads/R2020a/Release/2/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
+      run: wget --quiet --directory-prefix=installer http://ssd.mathworks.com/supportfiles/downloads/R2020a/Release/2/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
     - name: Install MATLAB runtime
       run: |
         unzip -d . -q installer/MATLAB_Runtime_R2020a_Update_2_maci64.dmg.zip
@@ -48,7 +48,8 @@ jobs:
     - name: Run SINGE
       run: |
          ./run_SINGE_Test_mac.sh $MATLAB_RUNTIME_PATH
-#        ls -l
+        ls -l compiled_output
+        cat compiled_output/SINGE_Gene_Influence.txt
 #        file SINGE_GLG_Test
 #        #bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
 #        #ls -l Output
