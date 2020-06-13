@@ -47,7 +47,7 @@ jobs:
 #        chmod u+x SINGE_Aggregate
     - name: Run SINGE
       run: |
-         ./run_SINGE_Test_mac.sh $MATLAB_RUNTIME_PATH
+        ./run_SINGE_Test_mac.sh $MATLAB_RUNTIME_PATH
         ls -l compiled_output
         cat compiled_output/SINGE_Gene_Influence.txt
 #        file SINGE_GLG_Test
