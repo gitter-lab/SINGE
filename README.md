@@ -1,6 +1,7 @@
 # Single-cell Inference of Networks using Granger Ensembles (SINGE)
 
 [![Build Status](https://travis-ci.com/gitter-lab/SINGE.svg?branch=master)](https://travis-ci.com/gitter-lab/SINGE)
+![Install SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20SINGE/badge.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
