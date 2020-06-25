@@ -9,11 +9,11 @@ mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./
 mv code/SINGE_GLG_Test_mac.m code/SINGE_GLG_Test.m
 mv readme.txt readme_SINGE_GLG_Test_mac.txt
 
-
 mv code/SINGE_Aggregate.m code/SINGE_Aggregate_mac.m
 mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./code/ SINGE_Aggregate_mac.m
 mv code/SINGE_Aggregate_mac.m code/SINGE_Aggregate.m
 mv readme.txt readme_SINGE_Aggregate_mac.txt
 
 tar cfz SINGE_mac.tgz SINGE_GLG_Test_mac.app SINGE_Aggregate_mac.app
-
+rm -rf SINGE_GLG_Test_mac.app
+rm -rf SINGE_Aggregate_mac.app
