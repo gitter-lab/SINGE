@@ -1,8 +1,4 @@
-# Installs MATLAB runtime R2016a, the most recent available
-# that is compatible with the installation instructions at
-# https://www.mathworks.com/help/compiler_sdk/dotnet/install-the-matlab-runtime.html
-# Newer version from https://www.mathworks.com/products/compiler/matlab-runtime.html
-# are distributed as .dmg files and require a different installation process
+# Installs MATLAB runtime R2020a and tests compiled SINGE for macOS on test data
 name: Install SINGE
 
 on: [push, pull_request]
@@ -38,8 +34,9 @@ jobs:
         echo "::add-path::$MATLAB_RUNTIME_PATH/bin/maci64"
     - name: Install SINGE
       run: |
-        wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/mac/SINGE_Test.tgz
-        tar -xf SINGE_Test.tgz
+        wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/mac/SINGE_mac.tgz
+        tar -xf SINGE_mac.tgz
+        ls -l
 #        SINGE_URL=https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION
 #        wget $SINGE_URL/SINGE_GLG_Test
 #        chmod u+x SINGE_GLG_Test
@@ -47,9 +44,13 @@ jobs:
 #        chmod u+x SINGE_Aggregate
     - name: Run SINGE
       run: |
-        ./run_SINGE_Test_mac.sh $MATLAB_RUNTIME_PATH
-        ls -l compiled_output
-        cat compiled_output/SINGE_Gene_Influence.txt
+        echo "Running SINGE GLG Test"
+        ./run_SINGE_GLG_Test_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt 1
+        ./run_SINGE_GLG_Test_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt 2
+        echo "Running SINGE Aggregate"
+        ./run_SINGE_Aggregate_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat data1/gene_list.mat Output
+        ls -l Output
+        cat Output/SINGE_Gene_Influence.txt
 #        file SINGE_GLG_Test
 #        #bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
 #        #ls -l Output
