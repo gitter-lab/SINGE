@@ -1,7 +1,7 @@
 # Single-cell Inference of Networks using Granger Ensembles (SINGE)
 
 [![Build Status](https://travis-ci.com/gitter-lab/SINGE.svg?branch=master)](https://travis-ci.com/gitter-lab/SINGE)
-[![Install SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20macOS/badge.svg)](https://github.com/gitter-lab/SINGE/actions)
+[![Install SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20macOS/badge.svg)](https://github.com/gitter-lab/SINGE/actions?query=workflow%3A%22Install+test+macOS%22)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
@@ -65,6 +65,7 @@ bash SINGE.sh runtime_dir mode Data gene_list outdir [hyperparameter_file] [hype
 ```
 - `hyperparameter_file` is required only for the standalone and GLG modes.
 - `hyperparameter_number` is required only for GLG mode.
+
 Use `bash SINGE.sh -h` to print the complete usage message.
 The `SINGE.sh` script automatically detects whether it is running on Linux or macOS and uses the appropriate wrapper script and executables.
 
