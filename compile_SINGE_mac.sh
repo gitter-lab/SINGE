@@ -2,7 +2,7 @@
 # Compile SINGE_GLG_Test.m and SINGE_Aggregate.m for macOS
 # Run from the repository base directory
 
-# Compile SINGE creating binaries for SINGE_GLG_Test.m, and SINGE_Aggregate.m
+# Compile SINGE creating binaries for SINGE_GLG_Test.m and SINGE_Aggregate.m
 # Rename both files to include the _mac suffix so that there are not filename collisions
 mv code/SINGE_GLG_Test.m code/SINGE_GLG_Test_mac.m
 mcc -N -m -R -singleCompThread -R -nodisplay -R -nojvm -a ./glmnet_matlab/ -a ./code/ SINGE_GLG_Test_mac.m
