@@ -1,5 +1,5 @@
 # Installs MATLAB runtime R2020a and tests compiled SINGE for macOS on test data
-name: Install SINGE
+name: Install test macOS
 
 on: [push, pull_request]
 
