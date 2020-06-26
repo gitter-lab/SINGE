@@ -45,10 +45,6 @@ jobs:
     - name: Run SINGE
       run: |
         echo "Running standalone SINGE"
-#        ./run_SINGE_GLG_Test_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat --outdir Output --ID 541 --lambda 0.01 --dT 10 --num-lags 5 --kernel-width 2 --replicate 1 --family gaussian --date 01/31/2019 --prob-zero-removal 0 --prob-remove-samples 0.2
-#        ./run_SINGE_GLG_Test_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat --outdir Output --ID 541 --lambda 0.01 --dT 10 --num-lags 5 --kernel-width 2 --replicate 2 --family gaussian --date 01/31/2019 --prob-zero-removal 0 --prob-remove-samples 0.2
-#        ./run_SINGE_Aggregate_mac.sh $MATLAB_RUNTIME_PATH data1/X_SCODE_data.mat data1/gene_list.mat Output
-        file SINGE_GLG_Test
         bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
         ls -l Output
         cat Output/SINGE_Gene_Influence.txt
