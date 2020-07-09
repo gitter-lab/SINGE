@@ -19,6 +19,11 @@ jobs:
         environment-file: tests/environment.yml
         auto-activate-base: false
         miniconda-version: 'latest'
+    - name: Check conda environment
+      shell: bash -l {0}
+      run: |
+        conda info
+        conda list
     - name: Cache MATLAB runtime installer
       id: cache-installer
       uses: actions/cache@v1
@@ -44,6 +49,7 @@ jobs:
         wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION/SINGE_mac.tgz
         tar -xf SINGE_mac.tgz
     - name: Run and test SINGE
+      shell: bash -l {0}
       run: |
         bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
         ls -l Output
