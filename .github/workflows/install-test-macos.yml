@@ -19,11 +19,6 @@ jobs:
         environment-file: tests/environment.yml
         auto-activate-base: false
         miniconda-version: 'latest'
-    - name: Check conda environment
-      shell: bash -l {0}
-      run: |
-        conda info
-        conda list
     - name: Cache MATLAB runtime installer
       id: cache-installer
       uses: actions/cache@v1
