@@ -18,14 +18,17 @@ Multiple versions of the reference outputs are provided in order to track how th
 #### `compare_adj_matrices.py` usage
 
 ```
-usage: compare_adj_matrices.py [-h] mat_file mat_file
+usage: compare_adj_matrices.py [-h] [--rtol RTOL] [--atol ATOL]
+                               mat_file mat_file
 
 Compare the Adj_Matrix sparse matrices in two .mat files. Return with exit
 code 1 if they are not equal.
 
 positional arguments:
-  mat_file    The .mat files to compare. Exactly two required.
+  mat_file     The .mat files to compare. Exactly two required.
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help   show this help message and exit
+  --rtol RTOL  The relative tolerance parameter for numpy.allclose (default: 1.00e-05)
+  --atol ATOL  The absolute tolerance parameter for numpy.allclose (default: 1.00e-08)
 ```

@@ -7,7 +7,7 @@ def main(args):
     '''
     Compare two sparse matrices stored in .mat files.
     Each .mat file is expected to have the sparse matrix stored in Adj_Matrix.
-    Uses numpy.allclose to compare the data values using the default tolerance.
+    Uses numpy.allclose to compare the data values using the specified tolerance.
     Return with exit code 1 if the spare matrices are not equal.
     '''
     # This version of loadmat supports HDF5-formatted MAT files from
@@ -29,7 +29,7 @@ def main(args):
               args.mat_file[1]))
         sys.exit(1)
 
-    if not np.allclose(matrix1['data'], matrix2['data']):
+    if not np.allclose(matrix1['data'], matrix2['data'], args.rtol, args.atol):
         print('Spare matrices in {} and {} have different values'.format(args.mat_file[0],
               args.mat_file[1]))
         max_diff = max(max(np.abs(matrix1['data'] - matrix2['data'])))
@@ -46,5 +46,10 @@ if __name__ == '__main__':
         'Return with exit code 1 if they are not equal.')
     parser.add_argument('mat_file', type=str, nargs=2,
                         help='The .mat files to compare. Exactly two required.')
+    # Display defaults per https://stackoverflow.com/questions/12151306/argparse-way-to-include-default-values-in-help/18507871#18507871
+    parser.add_argument("--rtol", type=float, default=1e-05,
+                        help='The relative tolerance parameter for numpy.allclose (default: %(default).2e)')
+    parser.add_argument("--atol", type=float, default=1e-08,
+                        help='The absolute tolerance parameter for numpy.allclose (default: %(default).2e)')
 
     main(parser.parse_args())

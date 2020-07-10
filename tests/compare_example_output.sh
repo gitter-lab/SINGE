@@ -6,7 +6,7 @@
 # Must run inside the conda environment specified by environment.yml or have
 # those Python packages available
 
-usage="Usage: $(basename $0) output-directory"
+usage="Usage: $(basename $0) output-directory [rtol] [atol]"
 
 if [ $# -gt 0 ]; then
   # First arugment is the SINGE output directory
@@ -18,6 +18,18 @@ if [ $# -gt 0 ]; then
 else
   echo $usage
   exit 1
+fi
+
+# Set optional relative and absolute tolerance for comparing adjacency matrix values
+rtol=""
+if [ $# -gt 1 ]; then
+  echo Setting relative tolerance: $2
+  rtol=--rtol=$2
+fi
+atol=""
+if [ $# -gt 2 ]; then
+  echo Setting absolute tolerance: $3
+  atol=--atol=$3
 fi
 
 refdir=tests/reference/latest
@@ -52,7 +64,7 @@ do
   for rep in 1 2
   do
     filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
-    python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename
+    python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename $rtol $atol
     return_code=$?
     if [[ $return_code -ne 0 ]] ; then
       exit_status=1

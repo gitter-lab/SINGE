@@ -1,6 +1,6 @@
 #!/bin/bash
 # Bash script to run compiled MATLAB code
-# Requires MATLAB R2018a runtime library which can be downloaded from
+# Requires MATLAB runtime library which can be downloaded from
 # https://www.mathworks.com/products/compiler/matlab-runtime.html
 # 
 # Example:
@@ -8,7 +8,7 @@
 
 usage="Usage: $(basename $0) runtime_dir mode Data gene_list outdir [hyperparameter_file] [hyperparameter_number]\n
 
-runtime_dir: path to MATLAB R2018a runtime library directory\n
+runtime_dir: path to MATLAB runtime library directory\n
 mode: standalone, GLG, or Aggregate\n
 Data: Path to single-cell expression data file\n
 gene_list: File path to list of genes in the dataset\n
@@ -43,12 +43,26 @@ data=$3
 gene_list=$4
 outdir=$5
 hypefile=$6
+
 shopt -s nocasematch
+
 mode1=standalone
 mode2=GLG
 mode3=Aggregate
 validMode=0
+
 echo "SINGE operating in" $mode "mode"
+
+# An optional suffix to add to the MATLAB-generated script filename
+# to select the correct script and binaries for the OS
+run_suffix=""
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	echo "Using macOS SINGE binaries"
+	run_suffix="_mac"
+else
+	echo "Using Linux SINGE binaries"
+fi
+
 if [[ $mode == $mode1 ]]; then 
 	validMode=1
 	echo $mode1 "mode running GLG tests"
@@ -64,7 +78,7 @@ if [[ $mode == $mode1 ]]; then
 	    # Get the GLG arguments from the specified row in the hyperparameters file
 	    arg=$(sed "$hypenum q;d" $hypefile)
 	    echo arg: $arg
-	    bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	    bash $exe_dir/run_SINGE_GLG_Test${run_suffix}.sh $runtime $data --outdir $outdir $arg
 	done
 elif [[ $mode == $mode2 ]]; then 
 	validMode=1
@@ -79,13 +93,13 @@ elif [[ $mode == $mode2 ]]; then
 	# Get the GLG arguments from the specified row in the hyperparameters file
 	arg=$(sed "$hypenum q;d" $hypefile)
 	echo arg: $arg
-	bash $exe_dir/run_SINGE_GLG_Test.sh $runtime $data --outdir $outdir $arg
+	bash $exe_dir/run_SINGE_GLG_Test${run_suffix}.sh $runtime $data --outdir $outdir $arg
 fi
 
 if [[ $mode == $mode3 || $mode == $mode1 ]]; then 
 	validMode=1
 	echo $mode3 "mode running"
-	bash $exe_dir/run_SINGE_Aggregate.sh $runtime $data $gene_list $outdir
+	bash $exe_dir/run_SINGE_Aggregate${run_suffix}.sh $runtime $data $gene_list $outdir
 fi
 
 if [[ $validMode == 0 ]]; then 
