@@ -23,13 +23,13 @@ fi
 # Set optional relative and absolute tolerance for comparing adjacency matrix values
 rtol=""
 if [ $# -gt 1 ]; then
-  rtol=$2
-  echo Setting relative tolerance to $rtol
+  echo Setting relative tolerance: $2
+  rtol=--rtol=$2
 fi
 atol=""
 if [ $# -gt 2 ]; then
-  atol=$3
-  echo Setting absolute tolerance to $atol
+  echo Setting absolute tolerance: $3
+  atol=--atol=$3
 fi
 
 refdir=tests/reference/latest
