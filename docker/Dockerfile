@@ -47,9 +47,9 @@ ENV SINGE_RUNNING_IN_DOCKER 1
 # Download an intermediate version of the compiled SINGE executables for testing
 # Download the md5sums of the source .m files and binaries
 RUN md5=3df4816680fcb1fd3f4e8528a327a103 && \
-    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Test && \
-    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
-    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
-    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
+    wget --quiet --no-check-certificate https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Test && \
+    wget --quiet --no-check-certificate https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
+    wget --quiet --no-check-certificate https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
+    wget --quiet --no-check-certificate https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
     chmod u+x SINGE_* && \
     mv SINGE_Test tests/SINGE_Test
