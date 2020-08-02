@@ -70,8 +70,7 @@ if params.replicate>0
 end
 
 lastprogress = 0;
-for jj = 1:n_branches
-    for irow = 1:1:LX
+for irow = 1:1:LX
         [for_metric] = run_iLasso_row(m,outs,params,irow);
         runtime = toc;
         progress = (irow)/LX*100;
@@ -80,7 +79,6 @@ for jj = 1:n_branches
             disp(s);
             lastprogress = progress;
         end
-    end
 end
 runtime = toc
 

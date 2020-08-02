@@ -33,12 +33,12 @@ numregs = length(pa);
 % Define function for Gaussian kernel
 gkern = @(x,y) gausskernel(x,y,SIG);
 % Load expression matrix and pseudotime
-X = m.X;
 branches = m.branches;
 ptime = m.ptime;
+Xdrop = m.Xdrop;
 
 for b_ind = 1:params.n_branches
-    Xdrop = m.Xdrop;
+    X = m.X;
     rind = (~Xdrop);
     if params.n_branches>1
         rind = rind*diag(branches(:,b_ind)>0);
@@ -109,7 +109,7 @@ for b_ind = 1:params.n_branches
     % possible temporary solution for memory leak issue
     clear mex;
     
-    %clear Am;
+    clear Am;
     w = fit.beta;
     
     % Reformatting the output
