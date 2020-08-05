@@ -33,7 +33,9 @@ numregs = length(pa);
 % Define function for Gaussian kernel
 gkern = @(x,y) gausskernel(x,y,SIG);
 % Load expression matrix and pseudotime
-branches = m.branches;
+if params.n_branches>1
+	branches = m.branches;
+end
 ptime = m.ptime;
 Xdrop = m.Xdrop;
 
@@ -41,7 +43,7 @@ for b_ind = 1:params.n_branches
     X = m.X;
     rind = (~Xdrop);
     if params.n_branches>1
-        rind = rind*diag(branches(:,b_ind)>0);
+        rind = rind*diag((branches(:,b_ind)>0)*1);
     else
         rind = (~Xdrop);
     end
