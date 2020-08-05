@@ -32,21 +32,22 @@ WX = params.WX;
 numregs = length(pa);
 % Define function for Gaussian kernel
 gkern = @(x,y) gausskernel(x,y,SIG);
+% Check for number of branches, if greater than 1, load branches from the Temporary File
 % Load expression matrix and pseudotime
-if params.n_branches>1
-	branches = m.branches;
-end
 ptime = m.ptime;
 Xdrop = m.Xdrop;
+if params.branching==1
+	branches = m.branches;
+else
+	branches = ones(size(ptime));
+end
 
-for b_ind = 1:params.n_branches
+for b_ind = 1:min(size(branches))
     X = m.X;
     rind = (~Xdrop);
-    if params.n_branches>1
-        rind = rind*diag((branches(:,b_ind)>0)*1);
-    else
-        rind = (~Xdrop);
-    end
+    
+    % For each branch, only retain the cells corresponding to that branch
+    rind = rind*diag((branches(:,b_ind)>0)*1);
     
     % Precompute the full kernel matrix -- to be subsampled for each regulator
     if m.computeKp
@@ -68,13 +69,11 @@ for b_ind = 1:params.n_branches
         m.computeKp = 0;
         clear Kp Kp2;
     end
-        
-    %tind = find(Xdrop(pa(1),:));
+    
+    % Target values and ptime indices relevant for the particular branch.
     tval = X(pa(1),rind(pa(1),:)>0);
-    %target{1}(:,tind) = [];
     ttime = ptime(rind(pa(1),:)>0);
-    %ttime(tind) = [];
-    %tval(tind) = [];
+    
     B = sum(ttime<=(L*Dt));
     N1 = size(ttime, 2);
     % remind is the remaining data indices
@@ -108,7 +107,7 @@ for b_ind = 1:params.n_branches
     %Am = sparse(Am);
     fit = glmnet(Am, bm, params.family, opt);
     
-    % possible temporary solution for memory leak issue
+    % workaround for mex memory leak issue
     clear mex;
     
     clear Am;
