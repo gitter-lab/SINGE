@@ -40,6 +40,10 @@ Adj_Matrix = sparse(zeros(LX));
 % To improve efficiency, we perform GLG tests for all lambda values at once
 % (uses glmnet's warm start functionality). The following lines create
 % multiple filenames for storing each GLG output.
+
+% SINGE v0.5.0 feature: If multiple branches exist in the dataset, as denoted 
+% by the presence of the 'branches' variable in the Data file, then generate an 
+% output matrix corresponding to each branch
 n_lambda = length(params.lambda);
 for jj = 1:n_branches
     for ii = 1:n_lambda
