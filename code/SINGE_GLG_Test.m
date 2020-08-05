@@ -19,11 +19,13 @@ end
 m = matfile(['TempMat' '_' num2str(params.ID)],'Writable',true);
 
 if ismember('branches',who(m))
-    n_branches = size(m.branches,2);
+    params.branching = 1;
+    branches = m.branches;
+    n_branches = min(size(branches));
 else 
+    params.branching = 0;
     n_branches = 1;
 end
-params.n_branches = n_branches;
 ptime = m.ptime;
 m.computeKp = 1;
 if ptime(end)~=100
@@ -49,7 +51,7 @@ for jj = 1:n_branches
     for ii = 1:n_lambda
         kk = (jj-1)*n_lambda+ii;
         filename{kk} = ['AdjMatrix_' params.Data];
-        if n_branches>1
+        if params.branching==1
             filename{kk} = [filename{kk} '_ID_' num2str(params.ID) 'p' num2str(jj) '_lambda_' num2str(params.lambda(ii)) '_replicate_' num2str(params.replicate)];
         else
             filename{kk} = [filename{kk} '_ID_' num2str(params.ID) '_lambda_' num2str(params.lambda(ii)) '_replicate_' num2str(params.replicate)];
