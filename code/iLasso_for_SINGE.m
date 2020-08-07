@@ -32,10 +32,10 @@ WX = params.WX;
 numregs = length(pa);
 % Define function for Gaussian kernel
 gkern = @(x,y) gausskernel(x,y,SIG);
-% Check for number of branches, if greater than 1, load branches from the Temporary File
 % Load expression matrix and pseudotime
 ptime = m.ptime;
 Xdrop = m.Xdrop;
+% Check for branching process, if 1, load branches from the Temporary File
 if params.branching==1
 	branches = m.branches;
 else
