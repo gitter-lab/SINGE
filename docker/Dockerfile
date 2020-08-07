@@ -36,20 +36,20 @@ ENV SINGE_RUNNING_IN_DOCKER 1
 
 # Download the compiled SINGE executables from the stable release
 # md5sum of v0.4.1 SINGE_GLG_Test is c50ec7bc13e287eca340c9d19d8bc27d/
-RUN tag=v0.4.1 && \
-    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_Test && \
-    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_GLG_Test && \
-    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_Aggregate && \
-    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/code.md5 && \
-    chmod u+x SINGE_* && \
-    mv SINGE_Test tests/SINGE_Test
+#RUN tag=v0.4.1 && \
+#    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_Test && \
+#    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_GLG_Test && \
+#    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/SINGE_Aggregate && \
+#    wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$tag/code.md5 && \
+#    chmod u+x SINGE_* && \
+#    mv SINGE_Test tests/SINGE_Test
 
 # Download an intermediate version of the compiled SINGE executables for testing
 # Download the md5sums of the source .m files and binaries
-#RUN md5=c50ec7bc13e287eca340c9d19d8bc27d && \
-#    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Test && \
-#    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
-#    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
-#    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
-#    chmod u+x SINGE_* && \
-#    mv SINGE_Test tests/SINGE_Test
+RUN md5=5050f9d0b4c62b66aea03731bad7dc4a && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Test && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_GLG_Test && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/SINGE_Aggregate && \
+    wget --quiet https://www.biostat.wisc.edu/~gitter/tmp/$md5/code.md5 && \
+    chmod u+x SINGE_* && \
+    mv SINGE_Test tests/SINGE_Test
