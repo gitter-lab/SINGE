@@ -46,9 +46,6 @@ for b_ind = 1:min(size(branches))
     X = m.X;
     rind = (~Xdrop);
     
-    % For each branch, only retain the cells corresponding to that branch
-    rind = rind*diag((branches(:,b_ind)>0)*1);
-    
     % Precompute the full kernel matrix -- to be subsampled for each regulator
     if m.computeKp
         if ismember('fullKp',who(m))&&~isempty(m.fullKp)
@@ -61,7 +58,7 @@ for b_ind = 1:min(size(branches))
             % ptime for each value of 1<= k<=L
             Kp = (refT-(L)*Dt+(k-1)*Dt);
             Kp = bsxfun(gkern,Kp',refT);
-            Kp2.sumKp = single(Kp*rind');
+            %Kp2.sumKp = single(Kp*rind');
             Kp2.Kp = single(Kp);
             % saving variables as single helps read them faster
             m.fullKp(1,k) = Kp2;
@@ -69,6 +66,9 @@ for b_ind = 1:min(size(branches))
         m.computeKp = 0;
         clear Kp Kp2;
     end
+    
+    % For each branch, only retain the cells corresponding to that branch
+    rind = rind*diag((branches(:,b_ind)>0)*1);
     
     % Target values and ptime indices relevant for the particular branch.
     tval = X(pa(1),rind(pa(1),:)>0);
@@ -84,7 +84,9 @@ for b_ind = 1:min(size(branches))
     % Building the design matrix
     for k = 1:L
         Kp2 = m.fullKp(1,k);
-        Kp2.Kp = sparse(double(Kp2.Kp(remind,:)));
+        Kp2.Kp = double(Kp2.Kp);
+        Kp2.sumKp = Kp2.Kp*rind';
+        Kp2.Kp = sparse(Kp2.Kp(remind,:));
         Kp2.sumKp = double(Kp2.sumKp(remind,pa));
         Am(:, (([1:numregs]-1)*L+k)) = (Kp2.Kp*X')./Kp2.sumKp;
         clear Kp2;
