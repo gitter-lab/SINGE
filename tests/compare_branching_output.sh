@@ -48,7 +48,7 @@ do
   do
     for branch in 1 2 3
     do
-      filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}p${branch}_lambda_0p01_replicate_${rep}.mat
+      filename=AdjMatrix_data1_X_BranchTestpmat_ID_${id}p${branch}_lambda_0p01_replicate_${rep}.mat
       python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename $rtol $atol
       return_code=$?
       if [[ $return_code -ne 0 ]] ; then
