@@ -22,6 +22,8 @@ script:
   - bash tests/high_throughput_test.sh
   # Test standalone SINGE run through Docker
   - bash tests/standalone_test.sh
+  # Test standalone SINGE on a branching dataset
+  - bash tests/standalone_branching_test.sh
   # Confirm the hyperparameter generation script works
   - cd scripts
   - bash generate_hyperparameters.sh
