@@ -6,5 +6,8 @@ This directory contains the following files related to the Mouse Bone Marrow Mes
 
 ![Embedder-inferred trajectory](Embeddr_Trajectory.png)
 
-The sources to cite for this dataset are:
+For inferring the regulatory network using transcription factors only as regulators, we use AnimalTFDB3 to identify 149 transcription factors in this dataset.
+
+The sources to cite for this dataset and the AnimalTFDB3 database are:
 - [Han et al. 2018](https://www.sciencedirect.com/science/article/pii/S0092867418301168?via%3Dihub), [dataset](https://figshare.com/s/865e694ad06d5857db4b)
+- [Hui Huet al. 2019](https://doi.org/10.1093/nar/gky822.), [database](http://bioinfo.life.hust.edu.cn/static/AnimalTFDB3/download/Mus_musculus_TF)
