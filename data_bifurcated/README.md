@@ -62,6 +62,7 @@ plot_dimred(
     ## Using milestone_percentages from trajectory
 
 ![](get_bifurcated_data_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
 Slingshot infers this dataset as having a branching trajectory. The two
 main subtrajectories traverse through the milestones 3-\>2-\>1-\>4 and
 3-\>2-\>1-\>5, in that order, with the root milestone being 3. We
