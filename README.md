@@ -105,7 +105,7 @@ docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.4
 This example is part of the SINGE test code, which only runs when called from the root of the SINGE git repository.
 
 ## Inputs
-- *data* - Path to matfile with ordered single-cell expression data (`X`), pseudotime values (`ptime`), and optional indices of regulators (`regix`) (e.g., `data1/X_SCODE_data.mat`)
+- *data* - Path to matfile with ordered single-cell expression data (sparse matrix `X`), pseudotime values (array `ptime`), optional indices of regulators (array of index values `regix`), and optional branching information (matrix `branches`). For example, the data in `data1/X_SCODE_data.mat` represents a linear trajectory, and `data_bifurcated/X_data_bifurcated.mat` represents a branching trajectory with two branches.
 - *gene_list* - Path to file containing list of gene names corresponding to the rows in the expression data matrix `X` in Data (e.g., `data1/gene_list.mat`)
 - *outdir* - Path to folder for storing results from individual GLG Tests
 - *hyperparameter_file* - Path to file containing a list of GLG hyperparameter combinations for the hyperparameters described below
