@@ -10,4 +10,4 @@ For inferring the regulatory network using transcription factors only as regulat
 Their indices are listed in the `regix` array in `X_BMTF.mat`.
 The sources to cite for this expression dataset and the AnimalTFDB3 database are:
 - [Han et al. 2018](https://doi.org/10.1016/j.cell.2018.02.001), [expression dataset](https://figshare.com/s/865e694ad06d5857db4b)
-- [Hui Huet al. 2019](https://doi.org/10.1093/nar/gky822.), [AnimalTFDB3 database](http://bioinfo.life.hust.edu.cn/static/AnimalTFDB3/download/Mus_musculus_TF)
+- [Hui Huet al. 2019](https://doi.org/10.1093/nar/gky822), [AnimalTFDB3 database](http://bioinfo.life.hust.edu.cn/static/AnimalTFDB3/download/Mus_musculus_TF)
