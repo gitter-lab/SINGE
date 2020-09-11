@@ -134,6 +134,9 @@ See [`USAGE.md`](USAGE.md) for guidelines on setting hyperparameters and running
 - *SINGE_Ranked_Edge_List.txt* - File with list of ranked edges according to their SINGE scores
 - *SINGE_Gene_Influence.txt* - File with list of genes ranked according to their SINGE influence.
 
+## Note on SINGE output for branching trajectories
+When running SINGE `v0.5.0` on a dataset with a branching trajectory (existence of matrix `branches` in `mat` file), the *SINGE_Ranked_Edge_List.txt* and *SINGE_Gene_Influence.txt* are calculated for the entire branching process by combining the results of the individual GLG tests from all branches. Alternatively, the user can store the individual GLG test results from each branch in a separate folder and call SINGE Aggregate to obtain branch specific network inference.
+
 ## Note on reproducibility
 The master branch of this repository may be unstable as new features are implemented.
 Use a versioned [release](https://github.com/gitter-lab/SINGE/releases) for stable data analysis.
