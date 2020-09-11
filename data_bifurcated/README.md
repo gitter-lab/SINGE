@@ -113,3 +113,4 @@ write.table(pseudotime, file = "pseudotime.txt")
 write.table(branches, file = "branches.txt")
 write.table(expr,file = "expressions.txt")
 ```
+As of `SINGE v0.5.0`, the data from the above files needs to be imported into a `.mat` file for compatibility with `SINGE`. See `X_data_bifurcated.mat` for an example of the final `mat` file.
