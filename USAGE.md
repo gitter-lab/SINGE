@@ -38,8 +38,14 @@ The `dynverse` package provides a streamlined user interface that guides the use
 If the trajectory inference method itself does not assign pseudotimes, they can be assigned after the fact using the [`add_pseudotime`](https://rdrr.io/github/dynverse/dynwrap/man/add_pseudotime.html) function.
 
 ## Handling branching trajectories
-The current SINGE version operates on non-branching, linear trajectories.
+The current SINGE version operates on linear or branching trajectories.
+SINGE version 0.5.0 added new support for branching trajectories.
 In branching trajectories, two cells with very different states can have the same pseudotime.
-For applying SINGE on such a dataset, we recommend breaking down the complete trajectory into sub-trajectories corresponding to each cell fate and independently analyzing each trajectory using SINGE.
-The resulting GLG test results can either be independently aggregated to obtain one regulatory network for each cell fate, or the GLG test results from all branches can be aggregated together to obtain one global regulatory network for the entire branching process.
-Further investigation needs to be done on the best strategies for automating this process (see [#49](https://github.com/gitter-lab/SINGE/issues/49)).
+For applying SINGE on such a dataset, we recommend breaking down the complete trajectory into sub-trajectories (branches) corresponding to each cell fate and independently analyzing each trajectory.
+SINGE supports separate sub-trajectories via the optional indicator matrix `branches` in the input data matfile.
+`branches` has a column for each sub-trajectory.
+1s in the column indicate which cells belong to that sub-trajectory.
+Cells can belong to multiple sub-trajectories.
+By default, SINGE will aggregate all GLG tests from all sub-trajectories to produce a single regulatory network.
+Alternatively, a user could run the SINGE aggregation step separately on the adjacency matrices generated for each sub-trajectory.
+The example in the `data_bifurcated` directory demonstrates how to construct the `branches` data structure using `dynverse`.

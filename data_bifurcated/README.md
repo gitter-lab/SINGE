@@ -76,7 +76,7 @@ model <- add_pseudotime(model)
 
 Now, we assign branch groupings corresponding to the trajectory progress
 between milestones and extract cells corresponding to the individual
-subtrajectories in cell\_T1 and
+subtrajectories in cells\_T1 and
 cells\_T2
 
 ``` r
@@ -113,4 +113,5 @@ write.table(pseudotime, file = "pseudotime.txt")
 write.table(branches, file = "branches.txt")
 write.table(expr,file = "expressions.txt")
 ```
-As of `SINGE v0.5.0`, the data from the above files needs to be imported into a `.mat` file for compatibility with `SINGE`. See `X_data_bifurcated.mat` for an example of the final `mat` file.
+As of `SINGE v0.5.0`, the data from the above files needs to be imported into a `.mat` file for compatibility with `SINGE`.
+See `X_data_bifurcated.mat` for an example of the final `mat` file.

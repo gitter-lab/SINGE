@@ -64,7 +64,6 @@ for jj = 1:n_branches
     end
 end
 randomizer = floor(params.DateNumber+sum(params.lambda)*1000+params.dT+params.p1+params.kernel_width*10+params.replicate)
-%rng('default');
 rand('seed',randomizer);
 if params.prob_zero_removal~=0
    m.Xdrop = dropZeroSamples(params.prob_zero_removal, m);
@@ -77,14 +76,14 @@ end
 
 lastprogress = 0;
 for irow = 1:1:LX
-        [for_metric] = run_iLasso_row(m,outs,params,irow);
-        runtime = toc;
-        progress = (irow)/LX*100;
-        if (progress-lastprogress)>=10
-            s = sprintf(['%2.5g %% Progress in %5.5g seconds'],progress,runtime);
-            disp(s);
-            lastprogress = progress;
-        end
+   [for_metric] = run_iLasso_row(m,outs,params,irow);
+   runtime = toc;
+   progress = (irow)/LX*100;
+   if (progress-lastprogress)>=10
+        s = sprintf(['%2.5g %% Progress in %5.5g seconds'],progress,runtime);
+        disp(s);
+        lastprogress = progress;
+   end
 end
 runtime = toc
 

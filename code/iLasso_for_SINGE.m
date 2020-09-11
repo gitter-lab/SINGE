@@ -88,7 +88,6 @@ for b_ind = 1:min(size(branches))
     for k = 1:L
         Kp2 = m.fullKp(1,k);
         Kp2.Kp = double(Kp2.Kp);
-        %Kp2.sumKp = Kp2.Kp*rind';
         Kp2.Kp = sparse(Kp2.Kp(remind,:));
         sumKp = double(Kp2.sumKp{b_ind}(remind,pa));
         Am(:, ([1:numregs]-1)*L+k) = (Kp2.Kp*X')./sumKp;
@@ -109,7 +108,6 @@ for b_ind = 1:min(size(branches))
     
     %   No sparsity constraint on autoregressive interactions for SINGE
     opt.penalty_factor(((j-1)*L+1):(j*L)) = 0;
-    %Am = sparse(Am);
     fit = glmnet(Am, bm, params.family, opt);
     
     % workaround for mex memory leak issue
