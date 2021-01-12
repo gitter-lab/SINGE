@@ -13,7 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Install conda environment
-      uses: goanpeca/setup-miniconda@v1
+      uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: singe-test
         environment-file: tests/environment.yml
@@ -36,9 +36,9 @@ jobs:
         hdiutil unmount /Volumes/MATLAB_Runtime_R2020a_Update_2_maci64
         sudo ./MATLAB_Runtime_R2020a_Update_2_maci64/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -mode silent -agreeToLicense yes
         MATLAB_RUNTIME_PATH=/Applications/MATLAB/MATLAB_Runtime/v98
-        echo "::set-env name=MATLAB_RUNTIME_PATH::$MATLAB_RUNTIME_PATH"
-        echo "::set-env name=DYLD_LIBRARY_PATH::$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64"
-        echo "::add-path::$MATLAB_RUNTIME_PATH/bin/maci64"
+        echo "MATLAB_RUNTIME_PATH=$MATLAB_RUNTIME_PATH" >> $GITHUB_ENV
+        echo "DYLD_LIBRARY_PATH=$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_ENV
+        echo "$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_PATH
     - name: Download SINGE
       run: |
         wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION/SINGE_mac.tgz
