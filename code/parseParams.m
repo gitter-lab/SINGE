@@ -23,13 +23,15 @@ def_ID = 0;
 def_outdir = 'Output';
 def_prob_remove_samples = 0.2;
 def_date = date;
-%
+
+% Remove filesep from string check list
+strchecklist = setdiff(['[\/?*''."<>|]'],filesep);
 expected_family = {'gaussian','poisson'};
 % Changed the conditions to accommodate command line calls to GLG_Instance.
 validScalar = @(x) (isnumeric(x) && isscalar(x) && (x >= 0))||(isnumeric(str2num(x)) && isscalar(str2num(x)) && (str2num(x) >= 0));
 validPos = @(x) all(isnumeric(x) & (x >= 0))||all(isnumeric(str2num(x)) & (str2num(x) >= 0));
 validFile = @(x) isfilecomp(x);
-validString = @(x) ischar(x) && isempty(regexp(x,'[\/?*''."<>|]','once'));
+validString = @(x) ischar(x) && isempty(regexp(x,strchecklist,'once'));
 validInteger = @(x) (~ischar(x)&&((x - floor(x)==0) && (x >= 0)))||((str2num(x) - floor(str2num(x))==0) && (str2num(x) >= 0));
 validLags = @(x) (~ischar(x)&&((x - floor(x)==0) && (p.Results.dT*x)<100))||((str2num(x) - floor(str2num(x))==0) && (str2num(p.Results.dT)*str2num(x))<100);
 validProb = @(x) (~ischar(x)&&(isnumeric(x) && isscalar(x) && (x >= 0) &&(x<1)))||((isnumeric(str2num(x)) && isscalar(str2num(x)) && (str2num(x) >= 0) &&(str2num(x)<1)));
@@ -67,28 +69,34 @@ params.DateNumber = datenum(params.date);
 % between parallel jobs (separated valid file and temp file creation for
 % this purpose)
 if (exist([Data '.mat'], 'file') == 2)
-        copyfile([Data '.mat'],['TempMat' '_' num2str(params.ID) '.mat']);
+    load([Data '.mat']);
 elseif (exist(Data, 'file') == 2)
-        copyfile(Data,['TempMat' '_' num2str(params.ID) '.mat']);
+    load(Data);
+end
+X = sparse(X);
+% Changed the creation of TempMat to load and save Data file in v7.3 to
+% avoid lower version mat files causing error.
+if exist('branches')
+    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','branches','-v7.3');
+else
+    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','-v7.3');
 end
 end
 
 function y = isfilecomp(x)
     if (exist([x '.mat'], 'file') == 2)
         y = 1;
-        copyfile([x '.mat'],'TempMat.mat');
     elseif (exist(x, 'file') == 2)
         y = 1;
-        copyfile(x,'TempMat.mat');
     else
         y = 0;
     end
 end
 
 function y = stringcheck(x)
-if isstr(x)
-    y = str2num(x);
-else
-    y = x;
-end
+    if isstr(x)
+        y = str2num(x);
+    else
+        y = x;
+    end
 end
