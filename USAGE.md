@@ -24,6 +24,9 @@ With that in mind, we propose that for datasets with large number of genes, the 
 We also observed that setting `lambda=0` results in the `glmnet_matlab` routine to run for longer durations, which is one of the key reasons for the segmentation violations described above.
 Thus, avoiding `lambda=0` also lowers the risk of segmentation violations.
 
+### Using fewer replicates
+The [default_hyperparameters.txt](default_hyperparameters.txt) corresponds to an ensemble obtained using **ten** subsampled replicates for each hyperparameter combination. However, as noted in the manuscript, the user can achieve substantial reduction in computational requirement (by using as few as **two** replicates instead of **ten**) at the cost of moderate increase in precision-recall performance degradation. This strategy combined with using a shortlist of regulators as described in the following section can drastically reduce the computational requirement for large datasets. See [instructions for generating hyperparameter file](scripts/README.md) for further details.
+
 ## Using a regulator list
 SINGE version 0.3.0 introduced functionality where a subset of the gene list is earmarked as candidate regulators.
 This is achieved by including a vector `regix` accompanying the expression matrix `X` in the input `.mat` file.
