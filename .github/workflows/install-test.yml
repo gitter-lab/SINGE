@@ -11,11 +11,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Build Docker image
-      run: |
-        # Use the DockerHub image as a cache
-        # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
-        docker pull agitter/singe:tmp
-        docker build --pull --cache-from agitter/singe:tmp -t agitter/singe:tmp -f docker/Dockerfile .
+      uses: docker/build-push-action@v1
+      with:
+        path: .
+        dockerfile: docker/Dockerfile
+        repository: agitter/singe
+        tags: tmp
+        cache_froms: agitter/singe:tmp
+        add_git_labels: true
+        push: false
     - name: Test SINGE
       run: |
         # Store the md5sums of the tracked source files before running tests in the Docker image
