@@ -1,7 +1,6 @@
 # Single-cell Inference of Networks using Granger Ensembles (SINGE)
 
-[![Build Status](https://travis-ci.com/gitter-lab/SINGE.svg?branch=master)](https://travis-ci.com/gitter-lab/SINGE)
-[![Install SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20macOS/badge.svg)](https://github.com/gitter-lab/SINGE/actions?query=workflow%3A%22Install+test+macOS%22)
+[![Install test SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20SINGE/badge.svg)](https://github.com/gitter-lab/SINGE/actions?query=workflow%3A%22Install+test+SINGE%22)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
