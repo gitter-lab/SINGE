@@ -1,10 +1,55 @@
-# Installs MATLAB runtime R2020a and tests compiled SINGE for macOS on test data
-name: Install test macOS
+name: Install test SINGE
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  # Builds and tests the SINGE Docker image, tests SINGE in a Docker container
+  docker:
+    name: Install test Docker
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      # Pull from Docker Hub to use the cache
+      # https://medium.com/mobileforgood/coding-tips-patterns-for-continuous-integration-with-docker-on-travis-ci-9cedb8348a62
+      # https://github.com/docker/build-push-action/issues/7
+    - name: Pull Docker image
+      run: docker pull agitter/singe:tmp
+    - name: Build Docker image
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        path: .
+        dockerfile: docker/Dockerfile
+        repository: agitter/singe
+        tags: tmp
+        cache_froms: agitter/singe:tmp
+        add_git_labels: true
+        # Only push when running on the master branch
+        push: ${{ github.ref == 'refs/heads/master' }}
+    - name: Test SINGE
+      run: |
+        # Store the md5sums of the tracked source files before running tests in the Docker image
+        # The Docker image does not have git installed
+        md5sum $(git ls-tree -r HEAD --name-only | grep '.*\.m$') > current_code.md5
+        # Run SINGE tests in the built Docker image
+        # The conda environment should be activated before running the bash script
+        # See https://github.com/conda/conda/issues/7980
+        docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:tmp -c "source ~/.bashrc; conda activate singe-test; tests/docker_test.sh"
+        # Proof-of-concept of running SINGE in a high-throughput style
+        # Can be moved to run in a parallel job
+        bash tests/high_throughput_test.sh
+        # Test standalone SINGE run through Docker
+        bash tests/standalone_test.sh
+        # Test standalone SINGE on a branching dataset
+        bash tests/standalone_branching_test.sh
+        # Confirm the hyperparameter generation script works
+        cd scripts
+        bash generate_hyperparameters.sh
+  # Installs MATLAB runtime R2020a and tests compiled SINGE for macOS on test data
+  macos:
+    name: Install test macOS
     # See available macOS software https://github.com/actions/virtual-environments/blob/master/images/macos/macos-10.15-Readme.md
     runs-on: macos-latest
     env:
