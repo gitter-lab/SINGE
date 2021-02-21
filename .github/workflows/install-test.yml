@@ -21,7 +21,8 @@ jobs:
         tags: tmp
         cache_froms: agitter/singe:tmp
         add_git_labels: true
-        push: true # Temporarily push on all builds
+        # Only push when running on the master branch
+        push: ${{ github.ref == 'refs/heads/master' }}
     - name: Test SINGE
       run: |
         # Store the md5sums of the tracked source files before running tests in the Docker image
