@@ -12,8 +12,7 @@ cat current_code.md5
 # 'code.md5 current_code.md5 differ: char 174, line 4'
 # indicates the md5sums of the current source and binary files do not match
 # the expected versions
-############### RESTORE THIS ###############
-#cmp $SINGE_ROOT/code.md5 current_code.md5
+cmp $SINGE_ROOT/code.md5 current_code.md5
 
 # Confirm the contents of the conda environment
 conda list
