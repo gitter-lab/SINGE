@@ -1,3 +1,15 @@
+# Version 0.5.0
+Changes in version 0.5.0 include:
+- Add workflow for compiling, running, and testing macOS binaries 
+- Add initial support for branching trajectories and example branching dataset
+- Update usage guidelines for large datasets and branching trajectories
+- Allow file separators in output directory
+- Support v7 mat files as input
+- Migrate continuous integration to GitHub Actions
+- Document partial Windows support
+
+Thank you [@ktakers](https://github.com/ktakers) for reporting the issues with the output directory and v7 mat file format.
+
 # Version 0.4.1
 Version 0.4.1 fixes a bug that occurred when multiple GLG tests were run in parallel with a shared file system.
 The same temporary .mat file was overwritten by different GLG tests.
