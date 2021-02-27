@@ -53,7 +53,7 @@ jobs:
     # See available macOS software https://github.com/actions/virtual-environments/blob/master/images/macos/macos-10.15-Readme.md
     runs-on: macos-latest
     env:
-      SINGE_VERSION: v0.4.1
+      SINGE_VERSION: v0.5.0
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
