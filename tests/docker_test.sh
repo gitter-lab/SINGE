@@ -23,7 +23,7 @@ $SINGE_ROOT/SINGE.sh /usr/local/MATLAB/MATLAB_Runtime/v94 standalone data1/X_SCO
 ls script_output/ -l
 
 # Run the tests to compare the SINGE outputs from the standalone script
-tests/compare_example_output.sh script_output
+tests/compare_example_output.sh script_output tests/reference/latest
 
 # Run SINGE on the example data using the compiled SINGE_Test
 echo Testing SINGE with compiled SINGE_Test
@@ -32,4 +32,4 @@ ls compiled_output/ -l
 
 # Run the tests to compare the SINGE outputs from the compiled SINGE_Test
 # The output directory is hard-coded to compiled_output
-tests/compare_example_output.sh compiled_output
+tests/compare_example_output.sh compiled_output tests/reference/latest
