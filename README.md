@@ -1,12 +1,11 @@
 # Single-cell Inference of Networks using Granger Ensembles (SINGE)
 
-[![Build Status](https://travis-ci.com/gitter-lab/SINGE.svg?branch=master)](https://travis-ci.com/gitter-lab/SINGE)
-[![Install SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20macOS/badge.svg)](https://github.com/gitter-lab/SINGE/actions?query=workflow%3A%22Install+test+macOS%22)
+[![Install test SINGE](https://github.com/gitter-lab/SINGE/workflows/Install%20test%20SINGE/badge.svg)](https://github.com/gitter-lab/SINGE/actions?query=workflow%3A%22Install+test+SINGE%22)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2549817.svg)](https://doi.org/10.5281/zenodo.2549817)
 
 Gene regulatory network reconstruction from pseudotemporal single-cell gene expression data.
 Standalone MATLAB implementation of the SINGE algorithm.
-This code has been tested on MATLAB R2014b and R2018a on Linux and MATLAB R2020a on macOS.
+This code has been tested on MATLAB R2014b and R2018a on Linux, MATLAB R2020a on macOS, and MATLAB R2018a on Windows.
 
 The software was formerly called SCINGE and has been renamed **SINGE**.
 
@@ -34,13 +33,16 @@ After all GLG tests terminate, the results can be aggregated separately.
 The standalone and parallel modes are accessible in three ways: MATLAB, compiled MATLAB executables with a wrapper Bash script, or Docker.
 
 ### MATLAB environment
-Running SINGE through MATALB requires the source code in this repository and the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
+Running SINGE through MATLAB requires the source code in this repository and the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
 Unzip `glmnet_matlab.zip` in either the root directory that contains `SINGE_Example.m` or the `code` subdirectory.
 Then use `SINGE.m` to run SINGE in the standalone mode or `SINGE_GLG_Test.m` and `SINGE_Aggregate.m` to run each stage separately.
+SINGE can be run through MATLAB in Linux, macOS, or Windows but may not work in all Windows environments.
+
 `SINGE.m` usage:
 ```
 SINGE(Data,gene_list,outdir,hyperparameter_file)
 ```
+
 #### Example
 `SINGE_Example.m` demonstrates a simple example with the hyperparameters specified in `default_hyperparameters.txt`.
 It runs SINGE on `data1/X_SCODE_data.mat` and writes the results to the `Output` directory.
@@ -57,6 +59,10 @@ The compiled code has been tested with the R2018a runtime in Linux.
 Starting with release 0.4.1, the compiled executables for macOS are available from the [GitHub releases page](https://github.com/gitter-lab/SINGE/releases) in the file `SINGE_mac.tgz`.
 Download these executables, untar them with `tar -xf SINGE_mac.tgz`, and place them in the same directory as the wrapper scripts `SINGE.sh`, `run_SINGE_GLG_Test_mac.sh`, and `run_SINGE_Aggregate.sh_mac` from this repository.
 The compiled code has been tested with the R2020a runtime in macOS.
+
+#### Windows
+There are no compiled executables for Windows.
+We recommend running SINGE through Docker in Windows if a compatible MATLAB environment is not available.
 
 #### Usage
 Bash wrapper script usage:
@@ -147,10 +153,10 @@ The results can be reproduced by providing the same inputs and date from a previ
 ## Testing
 The `tests` directory contains test scripts and reference output files to test SINGE.
 
-Travis CI is used to run several types of tests in a Linux environment and to deploy a temporary Docker image to DockerHub every time the repository's `master` branch is updated.
+GitHub Actions is used to run several types of tests in a Linux environment and to deploy a temporary Docker image to DockerHub every time the repository's `master` branch is updated.
 The tests build the SINGE Docker image, run SINGE on the example data in multiple ways using Docker, and compare the generated output with the reference output.
 
-GitHub Actions is used to test SINGE in a macOS environment.
+GitHub Actions is also used to test SINGE in a macOS environment.
 The tests install the MATLAB runtime, run the compiled SINGE code on the example data, and compare the generated output with the reference output.
 The macOS tests use a more permissive threshold when comparing the generated and reference adjacency matrices due to minor operating system-specific differences in the output.
 

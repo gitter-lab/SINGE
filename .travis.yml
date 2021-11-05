@@ -1,3 +1,7 @@
+# No longer used, replaced by GitHub Actions
+# Keep this workflow as a reference
+# It had the advantage of only pushing to Docker Hub if the test cases passed
+
 sudo: required
 
 services:

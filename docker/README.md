@@ -3,7 +3,7 @@
 This `Dockerfile` builds an image with MATLAB R2018a, the compiled SINGE executables, and other dependencies needed to run SINGE.
 It also contains the conda environment needed to test SINGE.
 
-Travis CI builds the Docker image using the [DockerHub image](https://hub.docker.com/r/agitter/singe) as a cache.
+GitHub Actions builds the Docker image using the [DockerHub image](https://hub.docker.com/r/agitter/singe) as a cache.
 The image is deployed to DockerHub with the `tmp` tag when it is built using the `master` branch.
 The build process downloads the compiled SINGE executables from an external location because compiling requires a MATLAB license.
 
