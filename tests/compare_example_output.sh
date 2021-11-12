@@ -7,7 +7,7 @@
 # Must run inside the conda environment specified by environment.yml or have
 # those Python packages available
 
-usage="Usage: $(basename $0) output-directory reference-directory [rtol] [atol]"
+usage="Usage: $(basename $0) output-directory reference-directory [rtol] [atol] [dataset]"
 
 if [ $# -gt 0 ]; then
   # First arugment is the SINGE output directory
@@ -41,6 +41,13 @@ if [ $# -gt 3 ]; then
   atol=--atol=$4
 fi
 
+# Set optional dataset name
+dataset=X_SCODE_data
+if [ $# -gt 4 ]; then
+  echo Setting dataset name: $5
+  dataset=$5
+fi
+
 # Return 0 unless any individual test fails
 # Continue running all tests even if one fails
 exit_status=0
@@ -70,7 +77,7 @@ for id in 541 542
 do
   for rep in 1 2
   do
-    filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
+    filename=AdjMatrix_data1_${dataset}pmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
     python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename $rtol $atol
     return_code=$?
     if [[ $return_code -ne 0 ]] ; then
