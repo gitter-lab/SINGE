@@ -44,6 +44,8 @@ jobs:
         bash tests/standalone_test.sh
         # Test standalone SINGE on a branching dataset
         bash tests/standalone_branching_test.sh
+        # Test standalone SINGE on a dataset with regulator indices
+        bash tests/standalone_regix_test.sh
         # Confirm the hyperparameter generation script works
         cd scripts
         bash generate_hyperparameters.sh
