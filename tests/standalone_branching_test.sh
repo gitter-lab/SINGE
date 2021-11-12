@@ -10,7 +10,7 @@ reducedhyperparams=tests/reduced_hyperparameters.txt
 cat $hyperparams | sed -n '3p' > $reducedhyperparams
 
 # Run SINGE on the example data and inspect the output
-echo Testing SINGE standalone mode in Dockerized SINGE.sh
+echo Testing SINGE standalone mode in Dockerized SINGE.sh with a branching dataset
 output=branching_output
 
 docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:tmp \
