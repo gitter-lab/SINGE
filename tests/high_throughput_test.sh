@@ -24,4 +24,4 @@ ls $output -l
 # Run the tests to evaluate the SINGE outputs from the standalone script
 # run in the high-throughput setting
 docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:tmp -c \
-  "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh $output"
+  "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh $output tests/reference/latest"

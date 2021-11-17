@@ -106,7 +106,7 @@ docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.4.0 standalone data1/X_SCO
 
 #### Arbitrary commands using Bash as the entry point
 ```
-docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.4.0 -c "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh Output
+docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.4.0 -c "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh Output tests/reference/latest
 ```
 This example is part of the SINGE test code, which only runs when called from the root of the SINGE git repository.
 

@@ -3,10 +3,11 @@
 # This script must be called from the base directory of the repository
 # Must have already run SINGE on the example data
 # The SINGE output directory is provided as an argument
+# The reference SINGE output directory is provided as an argument
 # Must run inside the conda environment specified by environment.yml or have
 # those Python packages available
 
-usage="Usage: $(basename $0) output-directory [rtol] [atol]"
+usage="Usage: $(basename $0) output-directory reference-directory [rtol] [atol] [dataset]"
 
 if [ $# -gt 0 ]; then
   # First arugment is the SINGE output directory
@@ -20,19 +21,32 @@ else
   exit 1
 fi
 
-# Set optional relative and absolute tolerance for comparing adjacency matrix values
-rtol=""
 if [ $# -gt 1 ]; then
-  echo Setting relative tolerance: $2
-  rtol=--rtol=$2
-fi
-atol=""
-if [ $# -gt 2 ]; then
-  echo Setting absolute tolerance: $3
-  atol=--atol=$3
+  # Second arugment is the reference directory with the expected SINGE output
+  refdir=$2
+else
+  echo $usage
+  exit 1
 fi
 
-refdir=tests/reference/latest
+# Set optional relative and absolute tolerance for comparing adjacency matrix values
+rtol=""
+if [ $# -gt 2 ]; then
+  echo Setting relative tolerance: $3
+  rtol=--rtol=$3
+fi
+atol=""
+if [ $# -gt 3 ]; then
+  echo Setting absolute tolerance: $4
+  atol=--atol=$4
+fi
+
+# Set optional dataset name
+dataset=X_SCODE_data
+if [ $# -gt 4 ]; then
+  echo Setting dataset name: $5
+  dataset=$5
+fi
 
 # Return 0 unless any individual test fails
 # Continue running all tests even if one fails
@@ -63,7 +77,7 @@ for id in 541 542
 do
   for rep in 1 2
   do
-    filename=AdjMatrix_data1_X_SCODE_datapmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
+    filename=AdjMatrix_data1_${dataset}pmat_ID_${id}_lambda_0p01_replicate_${rep}.mat
     python tests/compare_adj_matrices.py $outdir/$filename $refdir/$filename $rtol $atol
     return_code=$?
     if [[ $return_code -ne 0 ]] ; then

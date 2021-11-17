@@ -76,8 +76,12 @@ end
 X = sparse(X);
 % Changed the creation of TempMat to load and save Data file in v7.3 to
 % avoid lower version mat files causing error.
-if exist('branches')
+if exist('branches','var')&&exist('regix','var')
+    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','branches','regix','-v7.3');
+elseif exist('branches','var')
     save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','branches','-v7.3');
+elseif exist('regix','var')
+    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','regix','-v7.3');
 else
     save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','-v7.3');
 end
