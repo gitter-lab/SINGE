@@ -1,3 +1,9 @@
+# Version 0.5.1
+Changes in version 0.5.1 include:
+- Fix a bug that caused the regulator index to be ignored
+- Generalize the test scripts
+- Add a new regulator index test case
+
 # Version 0.5.0
 Changes in version 0.5.0 include:
 - Add workflow for compiling, running, and testing macOS binaries 
