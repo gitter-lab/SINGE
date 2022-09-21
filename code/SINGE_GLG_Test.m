@@ -68,14 +68,26 @@ rand('seed',randomizer);
 if params.prob_zero_removal~=0
    m.Xdrop = dropZeroSamples(params.prob_zero_removal, m);
 else
-    m.Xdrop = false(size(m.X));
+   m.Xdrop = false(size(m.X));
 end
 if params.replicate>0
    m.Xdrop = dropSamples(params.prob_remove_samples,m);
 end
+if ismember('targetix',who(m))
+    targetix = m.targetix;
+    if iscolumn(targetix)
+        targetix = targetix';
+    elseif ~isrow(targetix)
+        display('Error: Regulator indices must be a vector');
+    end
+    numtargets = length(targetix)
+else
+    targetix = 1:LX;
+    numtargets = LX
+end
 
 lastprogress = 0;
-for irow = 1:1:LX
+for irow = targetix
    [for_metric] = run_iLasso_row(m,outs,params,irow);
    runtime = toc;
    progress = (irow)/LX*100;

@@ -60,7 +60,7 @@ params.kernel_width = stringcheck(params.kernel_width);
 params.ID = stringcheck(params.ID);
 
 % Sort lambdas in descending order to optimize glmnet's progression through
-% the lambdas using warm starts 
+% the lambdas using warm starts
 params.lambda = sort(params.lambda,'descend');
 params.p1 = params.dT*params.num_lags;
 params.DateNumber = datenum(params.date);
@@ -76,31 +76,33 @@ end
 X = sparse(X);
 % Changed the creation of TempMat to load and save Data file in v7.3 to
 % avoid lower version mat files causing error.
-if exist('branches','var')&&exist('regix','var')
-    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','branches','regix','-v7.3');
-elseif exist('branches','var')
-    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','branches','-v7.3');
-elseif exist('regix','var')
-    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','regix','-v7.3');
-else
-    save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','-v7.3');
+tempfilename = ['TempMat' '_' num2str(params.ID) '.mat'];
+save(['TempMat' '_' num2str(params.ID) '.mat'],'X','ptime','-v7.3');
+if exist('regix','var')
+    save(tempfilename,'regix','-append');
+end
+if exist('targetix','var')
+    save(tempfilename,'targetix','-append');
+end
+if exist('branches','var')
+    save(tempfilename,'branches','-append');
 end
 end
 
 function y = isfilecomp(x)
-    if (exist([x '.mat'], 'file') == 2)
-        y = 1;
-    elseif (exist(x, 'file') == 2)
-        y = 1;
-    else
-        y = 0;
-    end
+if (exist([x '.mat'], 'file') == 2)
+    y = 1;
+elseif (exist(x, 'file') == 2)
+    y = 1;
+else
+    y = 0;
+end
 end
 
 function y = stringcheck(x)
-    if isstr(x)
-        y = str2num(x);
-    else
-        y = x;
-    end
+if isstr(x)
+    y = str2num(x);
+else
+    y = x;
+end
 end
