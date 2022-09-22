@@ -8,7 +8,7 @@ function [ranked_edges, gene_influence] = SINGE(Data,gene_list,outdir,hyperparam
 % aggregation
 % hyperparameter_file = file path to text file containing all
 % hyperparameters
-SINGE_version = '0.5.0';
+SINGE_version = '0.5.1';
 display(SINGE_version);
 
 fid = fopen(hyperparameter_file);
