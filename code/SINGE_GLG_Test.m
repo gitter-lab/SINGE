@@ -78,7 +78,7 @@ if ismember('targetix',who(m))
     if iscolumn(targetix)
         targetix = targetix';
     elseif ~isrow(targetix)
-        display('Error: Regulator indices must be a vector');
+            display('Error: Target indices must be a vector');
     end
     numtargets = length(targetix)
 else
