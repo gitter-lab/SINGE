@@ -15,19 +15,21 @@ jobs:
       # https://github.com/docker/build-push-action/issues/7
     - name: Pull Docker image
       run: docker pull agitter/singe:tmp
-    - name: Build Docker image
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        path: .
-        dockerfile: docker/Dockerfile
-        repository: agitter/singe
-        tags: tmp
-        cache_froms: agitter/singe:tmp
-        add_git_labels: true
-        # Only push when running on the master branch
-        push: ${{ github.ref == 'refs/heads/master' }}
+#    Docker image build fails
+#    The repository 'http://deb.debian.org/debian stretch Release' does no longer have a Release file.
+#    - name: Build Docker image
+#      uses: docker/build-push-action@v1
+#      with:
+#        username: ${{ secrets.DOCKER_USERNAME }}
+#        password: ${{ secrets.DOCKER_PASSWORD }}
+#        path: .
+#        dockerfile: docker/Dockerfile
+#        repository: agitter/singe
+#        tags: tmp
+#        cache_froms: agitter/singe:tmp
+#        add_git_labels: true
+#        # Only push when running on the master branch
+#        push: ${{ github.ref == 'refs/heads/master' }}
     - name: Test SINGE
       run: |
         # Store the md5sums of the tracked source files before running tests in the Docker image
