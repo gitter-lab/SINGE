@@ -97,16 +97,17 @@ The most straightforward way to run SINGE through Docker is with the `SINGE.sh` 
 The usage is the same as the examples above except the script name and MATLAB runtime path do not need to be specified.
 Alternatively, arbitrary commands can be run inside Docker by overriding the default entry point.
 We recommend specifying the version of the Docker image.
+See the [DockerHub tags](https://hub.docker.com/r/agitter/singe/tags) for available versions.
 
 #### Examples
 ##### `SINGE.sh` wrapper script in standalone mode
 ```
-docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.4.0 standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
+docker run -v $(pwd):/SINGE -w /SINGE agitter/singe:0.5.1 standalone data1/X_SCODE_data.mat data1/gene_list.mat Output default_hyperparameters.txt
 ```
 
 #### Arbitrary commands using Bash as the entry point
 ```
-docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.4.0 -c "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh Output tests/reference/latest
+docker run -v $(pwd):/SINGE -w /SINGE --entrypoint "/bin/bash" agitter/singe:0.5.1 -c "source ~/.bashrc; conda activate singe-test; tests/compare_example_output.sh Output tests/reference/latest
 ```
 This example is part of the SINGE test code, which only runs when called from the root of the SINGE git repository.
 
