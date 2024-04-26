@@ -91,7 +91,7 @@ jobs:
     - name: Set up MATLAB
       uses: matlab-actions/setup-matlab@v2
       with:
-        release: R2020a # must match the release used to compile the code       
+        release: R2020b
     - name: Download SINGE
       run: |
         wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION/SINGE_mac.tgz
