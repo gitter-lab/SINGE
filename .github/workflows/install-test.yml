@@ -61,13 +61,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Install conda environment
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: singe-test
-        environment-file: tests/environment.yml
-        auto-activate-base: false
-        miniconda-version: 'latest'
+#    - name: Install conda environment
+#      uses: conda-incubator/setup-miniconda@v2
+#      with:
+#        activate-environment: singe-test
+#        environment-file: tests/environment.yml
+#        auto-activate-base: false
+#        miniconda-version: 'latest'
 #    - name: Cache MATLAB runtime installer
 #      id: cache-installer
 #      uses: actions/cache@v1
@@ -91,7 +91,7 @@ jobs:
     - name: Set up MATLAB
       uses: matlab-actions/setup-matlab@v2
       with:
-        release: R2021a
+        release: R2023a
     - name: Download SINGE
       run: |
         wget --quiet https://github.com/gitter-lab/SINGE/releases/download/$SINGE_VERSION/SINGE_mac.tgz
