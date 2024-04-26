@@ -67,7 +67,9 @@ jobs:
         activate-environment: singe-test
         environment-file: tests/environment.yml
         auto-activate-base: false
-        miniconda-version: 'latest'
+        miniforge-variant: Mambaforge
+        miniforge-version: 'latest'
+        use-mamba: true
     - name: Set up MATLAB
       id: setup-matlab
       uses: matlab-actions/setup-matlab@v2
