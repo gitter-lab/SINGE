@@ -89,6 +89,7 @@ jobs:
 #        echo "DYLD_LIBRARY_PATH=$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_ENV
 #        echo "$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_PATH
     - name: Set up MATLAB
+      id: setup-matlab
       uses: matlab-actions/setup-matlab@v2
       with:
         release: R2023a
