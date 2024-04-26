@@ -98,7 +98,9 @@ jobs:
         tar -xf SINGE_mac.tgz
     - name: Run and test SINGE
       shell: bash -l {0}
+      env:
+        MATLAB_RUNTIME_PATH: ${{ steps.setup-matlab.outputs.matlabroot }}
       run: |
-        bash SINGE.sh ${{ steps.setup-matlab.outputs.matlabroot }} standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
+        bash SINGE.sh $MATLAB_RUNTIME_PATH standalone data1/X_SCODE_data.mat data1/gene_list.mat Output tests/example_hyperparameters.txt
         ls -l Output
         bash tests/compare_example_output.sh Output tests/reference/latest 1e-02 1e-02
