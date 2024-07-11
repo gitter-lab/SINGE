@@ -1,6 +1,7 @@
 # MATLAB R2018a in a Debian environment
 FROM amarburg/matlab-runtime:R2018a
 
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
 RUN apt-get update && \
     apt-get -y install libxt6 bzip2 && \
     rm -rf /var/lib/apt/lists/*
