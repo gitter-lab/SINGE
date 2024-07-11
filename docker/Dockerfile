@@ -1,6 +1,7 @@
 # MATLAB R2018a in a Debian environment
 FROM amarburg/matlab-runtime:R2018a
 
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
 RUN apt-get update && \
     apt-get -y install libxt6 bzip2 && \
     rm -rf /var/lib/apt/lists/*
@@ -9,7 +10,7 @@ RUN apt-get update && \
 # Python is only needed for testing SINGE and could be removed from the base
 # to reduce the image size
 ENV PATH /opt/conda/bin:$PATH
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh --no-check-certificate -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     /opt/conda/bin/conda clean --all && \
