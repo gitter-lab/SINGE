@@ -2,8 +2,8 @@
 FROM amarburg/matlab-runtime:R2018a
 
 RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
-RUN apt-get update && \
-    apt-get -y install libxt6 bzip2 && \
+RUN apt-get -o Acquire::Check-Valid-Until=false update && \
+    apt-get -y --allow-unauthenticated install libxt6 bzip2 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Miniconda3 following https://hub.docker.com/r/continuumio/miniconda3/dockerfile
