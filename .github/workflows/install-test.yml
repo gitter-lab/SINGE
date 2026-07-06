@@ -36,7 +36,7 @@ jobs:
         file: docker/Dockerfile
         tags: agitter/singe:tmp
         cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-to: type=gha,mode=min
         load: true
         push: false
     # Only push when running on the master branch
