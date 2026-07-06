@@ -2,24 +2,22 @@
 FROM amarburg/matlab-runtime:R2018a
 
 RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
-RUN apt-get update && \
-    apt-get -y install libxt6 bzip2 && \
+RUN apt-get -o Acquire::Check-Valid-Until=false update && \
+    apt-get -y --allow-unauthenticated install libxt6 bzip2 && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Miniconda3 following https://hub.docker.com/r/continuumio/miniconda3/dockerfile
-# Python is only needed for testing SINGE and could be removed from the base
-# to reduce the image size
-ENV PATH /opt/conda/bin:$PATH
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh --no-check-certificate -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
-    rm ~/miniconda.sh && \
-    /opt/conda/bin/conda clean --all && \
+# Install Miniforge (conda-forge distribution of conda)
+ENV PATH=/opt/conda/bin:$PATH
+RUN wget --quiet https://github.com/conda-forge/miniforge/releases/download/26.3.2-3/Miniforge3-26.3.2-3-Linux-x86_64.sh -O ~/miniforge.sh && \
+    /bin/bash ~/miniforge.sh -b -p /opt/conda && \
+    rm ~/miniforge.sh && \
+    /opt/conda/bin/conda clean --all --yes && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc && \
     conda init bash
 
-ENV SINGE_ROOT /usr/local/SINGE
+ENV SINGE_ROOT=/usr/local/SINGE
 WORKDIR /usr/local/SINGE
 ENTRYPOINT ["/usr/local/SINGE/SINGE.sh", "/usr/local/MATLAB/MATLAB_Runtime/v94"]
 
@@ -33,7 +31,7 @@ COPY run_SINGE_GLG_Test.sh .
 COPY run_SINGE_Aggregate.sh .
 COPY tests/run_SINGE_Test.sh tests/
 
-ENV SINGE_RUNNING_IN_DOCKER 1
+ENV SINGE_RUNNING_IN_DOCKER=1
 
 # Download the compiled SINGE executables from the stable release
 # md5sum of v0.5.1 SINGE_GLG_Test is 95bc486778c3111533944480a2be3b74
