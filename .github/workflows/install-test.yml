@@ -3,6 +3,7 @@ name: Install test SINGE
 on:
   push:
   pull_request:
+  # Allow manual runs from the Actions tab while iterating on this update
   workflow_dispatch:
 
 jobs:
@@ -85,6 +86,9 @@ jobs:
         # the Anaconda Terms of Service, so environment.yml resolves without a
         # ToS-acceptance step and needs no channel changes.
         miniforge-version: latest
+        # Drop the implicitly-added 'defaults' channel so the solve is purely
+        # conda-forge (silences the setup-miniconda warning).
+        conda-remove-defaults: true
     - name: Cache MATLAB runtime installer
       id: cache-installer
       uses: actions/cache@v4
@@ -103,7 +107,10 @@ jobs:
         sudo ./MATLAB_Runtime_R2020a_Update_2_maci64/InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -mode silent -agreeToLicense yes
         MATLAB_RUNTIME_PATH=/Applications/MATLAB/MATLAB_Runtime/v98
         echo "MATLAB_RUNTIME_PATH=$MATLAB_RUNTIME_PATH" >> $GITHUB_ENV
-        echo "DYLD_LIBRARY_PATH=$MATLAB_RUNTIME_PATH/runtime/maci64:$MATLAB_RUNTIME_PATH/sys/os/maci64:$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_ENV
+        # Do not export DYLD_LIBRARY_PATH globally. It leaks into every later step
+        # and makes conda's Python load MATLAB's bundled libcurl/libexpat (missing
+        # symbols -> conda entry-point errors). The MCR wrapper (run_SINGE_*_mac.sh)
+        # sets DYLD_LIBRARY_PATH itself from MATLAB_RUNTIME_PATH for each SINGE run.
         echo "$MATLAB_RUNTIME_PATH/bin/maci64" >> $GITHUB_PATH
     - name: Download SINGE
       run: |
