@@ -30,7 +30,7 @@ For small or medium datasets and relatively few hyperparameter combinations, SIN
 However, for larger datasets or hyperparameter combinations, the GLG tests can be run in parallel on a single machine or multiple machines.
 After all GLG tests terminate, the results can be aggregated separately.
 
-The standalone and parallel modes are accessible in three ways: MATLAB, compiled MATLAB executables with a wrapper Bash script, or Docker.
+The standalone and parallel modes are accessible in three ways: MATLAB, compiled MATLAB executables with a wrapper Bash script, or [Docker](https://hub.docker.com/r/agitter/singe).
 
 ### MATLAB environment
 Running SINGE through MATLAB requires the source code in this repository and the [glmnet_matlab package](http://web.stanford.edu/~hastie/glmnet_matlab/download.html) as a dependency.
